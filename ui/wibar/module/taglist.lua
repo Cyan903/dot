@@ -1,6 +1,6 @@
-local awful = require('awful')
+local awful = require("awful")
 
-local mod    = require('binds.mod')
+local mod    = require("binds.mod")
 local modkey = mod.modkey
 
 return function(s)

@@ -1,15 +1,15 @@
-local awful = require('awful')
-local wibox = require('wibox')
+local awful = require("awful")
+local wibox = require("wibox")
 
 --- The titlebar to be used on normal clients.
 return function(c)
    -- Buttons for the titlebar.
    local buttons = {
       awful.button(nil, 1, function()
-         c:activate({ context = 'titlebar', action = 'mouse_move' })
+         c:activate({ context = "titlebar", action = "mouse_move" })
       end),
       awful.button(nil, 3, function()
-         c:activate({ context = 'titlebar', action = 'mouse_resize' })
+         c:activate({ context = "titlebar", action = "mouse_resize" })
       end)
    }
 
@@ -27,7 +27,7 @@ return function(c)
          layout  = wibox.layout.flex.horizontal,
          { -- Title
             widget = awful.titlebar.widget.titlewidget(c),
-            halign = 'center'
+            halign = "center"
          },
          buttons = buttons
       },

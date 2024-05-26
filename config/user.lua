@@ -1,4 +1,4 @@
-local awful = require('awful')
+local awful = require("awful")
 
 -- Specify user preferences for Awesome's behavior.
 return {
@@ -7,10 +7,10 @@ return {
    -- this or do not have such a key, I suggest you to remap Mod4 to another key using 
    -- xmodmap or other tools. However, you can use another modifier like Mod1, but it 
    -- may interact with others.
-   mod  = 'Mod4',
+   mod  = "Mod4",
    -- Each screen has its own tag table. You can just define one and append it to all 
    -- screens (default behavior).
-   tags = { '1', '2', '3', '4', '5', '6', '7', '8', '9' },
+   tags = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
    -- Table of layouts to cover with awful.layout.inc, ORDER MATTERS, the first layout 
    -- in the table is your DEFAULT LAYOUT.
    layouts = {

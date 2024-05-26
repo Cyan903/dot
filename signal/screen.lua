@@ -1,13 +1,13 @@
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
+local awful     = require("awful")
+local beautiful = require("beautiful")
+local wibox     = require("wibox")
 
-local widgets   = require('ui')
+local widgets   = require("ui")
 
 --- Attach tags and widgets to all screens.
-screen.connect_signal('request::desktop_decoration', function(s)
+screen.connect_signal("request::desktop_decoration", function(s)
    -- Create all tags and attach the layouts to each of them.
-   awful.tag(require('config.user').tags, s, awful.layout.layouts[1])
+   awful.tag(require("config.user").tags, s, awful.layout.layouts[1])
    -- Attach a wibar to each screen.
    widgets.wibar(s)
 end)
@@ -18,13 +18,13 @@ end)
 -- background. IF YOU JUST WISH TO SET THE ROOT WINDOW BACKGROUND, you 
 -- may want to use the deprecated `gears.wallpaper` instead. This is 
 -- the most common case of just wanting to set an image as wallpaper.
-screen.connect_signal('request::wallpaper', function(s)
+screen.connect_signal("request::wallpaper", function(s)
    awful.wallpaper({
       screen = s,
       widget = {
          widget = wibox.container.tile,
-         valign = 'center',
-         halign = 'center',
+         valign = "center",
+         halign = "center",
          tiled  = false,
          {
             widget    = wibox.widget.imagebox,

@@ -1,4 +1,4 @@
-local awful = require('awful')
+local awful = require("awful")
 
 return function(s)
    -- Create a tasklist widget
@@ -9,7 +9,7 @@ return function(s)
          -- Left-clicking a client indicator minimizes it if it's unminimized, or unminimizes
          -- it if it's minimized.
          awful.button(nil, 1, function(c)
-            c:activate({ context = 'tasklist', action = 'toggle_minimization' })
+            c:activate({ context = "tasklist", action = "toggle_minimization" })
          end),
          -- Right-clicking a client indicator shows the list of all open clients in all visible 
          -- tags.

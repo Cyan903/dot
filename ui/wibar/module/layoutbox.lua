@@ -1,4 +1,4 @@
-local awful = require('awful')
+local awful = require("awful")
 
 return function(s)
    -- Create an imagebox widget which will contain an icon indicating which layout we're using.

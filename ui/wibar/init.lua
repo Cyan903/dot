@@ -1,14 +1,14 @@
-local awful = require('awful')
-local wibox = require('wibox')
+local awful = require("awful")
+local wibox = require("wibox")
 
-local module = require(... .. '.module')
+local module = require(... .. ".module")
 
 return function(s)
    s.mypromptbox = awful.widget.prompt() -- Create a promptbox.
 
    -- Create the wibox
    s.mywibox = awful.wibar({
-      position = 'top',
+      position = "top",
       screen   = s,
       widget   = {
          layout = wibox.layout.align.horizontal,

@@ -1,6 +1,6 @@
-local awful = require('awful')
+local awful = require("awful")
 
-local widgets = require('ui')
+local widgets = require("ui")
 
 --- Global mouse bindings
 awful.mouse.append_global_mousebindings({
