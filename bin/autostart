@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+run() {
+    if ! pgrep -f "$1"; then
+        "$@" &
+    fi
+}
+
+# Applications
+run "picom"
+run "lxsession"
+# run "nm-applet"
+run "flameshot"
+run "copyq"
+
+# Screen config
+run "/home/hwk/.config/screenlayout/triple-tv"
+run "/home/hwk/.local/bin/disable-copy"
