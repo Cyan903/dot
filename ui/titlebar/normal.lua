@@ -1,44 +1,47 @@
 local awful = require("awful")
 local wibox = require("wibox")
 
---- The titlebar to be used on normal clients.
+--- The titlebar to be used on normal clients
 return function(c)
-    -- Buttons for the titlebar.
     local buttons = {
-        awful.button(nil, 1, function()
-            c:activate({ context = "titlebar", action = "mouse_move" })
-        end),
-        awful.button(nil, 3, function()
-            c:activate({ context = "titlebar", action = "mouse_resize" })
-        end)
+        awful.button(nil, 1, function() c:activate({ contexti = "titlebar", action = "mouse_move" }) end),
+        awful.button(nil, 3, function() c:activate({ context = "titlebar", action = "mouse_resize" }) end)
     }
 
-    -- Draws the client titlebar at the default position (top) and size.
-    awful.titlebar(c).widget = wibox.widget({
-        layout = wibox.layout.align.horizontal,
-        -- Left
+    awful.titlebar(c, { position = "top", size = 30 }).widget = wibox.widget({
         {
-            layout = wibox.layout.fixed.horizontal,
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons
+            {
+                awful.titlebar.widget.iconwidget(c),
+                layout = wibox.layout.fixed.horizontal()
+            },
+
+            layout = wibox.container.margin,
+            left = 10,
+            right = 10,
+            top = 8,
+            bottom = 8,
         },
-        -- Middle
+
         {
-            layout = wibox.layout.flex.horizontal,
-            { -- Title
+            {
                 widget = awful.titlebar.widget.titlewidget(c),
                 halign = "center"
             },
-            buttons = buttons
+
+            layout = wibox.layout.flex.horizontal,
         },
-        -- Right
-        {
-            layout = wibox.layout.fixed.horizontal,
-            awful.titlebar.widget.floatingbutton(c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton(c),
-            awful.titlebar.widget.ontopbutton(c),
-            awful.titlebar.widget.closebutton(c)
-        }
+
+        -- TODO: Delete this
+        -- {
+        --     layout = wibox.layout.fixed.horizontal,
+        --     awful.titlebar.widget.floatingbutton(c),
+        --     awful.titlebar.widget.maximizedbutton(c),
+        --     awful.titlebar.widget.stickybutton(c),
+        --     awful.titlebar.widget.ontopbutton(c),
+        --     awful.titlebar.widget.closebutton(c)
+        -- },
+
+        layout = wibox.layout.align.horizontal,
+        expand = "none"
     })
 end

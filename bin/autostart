@@ -9,10 +9,9 @@ run() {
 # Applications
 run "picom"
 run "lxsession"
-# run "nm-applet"
 run "flameshot"
 run "copyq"
 
 # Screen config
-run "/home/hwk/.config/screenlayout/triple-tv"
-run "/home/hwk/.local/bin/disable-copy"
+run "$HOME/.config/screenlayout/triple-tv"
+run "$HOME/.local/bin/disable-copy"

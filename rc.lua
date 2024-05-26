@@ -3,6 +3,7 @@ pcall(require, "luarocks.loader")
 
 --- Error handling.
 local naughty = require("naughty")
+local awful = require("awful")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config).
 naughty.connect_signal("request::display_error", function(message, startup)
@@ -13,21 +14,17 @@ naughty.connect_signal("request::display_error", function(message, startup)
     })
 end)
 
--- Allow Awesome to automatically focus a client upon changing tags or loading.
+-- Allow Awesome to automatically focus a client & startup script
 require("awful.autofocus")
+require("awful.spawn").with_shell(require("gears.filesystem").get_dir("config") .. "bin/autostart")
 
 require("theme")
-
--- Treat all signals. Bear in mind this implies creating all tags, attaching
--- their layouts, setting client behavior and loading UI.
 require("signal")
 
--- Set all keybinds.
+-- Set all keybinds
 require("binds")
 
 -- Load all client rules.
 require("config.rules")
 
 -- TODO: Deal with all the comments
--- TODO: And comments
--- 

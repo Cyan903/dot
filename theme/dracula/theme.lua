@@ -36,6 +36,7 @@ theme.border_color_marked = "#ff79c6"
 -- Titlebars
 theme.titlebar_bg_focus = theme.bg_normal
 theme.titlebar_bg_normal = theme.bg_focus
+theme.taglist_bg_focus = theme.bg_normal
 
 -- TODO: Widgets
 -- You can add as many variables as
