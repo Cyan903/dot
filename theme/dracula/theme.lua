@@ -6,7 +6,7 @@ local theme = {}
 local themes_path = gears.filesystem.get_dir("config") .. "theme/dracula/"
 
 theme.wallpaper = nil 
-theme.font = "FreeMono"
+theme.font = "FreeMono 8"
 
 local function bg_check(name)
     local f = io.open(name, "r")
@@ -37,6 +37,10 @@ theme.border_color_marked = "#ff79c6"
 theme.titlebar_bg_focus = theme.bg_normal
 theme.titlebar_bg_normal = theme.bg_focus
 theme.taglist_bg_focus = theme.bg_normal
+
+-- Hotkeys
+theme.hotkeys_modifiers_fg = "#adadad"
+theme.hotkeys_border_color = theme.border_color_active
 
 -- TODO: Widgets
 -- You can add as many variables as

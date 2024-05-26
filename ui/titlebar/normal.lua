@@ -1,7 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 
---- The titlebar to be used on normal clients
+-- The titlebar to be used on normal clients
 return function(c)
     local buttons = {
         awful.button(nil, 1, function() c:activate({ contexti = "titlebar", action = "mouse_move" }) end),

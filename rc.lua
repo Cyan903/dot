@@ -1,7 +1,7 @@
 -- awesome_mode: api-level=4:screen=on
 pcall(require, "luarocks.loader")
 
---- Error handling.
+-- Error handling.
 local naughty = require("naughty")
 local awful = require("awful")
 -- Check if awesome encountered an error during startup and fell back to

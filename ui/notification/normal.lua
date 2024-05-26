@@ -2,7 +2,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 local ruled = require("ruled")
 
---- Notifications
+-- Notifications
 ruled.notification.connect_signal("request::rules", function()
     -- All notifications will match this rule.
     ruled.notification.append_rule({

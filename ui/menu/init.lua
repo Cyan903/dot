@@ -1,7 +1,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
---- Menu
+-- Menu
 local menu = {}
 local apps = require("config.apps")
 local hkey_popup = require("awful.hotkeys_popup")
