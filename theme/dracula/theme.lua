@@ -48,11 +48,10 @@ theme.titlebar_bg_normal = theme.bg_focus
 --theme.border_widget = "#3F3F3F"
 
 -- Menu
-theme.menu_height = dpi(15)
-theme.menu_width = dpi(100)
+theme.menu_height = dpi(25)
+theme.menu_width = dpi(125)
 
 -- Icons
-theme.awesome_icon = themes_path .. "awesome-icon.png" -- TODO: Delete this too!
 theme.taglist_squares_sel = themes_path .. "taglist/squarefz.png"
 theme.taglist_squares_unsel = themes_path .. "taglist/squarez.png"
 -- theme.taglist_squares_resize = "false"

@@ -27,3 +27,7 @@ require("binds")
 
 -- Load all client rules.
 require("config.rules")
+
+-- TODO: Deal with all the comments
+-- TODO: And comments
+-- 

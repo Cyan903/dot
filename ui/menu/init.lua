@@ -5,26 +5,28 @@ local beautiful = require("beautiful")
 local menu = {}
 local apps = require("config.apps")
 local hkey_popup = require("awful.hotkeys_popup")
+local confpath = require("gears.filesystem").get_dir("config") 
 
--- Create a main menu.
+-- Create a main menu
 menu.awesome = {
-    { "hotkeys", function() hkey_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", apps.terminal .. " -e man awesome" },
-    -- Not part of the original config but extremely useful, especially as the example
-    -- config is meant to serve as an example to build your own environment upon.
+    { "Hotkeys", function() hkey_popup.show_help(nil, awful.screen.focused()) end },
     {
-        "docs",
-        (os.getenv("BROWSER") or "firefox") .. " https://awesomewm.org/apidoc"
+        "Help", {
+            { "Manual", apps.terminal .. " -e man awesome" },
+            { "Documentation", (os.getenv("BROWSER") or "firefox") .. " https://awesomewm.org/apidoc" }
+        }
     },
-    { "edit config", apps.editor_cmd .. " " .. awesome.conffile },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
+
+    { "Edit Config", apps.editor_cmd .. " " .. confpath },
+    { "Restart", awesome.restart },
+    { "Quit", function() awesome.quit() end }
 }
 
 menu.main = awful.menu({
     items = {
-        { "awesome", menu.awesome, beautiful.awesome_icon },
-        { "open terminal", apps.terminal }
+        { "Awesome", menu.awesome },
+        { "Context", apps.context },
+        { "Terminal", apps.terminal }
     }
 })
 
