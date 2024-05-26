@@ -16,6 +16,7 @@ return function(s)
     s.mywibox:setup {
         {            
             layout = wibox.layout.align.horizontal,
+            expand = "none",
 
             {
                 layout = wibox.layout.fixed.horizontal,
