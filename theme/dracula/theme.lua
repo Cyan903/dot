@@ -52,7 +52,7 @@ theme.menu_height = dpi(15)
 theme.menu_width = dpi(100)
 
 -- Icons
-theme.awesome_icon = themes_path .. "awesome-icon.png"
+theme.awesome_icon = themes_path .. "awesome-icon.png" -- TODO: Delete this too!
 theme.taglist_squares_sel = themes_path .. "taglist/squarefz.png"
 theme.taglist_squares_unsel = themes_path .. "taglist/squarez.png"
 -- theme.taglist_squares_resize = "false"
