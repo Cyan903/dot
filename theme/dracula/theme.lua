@@ -7,6 +7,7 @@ local themes_path = gears.filesystem.get_dir("config") .. "theme/dracula/"
 
 theme.wallpaper = nil 
 theme.font = "FreeMono 8"
+theme.font_bold = "FreeMono Bold 8"
 
 local function bg_check(name)
     local f = io.open(name, "r")
@@ -112,6 +113,11 @@ rnotification.connect_signal("request::rules", function()
     rnotification.append_rule {
         rule = { urgency = "critical" },
         properties = { bg = theme.bg_urgent, fg = theme.fg_urgent }
+    }
+    
+    rnotification.append_rule {
+        rule = { urgency = "low" },
+        properties = { bg = theme.bg_focus .. "90", fg = theme.fg_urgent }
     }
 end)
 

@@ -1,4 +1,4 @@
--- Allows for expanding into notifications for special cases
+-- Allows custom notifications for special cases
 return {
     normal = require(... .. ".normal")
 }
