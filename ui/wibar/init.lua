@@ -3,6 +3,8 @@ local wibox = require("wibox")
 
 local module = require(... .. ".module")
 
+local taskbar = require("module.taskbar.main")
+
 return function(s)
     s.mywibox = awful.wibar({
         position = "top",
@@ -25,8 +27,8 @@ return function(s)
 
             {
                 layout = wibox.layout.fixed.horizontal,
+                taskbar,
                 awful.widget.keyboardlayout(),
-                wibox.widget.systray(),
                 wibox.widget.textclock()
             }
         },
