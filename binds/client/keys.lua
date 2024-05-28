@@ -49,11 +49,6 @@ client.connect_signal("request::default_keybindings", function()
         awful.key({ modkey }, "o",
             function(c) c:move_to_screen() end,
             { description = "Move to screen", group = "Client" }
-        ),
-
-        awful.key({ modkey }, "t",
-            function(c) c.ontop = not c.ontop end,
-            { description = "Toggle keep on top", group = "Client" }
         )
     })
 end)
