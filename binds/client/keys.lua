@@ -3,7 +3,7 @@ local awful = require("awful")
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
--- Client keybindings.
+-- Client keybindings
 client.connect_signal("request::default_keybindings", function()
     awful.keyboard.append_client_keybindings({
         -- Client state management
