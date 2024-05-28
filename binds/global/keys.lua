@@ -1,4 +1,5 @@
 local awful = require("awful")
+local beautiful = require("beautiful")
 local gears = require("gears.table")
 
 local mod = require("binds.mod")
@@ -135,6 +136,14 @@ awful.keyboard.append_global_keybindings({
         function() awful.tag.incmwfact(-0.05) end,
         { description = "Decrease master width factor", group = "Layout" }
     ),
+    
+    awful.key({ modkey }, ";",
+        function()
+            awful.screen.focused().selected_tag.master_width_factor = beautiful.master_width_factor or 0.5
+        end,
+
+        { description = "Reset master width factor", group = "Layout" }
+    ),
 
     awful.key({ modkey, mod.shift }, "h",
         function() awful.tag.incnmaster(1, nil, true) end,
@@ -144,6 +153,17 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, mod.shift }, "l",
         function() awful.tag.incnmaster(-1, nil, true) end,
         { description = "Decrease the number of master clients", group = "Layout" }
+    ),
+    
+    awful.key({ modkey, mod.shift }, ";",
+        function()
+            awful.tag.object.set_master_count(
+                awful.screen.focused().selected_tag,
+                beautiful.master_count or 1
+            )
+        end,
+
+        { description = "Reset the number of master clients", group = "Layout" }
     ),
 
     awful.key({ modkey, mod.ctrl }, "h",
@@ -155,10 +175,21 @@ awful.keyboard.append_global_keybindings({
         function() awful.tag.incncol(-1, nil, true) end,
         { description = "Decrease the number of columns", group = "Layout" }
     ),
+    
+    awful.key({ modkey, mod.ctrl }, ";",
+        function()
+            awful.tag.object.set_column_count(
+                awful.screen.focused().selected_tag,
+                beautiful.column_count or 1
+            )
+        end,
+
+        { description = "Reset the number of columns", group = "Layout" }
+    ),
 
     awful.key({ modkey }, "space",
         function() awful.layout.inc(1) end,
-        { description = "Select next", group = "Layout" }
+        { description = "Select next layout", group = "Layout" }
     ),
 
     awful.key({ modkey, mod.shift }, "space",

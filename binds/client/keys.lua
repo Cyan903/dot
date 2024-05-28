@@ -40,25 +40,6 @@ client.connect_signal("request::default_keybindings", function()
             { description = "(un)maximize", group = "Client" }
         ),
 
-        -- TODO: Delete the next two
-        awful.key({ modkey, mod.ctrl  }, "m",
-            function(c)
-                c.maximized_vertical = not c.maximized_vertical
-                c:raise()
-            end,
-            
-            { description = "(un)maximize vertically", group = "Client" }
-        ),
-
-        awful.key({ modkey, mod.shift }, "m",
-            function(c)
-                c.maximized_horizontal = not c.maximized_horizontal
-                c:raise()
-            end,
-            
-            { description = "(un)maximize horizontally", group = "Client" }
-        ),
-
         -- Client position in tiling management
         awful.key({ modkey, mod.ctrl  }, "Return",
             function(c) c:swap(awful.client.getmaster()) end,
