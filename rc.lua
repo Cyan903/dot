@@ -3,7 +3,6 @@ pcall(require, "luarocks.loader")
 
 -- Error handling
 local naughty = require("naughty")
-local awful = require("awful")
 
 naughty.connect_signal("request::display_error", function(message, startup)
     naughty.notification({

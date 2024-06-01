@@ -12,9 +12,9 @@ return function(s)
         height = 30,
         screen = s
     })
-    
+
     s.mywibox:setup {
-        {            
+        {
             layout = wibox.layout.align.horizontal,
             expand = "none",
 

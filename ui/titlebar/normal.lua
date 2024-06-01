@@ -3,11 +3,6 @@ local wibox = require("wibox")
 
 -- The titlebar to be used on normal clients
 return function(c)
-    local buttons = {
-        awful.button(nil, 1, function() c:activate({ contexti = "titlebar", action = "mouse_move" }) end),
-        awful.button(nil, 3, function() c:activate({ context = "titlebar", action = "mouse_resize" }) end)
-    }
-
     awful.titlebar(c, { position = "top", size = 30 }).widget = wibox.widget({
         {
             {

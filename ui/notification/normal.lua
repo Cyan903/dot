@@ -38,7 +38,7 @@ ruled.notification.connect_signal("request::rules", function()
                                         valign = "center",
                                         widget = wibox.container.place
                                     },
-                                    
+
                                     {
                                         naughty.widget.message,
                                         left = 5,
@@ -52,14 +52,14 @@ ruled.notification.connect_signal("request::rules", function()
                                 margins = beautiful.notification_margin or 4,
                                 widget = wibox.container.margin
                             },
-                            
+
                             bg = beautiful.titlebar_bg_normal,
                             widget = wibox.container.background
                         },
 
                         widget = wibox.layout.fixed.vertical
                     },
-                    
+
                     id = "background_role",
                     widget = naughty.container.background
                 },

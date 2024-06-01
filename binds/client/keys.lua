@@ -36,7 +36,7 @@ client.connect_signal("request::default_keybindings", function()
                 c.maximized = not c.maximized
                 c:raise()
             end,
-            
+
             { description = "(un)maximize", group = "Client" }
         ),
 

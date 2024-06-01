@@ -3,8 +3,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local gears = require("gears")
 
-local ICON_DIR = gears.filesystem.get_dir("config") .. "module/taskbar/icons/"
-
 -- Helper functions
 local rounded = function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, 4)

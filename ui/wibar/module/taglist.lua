@@ -31,7 +31,7 @@ local function createFade(self, c3, index, objects)
 
     self:get_children_by_id("index_role")[1].markup =
         "<span weight='" .. weight ..
-            "' color='".. fade[math.abs(index-sel)+1] ..
+            "' color='" .. fade[math.abs(index-sel)+1] ..
             "' font_desc='FreeMono 8'>" .. index ..
         "</span>"
 end
@@ -58,7 +58,7 @@ return function(s)
             awful.button(nil, 4, function(t) awful.tag.viewprev(t.screen) end),
             awful.button(nil, 5, function(t) awful.tag.viewnext(t.screen) end)
         },
-        
+
         widget_template = {
             {
                 {

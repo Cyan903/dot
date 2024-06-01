@@ -114,7 +114,7 @@ rnotification.connect_signal("request::rules", function()
         rule = { urgency = "critical" },
         properties = { bg = theme.bg_urgent, fg = theme.fg_urgent }
     }
-    
+
     rnotification.append_rule {
         rule = { urgency = "low" },
         properties = { bg = theme.bg_focus .. "90", fg = theme.fg_urgent }

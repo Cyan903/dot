@@ -1,5 +1,4 @@
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
 
 -- Add a titlebar if titlebars_enabled is set to true for the client in `config/rules.lua`
@@ -20,7 +19,7 @@ local function toggle_borders(c)
         awful.titlebar.hide(c, "top")
         return
     end
-    
+
     if c.floating then
         c.border_color = beautiful.border_color_normal
         awful.titlebar.show(c, "top")
@@ -29,7 +28,7 @@ local function toggle_borders(c)
 
     c.border_color = beautiful.border_color_normal
     awful.titlebar.hide(c, "top")
-    
+
     if c.active then
         c.border_color = beautiful.border_color_active
     end

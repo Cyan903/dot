@@ -16,7 +16,7 @@ return function(s)
             awful.button(nil, 4, function() awful.client.focus.byidx(-1) end),
             awful.button(nil, 5, function() awful.client.focus.byidx( 1) end)
         },
-        
+
         style = {
             shape_border_width = 1,
             shape_border_color = beautiful.bg_focus,

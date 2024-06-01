@@ -6,7 +6,6 @@ local mod = require("binds.mod")
 local modkey = mod.modkey
 
 local apps = require("config.apps")
-local widgets = require("ui")
 
 -- Application shortcuts
 for group, tbl in pairs(apps.shortcuts) do
@@ -136,7 +135,7 @@ awful.keyboard.append_global_keybindings({
         function() awful.tag.incmwfact(-0.05) end,
         { description = "Decrease master width factor", group = "Layout" }
     ),
-    
+
     awful.key({ modkey }, ";",
         function()
             awful.screen.focused().selected_tag.master_width_factor = beautiful.master_width_factor or 0.5
@@ -154,7 +153,7 @@ awful.keyboard.append_global_keybindings({
         function() awful.tag.incnmaster(-1, nil, true) end,
         { description = "Decrease the number of master clients", group = "Layout" }
     ),
-    
+
     awful.key({ modkey, mod.shift }, ";",
         function()
             awful.tag.object.set_master_count(
@@ -175,7 +174,7 @@ awful.keyboard.append_global_keybindings({
         function() awful.tag.incncol(-1, nil, true) end,
         { description = "Decrease the number of columns", group = "Layout" }
     ),
-    
+
     awful.key({ modkey, mod.ctrl }, ";",
         function()
             awful.tag.object.set_column_count(
