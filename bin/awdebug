@@ -16,6 +16,7 @@ while [ ! -e /tmp/.X11-unix/X${disp_num} ] ; do
 done
 
 export DISPLAY=$disp
+
 awesome -c ~/.config/awesome/rc.lua &
 awesome-client
 
