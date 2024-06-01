@@ -4,6 +4,7 @@ local wibox = require("wibox")
 local module = require(... .. ".module")
 
 local taskbar = require("module.taskbar.main")
+local packages = require("module.packages.main")
 local time = require("module.time.main")
 
 return function(s)
@@ -29,7 +30,8 @@ return function(s)
             {
                 layout = wibox.layout.fixed.horizontal,
                 taskbar,
-                awful.widget.keyboardlayout(),
+                packages,
+                -- awful.widget.keyboardlayout(),
                 time,
             }
         },
