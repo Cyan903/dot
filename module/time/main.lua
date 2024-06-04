@@ -56,8 +56,6 @@ local calendar_pop = awful.popup {
 }
 
 -- Align popup and add event listeners
-local default_date = calendar.date.month
-
 awful.placement.top_right(calendar_pop, {
     margins = { top = 30, right = 10 },
     parent = awful.screen.focused() }
@@ -70,10 +68,11 @@ calendar_pop:buttons(awful.util.table.join(
 
 time:connect_signal("button::press", function(_, _1, _2, button)
     if button == 1 then
-        set_month(calendar, calendar_pop, default_date)
-
+        calendar.date = os.date("*t")
         calendar_pop.visible = not calendar_pop.visible
         calendar_pop.screen = awful.screen.focused()
+
+        set_month(calendar, calendar_pop, calendar.date.month)
 
         if calendar_pop.visible then
             awful.placement.top_right(calendar_pop, {
