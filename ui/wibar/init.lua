@@ -4,6 +4,7 @@ local wibox = require("wibox")
 local module = require(... .. ".module")
 
 local taskbar = require("module.taskbar.main")
+local volume = require("module.volume.main")
 local packages = require("module.packages.main")
 local time = require("module.time.main")
 
@@ -30,6 +31,7 @@ return function(s)
             {
                 layout = wibox.layout.fixed.horizontal,
                 wibox.container.margin(taskbar, 4, 4),
+                wibox.container.margin(volume, 4, 4),
                 wibox.container.margin(packages, 4, 4),
                 -- awful.widget.keyboardlayout(),
                 wibox.container.margin(time, 4, 4)

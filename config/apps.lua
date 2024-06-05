@@ -1,3 +1,6 @@
+local gears = require("gears")
+
+local BIN_DIR = gears.filesystem.get_dir("config") .. "module/volume/bin/"
 local apps = {}
 
 apps.terminal = "alacritty"
@@ -18,28 +21,28 @@ apps.shortcuts = {
             alt = {},
             key = "=",
             title = "Audio + 10%",
-            cmd = "pactl -- set-sink-volume 0 +10%"
+            cmd = BIN_DIR .. "set-volume +10 true"
         },
 
         {
             alt = {},
             key = "-",
             title = "Audio -10%",
-            cmd = "pactl -- set-sink-volume 0 -10%"
+            cmd = BIN_DIR .. "set-volume -10 true"
         },
 
         {
             alt = {"Shift"},
             key = "=",
             title = "Audio + 5%",
-            cmd = "pactl -- set-sink-volume 0 +5%"
+            cmd = BIN_DIR .. "set-volume +5 true"
         },
 
         {
             alt = {"Shift"},
             key = "-",
             title = "Audio -5%",
-            cmd = "pactl -- set-sink-volume 0 -5%"
+            cmd = BIN_DIR .. "set-volume -5 true"
         }
     },
 

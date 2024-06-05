@@ -44,7 +44,7 @@ local count_pop = awful.popup {
             count_list,
 
             margins = 10,
-            layout = wibox.layout.margin
+            widget = wibox.container.margin
         },
 
         strategy = "min",
@@ -55,7 +55,7 @@ local count_pop = awful.popup {
     shape = rounded
 }
 
--- Track updates 
+-- Track updates
 local update = function()
     count.markup = "<span weight='bold'> .. </span>"
 
