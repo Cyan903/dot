@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# This is a script to update the package list
-
 if pgrep -f awesome > /dev/null; then
     echo "awesome.emit_signal('signal::packages_upgrade')" | awesome-client
 fi

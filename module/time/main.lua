@@ -22,7 +22,6 @@ end
 -- Main widgets
 local time = wibox.widget.textclock("<span weight='ultrabold'> %a, %l:%M%P </span>")
 local clock = wibox.container.background(time, "#00000000", rounded)
-local clock_widget = wibox.container.margin(clock, 4, 4)
 
 local calendar = {
     date = os.date("*t"),
@@ -58,8 +57,8 @@ local calendar_pop = awful.popup {
 -- Align popup and add event listeners
 awful.placement.top_right(calendar_pop, {
     margins = { top = 30, right = 10 },
-    parent = awful.screen.focused() }
-)
+    parent = awful.screen.focused()
+})
 
 calendar_pop:buttons(awful.util.table.join(
     awful.button({}, 4, function() set_month(calendar, calendar_pop, calendar.date.month - 1) end),
@@ -87,4 +86,4 @@ time:connect_signal("button::press", function(_, _1, _2, button)
     end
 end)
 
-return clock_widget
+return wibox.container.margin(clock, 4, 4)

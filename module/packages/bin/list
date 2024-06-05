@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+readarray -t updates <<< "$(checkupdates --nocolor)"
+
+for i in "${updates[@]}"; do
+    echo "$i" | awk '{
+        printf "<span weight=\"bold\">" $1 "</span>"
+        printf "<span weight=\"bold\" color=\"red\"> " $2 " </span>"
+        printf "->"
+        printf "<span weight=\"bold\" color=\"green\"> " $4 " </span>\n"
+    }'
+done
