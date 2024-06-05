@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
+if ! checkupdates > /dev/null; then
+    printf "\n<span weight='bold'>No updates!</span>"
+    exit
+fi
+
 readarray -t updates <<< "$(checkupdates --nocolor)"
+printf "\n"
 
 for i in "${updates[@]}"; do
     echo "$i" | awk '{

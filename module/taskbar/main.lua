@@ -99,4 +99,4 @@ sys_button:connect_signal("mouse::move", update_systray)
 sys_button:connect_signal("button::press", update_systray)
 pop_tray:connect_signal("mouse::enter", update_systray)
 
-return wibox.container.margin(sys_button, 4, 4)
+return sys_button

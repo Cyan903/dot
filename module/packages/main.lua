@@ -107,4 +107,4 @@ count_container:connect_signal("button::press", function(_, _1, _2, button)
     end
 end)
 
-return wibox.container.margin(count_container, 4, 4)
+return count_container

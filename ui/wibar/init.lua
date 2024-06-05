@@ -29,10 +29,10 @@ return function(s)
 
             {
                 layout = wibox.layout.fixed.horizontal,
-                taskbar,
-                packages,
+                wibox.container.margin(taskbar, 4, 4),
+                wibox.container.margin(packages, 4, 4),
                 -- awful.widget.keyboardlayout(),
-                time,
+                wibox.container.margin(time, 4, 4)
             }
         },
 
