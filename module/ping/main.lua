@@ -4,12 +4,9 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 
 local ping_exec = require("module.ping.ping")
+local ping_list = require("module.ping.list")
 
 local ICON_DIR = gears.filesystem.get_dir("config") .. "module/ping/icons/"
-
-local PING_COUNT = 1
-local PING_FREQUANCY = 120
-local PING_LIST = {}
 
 -- Helper functions
 local rounded = function(cr, width, height)
@@ -127,11 +124,11 @@ awesome.connect_signal("signal::ping_update", function(hosts)
 
     if ping_pop.visible then update_hosts() end
     if finished then
-        ping.markup = "<span weight='bold'> " .. (#PING_LIST-failed) .. "/" .. #PING_LIST .. " </span>"
+        ping.markup = "<span weight='bold'> " .. (#ping_list.list-failed) .. "/" .. #ping_list.list .. " </span>"
         return
     end
 
-    ping.markup = "<span weight='bold'> ?/" .. #PING_LIST .. " </span>"
+    ping.markup = "<span weight='bold'> ?/" .. #ping_list.list .. " </span>"
 end)
 
 -- Handle popup
@@ -146,6 +143,7 @@ ping_container:connect_signal("button::press", function(_, _1, _2, button)
                 parent = awful.screen.focused()
             })
 
+            ping_pop:move_next_to(mouse.current_widget_geometry)
             ping_container:set_bg(beautiful.bg_focus)
             update_hosts()
         else
@@ -156,9 +154,14 @@ end)
 
 refresh_button:connect_signal("button::press", function(_, _1, _2, button)
     if button == 1 then
-        ping_exec(PING_LIST, PING_COUNT)
+        ping_exec(ping_list.list, ping_list.amt)
     end
 end)
+
+awful.placement.top_right(ping_pop, {
+    margins = { top = 30, right = 10 },
+    parent = awful.screen.focused()
+})
 
 -- Animations
 refresh_button:connect_signal("mouse::enter", function() refresh_button.bg = beautiful.bg_normal end)
@@ -166,17 +169,13 @@ refresh_button:connect_signal("mouse::leave", function() refresh_button.bg = bea
 refresh_button:connect_signal("button::press", function() refresh_button.bg = beautiful.bg_focus end)
 refresh_button:connect_signal("button::release", function() refresh_button.bg = beautiful.bg_normal end)
 
-return function(list, freq, count)
-    if count ~= nil then PING_COUNT = count end
-    if freq ~= nil then PING_FREQUANCY = freq end
-    if list ~= nil then PING_LIST = list end
+-- Create timer
+gears.timer {
+    timeout = ping_list.freq,
+    autostart = true,
+    callback = function() ping_exec(ping_list.list, ping_list.amt) end
+}
 
-    gears.timer {
-        timeout = PING_FREQUANCY,
-        autostart = true,
-        callback = function() ping_exec(PING_LIST, PING_COUNT) end
-    }
+ping_exec(ping_list.list, ping_list.amt)
 
-    ping_exec(PING_LIST, PING_COUNT)
-    return ping_container
-end
+return ping_container

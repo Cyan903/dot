@@ -2,15 +2,12 @@ local awful = require("awful")
 local wibox = require("wibox")
 
 local module = require(... .. ".module")
-local config = require("config.ping")
 
 local taskbar = require("module.taskbar.main")
+local ping = require("module.ping.main")
 local volume = require("module.volume.main")
 local packages = require("module.packages.main")
 local time = require("module.time.main")
-local ping = require("module.ping.main")(
-    config.list, config.freq, config.amt
-)
 
 return function(s)
     s.mywibox = awful.wibar({
