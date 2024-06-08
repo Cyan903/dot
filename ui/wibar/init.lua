@@ -2,11 +2,15 @@ local awful = require("awful")
 local wibox = require("wibox")
 
 local module = require(... .. ".module")
+local config = require("config.ping")
 
 local taskbar = require("module.taskbar.main")
 local volume = require("module.volume.main")
 local packages = require("module.packages.main")
 local time = require("module.time.main")
+local ping = require("module.ping.main")(
+    config.list, config.freq, config.amt
+)
 
 return function(s)
     s.mywibox = awful.wibar({
@@ -31,9 +35,11 @@ return function(s)
             {
                 layout = wibox.layout.fixed.horizontal,
                 wibox.container.margin(taskbar, 4, 4),
+                wibox.container.margin(ping, 4, 4),
                 wibox.container.margin(volume, 4, 4),
                 wibox.container.margin(packages, 4, 4),
                 -- awful.widget.keyboardlayout(),
+                wibox.container.margin(wibox.widget.textbox("<span weight='bold'> - </span>"), 2, 4),
                 wibox.container.margin(time, 4, 4)
             }
         },

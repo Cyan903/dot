@@ -6,7 +6,6 @@ local gears = require("gears")
 local bin = require("module.volume.bin")
 
 local ICON_DIR = gears.filesystem.get_dir("config") .. "module/volume/icons/"
-local BIN_DIR = gears.filesystem.get_dir("config") .. "module/volume/bin/"
 
 -- Helper functions
 local rounded = function(cr, width, height)
@@ -126,7 +125,6 @@ end
 
 gears.timer {
     timeout = 20,
-    call_now = true,
     autostart = true,
     callback = update
 }
@@ -153,9 +151,6 @@ volume_container:connect_signal("button::press", function(_, _1, _2, button)
         else
             volume_container:set_bg("#00000000")
         end
-    elseif button == 3 then
-        -- TODO: This
-        print("...")
     end
 end)
 
