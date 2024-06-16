@@ -6,6 +6,7 @@ math.randomseed(os.time())
 
 local ICON_DIR = gears.filesystem.get_dir("config") .. "module/notification/icons/"
 local WIDTH, HEIGHT = 500, 500
+local MAX_NOTIFICATIONS = 5
 
 local notify_list = { layout = wibox.layout.fixed.vertical }
 
@@ -50,7 +51,7 @@ local function remove(id)
     local notify_new = { layout = wibox.layout.fixed.vertical }
 
     for key in pairs(notify_list) do
-        if key ~= "layout" and notify_list[key]._ID ~= id then
+        if key ~= "layout" and tonumber(key) ~= nil and notify_list[key]._ID ~= id then
             notify_new[#notify_new+1] = notify_list[key]
         end
     end
@@ -68,9 +69,8 @@ local function add(n)
     local close_button = wibox.widget {
         {
             {
-                markup = "<span weight='bold'>Close</span>",
+                markup = "<span weight='bold'>  Close  </span>",
                 align = "center",
-                forced_width = WIDTH,
                 widget = wibox.widget.textbox
             },
 
@@ -82,8 +82,19 @@ local function add(n)
         widget = wibox.container.background
     }
 
+    local icon = {
+        wibox.widget.imagebox(n.icon),
+
+        forced_height = 48,
+        forced_width = 48,
+        halign = "center",
+        valign = "center",
+        widget = wibox.container.place
+    }
+
     if title == "" then title = "Awesome - No Title"; end
     if message == "" then message = "..."; end
+    if not n.icon then icon = nil; end
 
     -- Animations
     close_button:connect_signal("mouse::enter", function() close_button.bg = beautiful.bg_focus end)
@@ -119,15 +130,7 @@ local function add(n)
                 {
                     {
                         {
-                            {
-                                wibox.widget.imagebox(n.icon),
-
-                                forced_height = 48,
-                                forced_width = 48,
-                                halign = "center",
-                                valign = "center",
-                                widget = wibox.container.place
-                            },
+                            icon,
 
                             {
                                 wibox.widget.textbox(n.message),
@@ -150,23 +153,29 @@ local function add(n)
 
                 -- Time
                 {
+                    close_button, nil,
+
                     {
                         {
-                            markup = "<span>" .. os.date("%I:%M%p", time) .. "    </span>",
-                            align = "right",
-                            forced_width = WIDTH,
-                            widget = wibox.widget.textbox
+                            {
+                                markup = "<span>" .. os.date("%I:%M%p", time) .. "  </span>",
+                                align = "right",
+                                forced_width = WIDTH,
+                                widget = wibox.widget.textbox
+                            },
+
+                            forced_height = 25,
+                            layout = wibox.layout.fixed.horizontal
                         },
 
-                        forced_height = 25,
-                        layout = wibox.layout.fixed.horizontal
+                        bg = beautiful.bg_focus .. "44",
+                        widget = wibox.container.background
                     },
 
-                    bg = beautiful.bg_focus .. "44",
-                    widget = wibox.container.background
+                    expand = "none",
+                    layout = wibox.layout.align.horizontal
                 },
 
-                close_button,
                 widget = wibox.layout.fixed.vertical
             },
 
@@ -191,8 +200,8 @@ end
 
 local function generate_popup()
     local notify_result = notify_list
+    local overflow = nil
 
-    -- TODO: Add "...and" more if notification count is too high
     notif_header = wibox.widget.textbox(
         "<span weight='ultrabold'>Notifications</span> <span>(" .. tostring(#notify_list) .. ")</span>"
     )
@@ -236,6 +245,23 @@ local function generate_popup()
             height = HEIGHT,
             layout = wibox.container.constraint
         }
+    elseif #notify_list > MAX_NOTIFICATIONS then
+        notify_result = { layout = wibox.layout.fixed.vertical }
+        overflow = {
+            text = "And " .. tostring(#notify_list - MAX_NOTIFICATIONS) .. " more...",
+            align = "center",
+
+            widget = wibox.widget.textbox
+        }
+
+        -- Only display the last 5 notifications
+        for key in pairs(notify_list) do
+            local kk = tonumber(key)
+
+            if key ~= "layout" and kk ~= nil and kk < MAX_NOTIFICATIONS then
+                notify_result[#notify_result+1] = notify_list[key]
+            end
+        end
     end
 
     return {
@@ -252,6 +278,7 @@ local function generate_popup()
                     },
 
                     notify_result,
+                    overflow,
 
                     widget = wibox.layout.fixed.vertical,
                 },
