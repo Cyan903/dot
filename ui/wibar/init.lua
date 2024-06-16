@@ -4,6 +4,7 @@ local wibox = require("wibox")
 local module = require(... .. ".module")
 
 local taskbar = require("module.taskbar.main")
+local notifications = require("module.notification.main")
 local ping = require("module.ping.main")
 local volume = require("module.volume.main")
 local packages = require("module.packages.main")
@@ -32,6 +33,7 @@ return function(s)
             {
                 layout = wibox.layout.fixed.horizontal,
                 wibox.container.margin(taskbar, 4, 4),
+                wibox.container.margin(notifications, 4, 4),
                 wibox.container.margin(ping, 4, 4),
                 wibox.container.margin(volume, 4, 4),
                 wibox.container.margin(packages, 4, 4),

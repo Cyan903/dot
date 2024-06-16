@@ -129,7 +129,7 @@ gears.timer {
     callback = update
 }
 
-awful.placement.top_right(volume_pop , {
+awful.placement.top_right(volume_pop, {
     margins = { top = 30, right = 10 },
     parent = awful.screen.focused()
 })
@@ -141,7 +141,7 @@ volume_container:connect_signal("button::press", function(_, _1, _2, button)
         volume_pop.screen = awful.screen.focused()
 
         if volume_pop.visible then
-            awful.placement.top_right(volume_pop , {
+            awful.placement.top_right(volume_pop, {
                 margins = { top = 30, right = 10 },
                 parent = awful.screen.focused()
             })
