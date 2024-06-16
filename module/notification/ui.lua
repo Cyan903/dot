@@ -2,9 +2,12 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
 
-local notify_list = { layout = wibox.layout.fixed.vertical }
-
 math.randomseed(os.time())
+
+local ICON_DIR = gears.filesystem.get_dir("config") .. "module/notification/icons/"
+local WIDTH, HEIGHT = 500, 500
+
+local notify_list = { layout = wibox.layout.fixed.vertical }
 
 -- Helper functions
 local rounded = function(cr, width, height)
@@ -61,12 +64,13 @@ local function add(n)
     local message = n.message
 
     local id = uuid()
+    local time = os.time()
     local close_button = wibox.widget {
         {
             {
                 markup = "<span weight='bold'>Close</span>",
                 align = "center",
-                forced_width = 200,
+                forced_width = WIDTH,
                 widget = wibox.widget.textbox
             },
 
@@ -88,8 +92,9 @@ local function add(n)
         if button == 1 then remove(id) end
     end)
 
-    notify_list[#notify_list+1] = {
+    table.insert(notify_list, 1, {
         _ID = id,
+        _DATE = time,
 
         {
             {
@@ -99,7 +104,6 @@ local function add(n)
                         {
                             wrap = "word_char",
                             text = title,
-                            color = beautiful.border_color_active, -- TODO: Fix
                             widget = wibox.widget.textbox
                         },
 
@@ -119,6 +123,7 @@ local function add(n)
                                 wibox.widget.imagebox(n.icon),
 
                                 forced_height = 48,
+                                forced_width = 48,
                                 halign = "center",
                                 valign = "center",
                                 widget = wibox.container.place
@@ -143,47 +148,92 @@ local function add(n)
                     widget = wibox.container.background
                 },
 
+                -- Time
+                {
+                    {
+                        {
+                            markup = "<span>" .. os.date("%I:%M%p", time) .. "    </span>",
+                            align = "right",
+                            forced_width = WIDTH,
+                            widget = wibox.widget.textbox
+                        },
+
+                        forced_height = 25,
+                        layout = wibox.layout.fixed.horizontal
+                    },
+
+                    bg = beautiful.bg_focus .. "44",
+                    widget = wibox.container.background
+                },
+
                 close_button,
                 widget = wibox.layout.fixed.vertical
             },
 
             strategy = "min",
-            width = 240,
-            forced_width = 240,
+            width = WIDTH,
+            forced_width = WIDTH,
             widget = wibox.container.constraint
         },
 
         top = 10,
         bottom = 10,
         widget = wibox.container.margin
-    }
+    })
 end
 
 local function clear()
     notify_list = { layout = wibox.layout.fixed.vertical }
+
     awesome.emit_signal("signal::notification_redraw")
+    awesome.emit_signal("signal::notification_close")
 end
 
 local function generate_popup()
     local notify_result = notify_list
 
     -- TODO: Add "...and" more if notification count is too high
-    notif_header = wibox.widget.textbox("<span weight='ultrabold'>Notifications</span> <span>(" .. tostring(#notify_list) .. ")</span>")
+    notif_header = wibox.widget.textbox(
+        "<span weight='ultrabold'>Notifications</span> <span>(" .. tostring(#notify_list) .. ")</span>"
+    )
 
     if #notify_list == 0 then
         notify_result = {
             {
                 {
-                    markup = "<span weight='ultrabold' size='x-large'>You don't have any notifications!</span>",
-                    align = "center",
-                    widget = wibox.widget.textbox
+                    {
+                        image = ICON_DIR .."empty.svg",
+
+                        forced_height = 80,
+                        forced_width = 80,
+
+                        halign = "center",
+                        valign = "center",
+
+                        widget = wibox.widget.imagebox
+                    },
+
+                    top = HEIGHT / 10,
+                    widget = wibox.container.margin
                 },
 
-                layout = wibox.container.background
+                {
+                    {
+                        markup = "<span weight='ultrabold' size='x-large'>You don't have any notifications!</span>",
+                        align = "center",
+                        widget = wibox.widget.textbox
+                    },
+
+                    top = 15,
+                    bottom = 15,
+                    widget = wibox.container.margin
+                },
+
+                layout = wibox.layout.align.vertical
             },
 
-            strategy = "min",
-            height = 350,
+            strategy = "max",
+            height = HEIGHT,
             layout = wibox.container.constraint
         }
     end
@@ -194,10 +244,11 @@ local function generate_popup()
                 {
 
                     {
-                        notif_header,
-                        wibox.container.margin(clear_button, 100, 0, 0, 0),
+                        notif_header, nil,
+                        clear_button,
 
-                        layout = wibox.layout.fixed.horizontal
+                        expand = "none",
+                        layout = wibox.layout.align.horizontal
                     },
 
                     notify_result,
@@ -210,12 +261,12 @@ local function generate_popup()
             },
 
             strategy = "max",
-            width = 250,
+            forced_width = WIDTH,
             layout = wibox.container.constraint
         },
 
         strategy = "min",
-        height = 500,
+        height = HEIGHT,
         layout = wibox.container.constraint
     }
 end

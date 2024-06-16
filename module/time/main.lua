@@ -29,7 +29,7 @@ local calendar = {
     long_weekdays = true,
     start_sunday = true,
     week_numbers = false,
-    fn_embed = function(widget, flag, date)
+    fn_embed = function(widget, flag, _)
         set_style(
             flag == "monthheader" or
             flag == "header" or

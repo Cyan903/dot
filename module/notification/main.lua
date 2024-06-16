@@ -64,7 +64,6 @@ notify_container:connect_signal("button::press", function(_, _1, _2, button)
                 parent = awful.screen.focused()
             })
 
-            notify_pop:move_next_to(mouse.current_widget_geometry)
             notify_container:set_bg(beautiful.bg_focus)
         else
             notify_container:set_bg("#00000000")
@@ -74,5 +73,9 @@ end)
 
 naughty.connect_signal("added", function(n) ui.add(n); update() end)
 awesome.connect_signal("signal::notification_redraw", function() update() end)
+awesome.connect_signal("signal::notification_close", function()
+    notify_pop.visible = false
+    notify_container:set_bg("#00000000")
+end)
 
 return notify_container
