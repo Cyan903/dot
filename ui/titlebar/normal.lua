@@ -26,16 +26,6 @@ return function(c)
             layout = wibox.layout.flex.horizontal,
         },
 
-        -- TODO: Delete this
-        -- {
-        --     layout = wibox.layout.fixed.horizontal,
-        --     awful.titlebar.widget.floatingbutton(c),
-        --     awful.titlebar.widget.maximizedbutton(c),
-        --     awful.titlebar.widget.stickybutton(c),
-        --     awful.titlebar.widget.ontopbutton(c),
-        --     awful.titlebar.widget.closebutton(c)
-        -- },
-
         layout = wibox.layout.align.horizontal,
         expand = "none"
     })

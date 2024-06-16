@@ -39,5 +39,3 @@ client.connect_signal("property::maximized", toggle_borders)
 client.connect_signal("focus", toggle_borders)
 client.connect_signal("unfocus", toggle_borders)
 client.connect_signal("manage", toggle_borders)
-
--- TODO: Maybe close/max button on wibar
