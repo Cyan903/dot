@@ -25,7 +25,7 @@ end
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
     -- General Awesome keys
-    awful.key({ modkey }, "s",
+    awful.key({ modkey }, "/",
         require("awful.hotkeys_popup").show_help,
         { description = "Show help", group = "Awesome" }
     ),
@@ -43,11 +43,7 @@ awful.keyboard.append_global_keybindings({
     -- Tags related launching
     awful.key({ modkey }, "Return",
         function() awful.spawn(apps.terminal) end,
-        { description = "Open a terminal", group = "Launcher" }),
-
-    awful.key({ modkey }, "p",
-        function() require("menubar").show() end,
-        { description = "Show the menubar", group = "Launcher" }
+        { description = "Open a terminal", group = "Launcher" }
     ),
 
     -- Tags related keybindings

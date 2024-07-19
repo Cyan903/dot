@@ -45,11 +45,6 @@ ruled.client.connect_signal("request::rules", function()
     })
 
     ruled.client.append_rule({
-        rule = { class = "steam" },
-        properties = { screen = 1, tag = "8" }
-    })
-
-    ruled.client.append_rule({
         rule = { class = "ffxiv_dx11.exe" },
         properties = {
             screen = 1,
