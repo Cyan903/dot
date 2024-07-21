@@ -1,6 +1,6 @@
 local gears = require("gears")
 
-local BIN_DIR = gears.filesystem.get_dir("config") .. "module/volume/bin/"
+local BIN_DIR = gears.filesystem.get_dir("config") .. "bin/"
 local apps = {}
 
 apps.terminal = "alacritty"
@@ -16,7 +16,7 @@ apps.context = {
 
 -- Application shortcuts
 apps.shortcuts = {
-    Audio = {
+    ["Audio"] = {
         {
             alt = {},
             key = "=",
@@ -46,7 +46,7 @@ apps.shortcuts = {
         }
     },
 
-    Launcher = {
+    ["Launcher"] = {
         {
             alt = {},
             key = "\\",

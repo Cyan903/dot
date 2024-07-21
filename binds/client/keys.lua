@@ -87,14 +87,37 @@ client.connect_signal("request::default_keybindings", function()
 		end, { description = "Move to previous screen", group = "Client" }),
 
 		-- Client position for floating management
-		awful.key({ modkey, mod.shift }, "Up", function(c) move_floating(c, 0, -1) end, { description = "Move floating client up", group = "Client" }),
-		awful.key({ modkey, mod.shift }, "Down", function(c) move_floating(c, 0, 1) end, { description = "Move floating client down", group = "Client" }),
-		awful.key({ modkey, mod.shift }, "Left", function(c) move_floating(c, -1, 0) end, { description = "Move floating client left", group = "Client" }),
-		awful.key({ modkey, mod.shift }, "Right", function(c) move_floating(c, 1, 0) end, { description = "Move floating client right", group = "Client" }),
+		awful.key({ modkey, mod.shift }, "Up", function(c)
+			move_floating(c, 0, -1)
+		end, { description = "Move floating client up", group = "Client" }),
 
-		awful.key({ modkey, mod.ctrl, mod.shift }, "Up", function(c) resize_floating(c, 0, -1) end, { description = "Decrease floating client height", group = "Client" }),
-		awful.key({ modkey, mod.ctrl, mod.shift }, "Down", function(c) resize_floating(c, 0, 1) end, { description = "Incraese floating client height", group = "Client" }),
-		awful.key({ modkey, mod.ctrl, mod.shift }, "Left", function(c) resize_floating(c, -1, 0) end, { description = "Decrease floating client width", group = "Client" }),
-		awful.key({ modkey, mod.ctrl, mod.shift }, "Right", function(c) resize_floating(c, 1, 0) end, { description = "Increase floating client width", group = "Client" })
+		awful.key({ modkey, mod.shift }, "Down", function(c)
+			move_floating(c, 0, 1)
+		end, { description = "Move floating client down", group = "Client" }),
+
+		awful.key({ modkey, mod.shift }, "Left", function(c)
+			move_floating(c, -1, 0)
+		end, { description = "Move floating client left", group = "Client" }),
+
+		awful.key({ modkey, mod.shift }, "Right", function(c)
+			move_floating(c, 1, 0)
+		end, { description = "Move floating client right", group = "Client" }),
+
+
+		awful.key({ modkey, mod.ctrl, mod.shift }, "Up", function(c)
+			resize_floating(c, 0, -1)
+		end, { description = "Decrease floating client height", group = "Client" }),
+
+		awful.key({ modkey, mod.ctrl, mod.shift }, "Down", function(c)
+			resize_floating(c, 0, 1)
+		end, { description = "Incraese floating client height", group = "Client" }),
+
+		awful.key({ modkey, mod.ctrl, mod.shift }, "Left", function(c)
+			resize_floating(c, -1, 0)
+		end, { description = "Decrease floating client width", group = "Client" }),
+
+		awful.key({ modkey, mod.ctrl, mod.shift }, "Right", function(c)
+			resize_floating(c, 1, 0)
+		end, { description = "Increase floating client width", group = "Client" })
 	})
 end)

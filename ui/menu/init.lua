@@ -4,7 +4,7 @@ local awful = require("awful")
 local menu = {}
 local apps = require("config.apps")
 local hkey_popup = require("awful.hotkeys_popup")
-local confpath = require("gears.filesystem").get_dir("config") 
+local confpath = require("gears.filesystem").get_dir("config")
 
 -- Create a main menu
 menu.awesome = {
