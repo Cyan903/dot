@@ -9,7 +9,6 @@ run() {
 # Applications
 run "picom"
 run "lxsession"
-run "flameshot"
 run "copyq"
 
 # Screen config
