@@ -1,6 +1,6 @@
 # ~/dot
 
-![code-size](https://img.shields.io/github/languages/code-size/cyan903/shell) ![last-commit](https://img.shields.io/github/last-commit/cyan903/shell)
+![code-size](https://img.shields.io/github/languages/code-size/cyan903/dot) ![last-commit](https://img.shields.io/github/last-commit/cyan903/dot)
 
 <hr />
 
@@ -8,9 +8,9 @@
     <img src="desktop.png" />
 </p>
 
-<hr />
+<p align="center">Personal dotfiles managed with <a href="https://www.gnu.org/software/stow">stow</a>.</p>
 
-Personal dotfiles managed with [stow](https://www.gnu.org/software/stow).
+<hr />
 
 ## Usage
 
@@ -23,7 +23,7 @@ make list # List the symlinks in a tree
 
 ## Software
 
-Here is a brief list of the software I have configured. I'm running Arch Linux on my desktop and Debian through WSL on my laptop.
+Here is a brief list of the software I have configured. I'm running Arch on my desktop and Debian through WSL on my laptop.
 
 - Alacritty
 - AwesomeWM (git)
