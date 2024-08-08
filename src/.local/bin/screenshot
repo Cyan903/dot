@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Screenshot shortcut
+#  chatter +/-i for VPNs and such
+
+maim --select | tee /tmp/ss-maim-$(date +%s).png | xclip -selection clipboard -t image/png
+notify-send -i /usr/share/icons/screenshot.png "Copied to clipboard"
