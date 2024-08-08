@@ -13,6 +13,7 @@ alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias prettierrc="wget https://gist.githubusercontent.com/Cyan903/ee6f127e7c9c15ad5ee831c41cfd2c0b/raw/b9a2a3ff20b32c23a1a43612fdb2e3822e97aa56/.prettierrc"
 alias kubectl="minikube kubectl --"
+alias clipboard="xclip -selection c"
 
 # Default
 export EDITOR="nvim"

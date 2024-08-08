@@ -4,4 +4,3 @@ colorscheme --url ~/.config/tridactyl/themes/dracula.css dracula
 # Landing
 set newtab about:blank
 set smoothscroll true
-
