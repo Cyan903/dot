@@ -26,7 +26,7 @@ Here is a brief list of the software I have configured. I'm running Arch on my d
     - picom (default)
     - rofi
 - Firefox
-    - firevim
+    - firenvim
     - tridactyl
     - [userChrome.css](https://github.com/Cyan903/Firefox-theme/releases)
 - nvim & tmux

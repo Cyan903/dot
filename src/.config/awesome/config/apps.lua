@@ -101,7 +101,21 @@ apps.shortcuts = {
             key = "x",
             title = "Kill window",
             cmd = "sxkill"
-        }
+        },
+
+        {
+            alt = {"Ctrl"},
+            key = "s",
+            title = "Screenshot of selection",
+            cmd = "screenshot"
+        },
+
+        {
+            alt = {},
+            key = "s",
+            title = "Screenshot of monitor",
+            cmd = "screenshot --monitor"
+        },
     }
 }
 
