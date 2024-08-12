@@ -5,6 +5,11 @@ return {
 
     opts = {
         sort = { sorter = "case_sensitive" },
+        actions = {
+            open_file = {
+                quit_on_open = true,
+            },
+        },
         view = { width = 25 },
         renderer = { group_empty = false },
         filters = { dotfiles = true },
