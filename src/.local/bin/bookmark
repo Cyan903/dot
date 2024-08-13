@@ -3,15 +3,14 @@
 # Simple bookmarking script.
 #  Required:
 #  - $EDITOR (can be any editor)
-#  - xdotool
-#  - fzf
-#  - rofi
+#  - xdotool, xclip
+#  - fzf, rofi
 
 marks="$XDG_DATA_HOME/bookmarks"
 
 usage() {
     cat <<EOF
-X11 Bookmarking Rofi/fzf Script
+X11 Bookmarking rofi/fzf Script
 
 Usage: bookmark [options]
 
@@ -29,14 +28,12 @@ add() {
 }
 
 show() {
-    local sel=""
-    
-    if [[ $1 == "menu" ]]
-        then sel=$(rofi -disable-history -dmenu < "$marks")
-        else sel=$(fzf < "$marks")
+    if [[ $1 == "menu" ]]; then
+        xdotool type "$(rofi -disable-history -dmenu < "$marks")"
+        exit 0
     fi
 
-    xdotool type "$sel"
+    fzf < "$marks" | xclip -selection c
 }
 
 # Parse arguments & run
@@ -50,7 +47,7 @@ case $1 in
     edit)
         $EDITOR "$marks"
     ;;
-    
+
     add) add;;
     show) show "$2";;
 
