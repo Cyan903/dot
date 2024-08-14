@@ -11,6 +11,7 @@ run "picom"
 run "lxsession"
 run "discord"
 run "copyq"
+run "newtab"
 
 # Screen config
 run "$HOME/.config/screenlayout/triple-tv"
