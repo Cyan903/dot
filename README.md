@@ -8,7 +8,7 @@
 
 ## Usage
 
-Requires GNU [stow](https://www.gnu.org/software/stow/).
+Requires GNU [stow](https://www.gnu.org/software/stow).
 
 ```sh
 make link # Set the symlinks
