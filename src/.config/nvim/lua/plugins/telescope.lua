@@ -30,6 +30,12 @@ return {
                     require("telescope.themes").get_dropdown(),
                 },
             },
+
+            pickers = {
+                find_files = { hidden = true },
+                grep_string = { additional_args = { "--hidden" } },
+                live_grep = { additional_args = { "--hidden" } },
+            },
         }
 
         -- Enable Telescope extensions if they are installed

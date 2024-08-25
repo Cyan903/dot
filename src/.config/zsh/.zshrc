@@ -21,9 +21,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # Keybinds
-bindkey -s "^B" "tmux new\n"
-bindkey -s "^O" "rangercd\n"
-
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
@@ -51,7 +48,6 @@ source "$SHELL_DIRECTORY_CONFIG"/prompt/zsh
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 plug "zsh-users/zsh-autosuggestions"
-plug "hwk929/zsh-fzf"
 plug "zsh-users/zsh-history-substring-search"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
