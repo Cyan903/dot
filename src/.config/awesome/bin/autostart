@@ -14,5 +14,5 @@ run "copyq"
 run "newtab"
 
 # Screen config
-run "$HOME/.config/screenlayout/triple-tv"
+run "$HOME/.config/screenlayout/display"
 run "$HOME/.local/bin/disable-copy"
