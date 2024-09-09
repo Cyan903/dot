@@ -16,105 +16,167 @@ apps.context = {
 
 -- Application shortcuts
 apps.shortcuts = {
-    ["Audio"] = {
-        {
-            alt = {},
-            key = "=",
-            title = "Audio + 10%",
-            cmd = BIN_DIR .. "set-volume +10 true",
-        },
+    {
+        group = "Audio",
+        binds = {
+            {
+                alt = {},
+                key = "=",
+                title = "Audio + 10%",
+                cmd = BIN_DIR .. "set-volume +10 true",
+            },
 
-        {
-            alt = {},
-            key = "-",
-            title = "Audio -10%",
-            cmd = BIN_DIR .. "set-volume -10 true",
-        },
+            {
+                alt = {},
+                key = "-",
+                title = "Audio -10%",
+                cmd = BIN_DIR .. "set-volume -10 true",
+            },
 
-        {
-            alt = { "Shift" },
-            key = "=",
-            title = "Audio + 5%",
-            cmd = BIN_DIR .. "set-volume +5 true",
-        },
+            {
+                alt = { "Shift" },
+                key = "=",
+                title = "Audio + 5%",
+                cmd = BIN_DIR .. "set-volume +5 true",
+            },
 
-        {
-            alt = { "Shift" },
-            key = "-",
-            title = "Audio -5%",
-            cmd = BIN_DIR .. "set-volume -5 true",
+            {
+                alt = { "Shift" },
+                key = "-",
+                title = "Audio -5%",
+                cmd = BIN_DIR .. "set-volume -5 true",
+            },
         },
     },
 
-    ["Launcher"] = {
-        {
-            alt = {},
-            key = "\\",
-            title = "Firefox",
-            cmd = "firefox",
-        },
+    {
+        group = "Launcher",
+        binds = {
+            {
+                alt = {},
+                key = "\\",
+                title = "Firefox",
+                cmd = "firefox",
+            },
 
-        {
-            alt = {},
-            key = "BackSpace",
-            title = "File Manager",
-            cmd = "pcmanfm",
-        },
+            {
+                alt = {},
+                key = "BackSpace",
+                title = "File Manager",
+                cmd = "pcmanfm",
+            },
 
-        {
-            alt = {},
-            key = "f",
-            title = "rofi drun",
-            cmd = "rofi -disable-history -show drun",
-        },
+            {
+                alt = {},
+                key = "f",
+                title = "rofi drun",
+                cmd = "rofi -disable-history -show drun",
+            },
 
-        {
-            alt = {},
-            key = "r",
-            title = "rofi run",
-            cmd = "rofi -disable-history -show run",
-        },
+            {
+                alt = {},
+                key = "r",
+                title = "rofi run",
+                cmd = "rofi -disable-history -show run",
+            },
 
-        {
-            alt = {},
-            key = "w",
-            title = "rofi window",
-            cmd = "rofi -disable-history -show window",
-        },
+            {
+                alt = {},
+                key = "w",
+                title = "rofi window",
+                cmd = "rofi -disable-history -show window",
+            },
 
-        {
-            alt = {},
-            key = "c",
-            title = "copyq menu",
-            cmd = "copyq menu",
-        },
+            {
+                alt = {},
+                key = "c",
+                title = "copyq menu",
+                cmd = "copyq menu",
+            },
 
-        {
-            alt = {},
-            key = "b",
-            title = "Show bookmarks",
-            cmd = "bookmark show menu",
-        },
+            {
+                alt = {},
+                key = "b",
+                title = "Show bookmarks",
+                cmd = "bookmark show menu",
+            },
 
-        {
-            alt = {},
-            key = "x",
-            title = "Kill window",
-            cmd = "sxkill",
-        },
+            {
+                alt = {},
+                key = "x",
+                title = "Kill window",
+                cmd = "sxkill",
+            },
 
-        {
-            alt = { "Ctrl" },
-            key = "s",
-            title = "Screenshot of selection",
-            cmd = "screenshot",
-        },
+            {
+                alt = { "Ctrl" },
+                key = "s",
+                title = "Screenshot of selection",
+                cmd = "screenshot",
+            },
 
-        {
-            alt = {},
-            key = "s",
-            title = "Screenshot of monitor",
-            cmd = "screenshot --monitor",
+            {
+                alt = {},
+                key = "s",
+                title = "Screenshot of monitor",
+                cmd = "screenshot --monitor",
+            },
+        },
+    },
+}
+
+apps.active = {
+    {
+        -- TODO: Rate mods, open beatmap mirror
+        group = "osu!",
+        class = { "osu!.exe", "osu!" },
+        binds = {
+            {
+                alt = {},
+                key = "F1",
+                title = "Drop ~/Downloads/*.osz",
+                cmd = 'bash -c "blobdrop ~/Downloads/*.osz"',
+            },
+        },
+    },
+
+    {
+        group = "Quaver",
+        class = { "Quaver" },
+        binds = {
+            {
+                alt = {},
+                key = "F1",
+                title = "Drop ~/Downloads/*.osz",
+                cmd = 'bash -c "blobdrop ~/Downloads/*.osz"',
+            },
+
+            {
+                alt = {},
+                key = "F2",
+                title = "Drop ~/Downloads/*.qp",
+                cmd = 'bash -c "blobdrop ~/Downloads/*.qp"',
+            },
+
+            {
+                alt = {},
+                key = "F3",
+                title = "Launch Quatracker",
+                cmd = "quatracker",
+            },
+        },
+    },
+
+    {
+        group = "Discord",
+        class = { "discord", "Discord" },
+        binds = {
+            {
+                alt = {},
+                key = "F1",
+                title = "Toggle microphone mute",
+                cmd = "mutetoggle",
+            },
         },
     },
 }

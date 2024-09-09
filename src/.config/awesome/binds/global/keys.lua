@@ -1,22 +1,10 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local gears = require("gears.table")
 
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
 local apps = require("config.apps")
-
--- Application shortcuts
-for group, tbl in pairs(apps.shortcuts) do
-    for bind in pairs(apps.shortcuts[group]) do
-        awful.keyboard.append_global_keybindings({
-            awful.key(gears.join({ modkey }, tbl[bind].alt), tbl[bind].key, function()
-                awful.spawn.with_shell(tbl[bind].cmd)
-            end, { description = tbl[bind].title, group = group }),
-        })
-    end
-end
 
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
