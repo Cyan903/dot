@@ -15,10 +15,10 @@ return function(s)
     s.mywibox = awful.wibar({
         position = "top",
         height = 30,
-        screen = s
+        screen = s,
     })
 
-    s.mywibox:setup {
+    s.mywibox:setup({
         {
             layout = wibox.layout.align.horizontal,
             expand = "none",
@@ -27,7 +27,7 @@ return function(s)
                 layout = wibox.layout.fixed.horizontal,
 
                 module.layoutbox(s),
-                module.taglist(s)
+                module.taglist(s),
             },
 
             module.tasklist(s),
@@ -42,11 +42,11 @@ return function(s)
                 wibox.container.margin(packages, 4, 4),
                 wibox.container.margin(wibox.widget.textbox("<span weight='bold'> - </span>"), 2, 4),
                 wibox.container.margin(time, 4, 4),
-                wibox.container.margin(system, 2, 2)
-            }
+                wibox.container.margin(system, 2, 2),
+            },
         },
 
         widget = wibox.container.margin,
-        margins = 5
-    }
+        margins = 5,
+    })
 end

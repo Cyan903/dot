@@ -7,7 +7,7 @@ return function(c)
         {
             {
                 awful.titlebar.widget.iconwidget(c),
-                layout = wibox.layout.fixed.horizontal()
+                layout = wibox.layout.fixed.horizontal(),
             },
 
             layout = wibox.container.margin,
@@ -20,13 +20,13 @@ return function(c)
         {
             {
                 widget = awful.titlebar.widget.titlewidget(c),
-                halign = "center"
+                halign = "center",
             },
 
             layout = wibox.layout.flex.horizontal,
         },
 
         layout = wibox.layout.align.horizontal,
-        expand = "none"
+        expand = "none",
     })
 end

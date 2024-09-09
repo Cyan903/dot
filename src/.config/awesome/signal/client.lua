@@ -3,7 +3,9 @@ local beautiful = require("beautiful")
 
 -- Add a titlebar if titlebars_enabled is set to true for the client in `config/rules.lua`
 client.connect_signal("request::titlebars", function(c)
-    if c.requests_no_titlebars then return end
+    if c.requests_no_titlebars then
+        return
+    end
     require("ui.titlebar").normal(c)
 end)
 

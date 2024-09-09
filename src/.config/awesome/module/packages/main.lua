@@ -14,27 +14,27 @@ end
 -- Main widgets
 local count = wibox.widget.textbox("<span weight='bold'> .. </span>")
 local count_list = wibox.widget.textbox("")
-local count_container = wibox.widget {
+local count_container = wibox.widget({
     {
         {
             {
                 image = ICON_DIR .. "package.svg",
-                widget = wibox.widget.imagebox
+                widget = wibox.widget.imagebox,
             },
 
             margins = 2,
-            widget = wibox.container.margin
+            widget = wibox.container.margin,
         },
 
         count,
-        layout = wibox.layout.fixed.horizontal
+        layout = wibox.layout.fixed.horizontal,
     },
 
     shape = rounded,
-    widget = wibox.container.background
-}
+    widget = wibox.container.background,
+})
 
-local count_pop = awful.popup {
+local count_pop = awful.popup({
     ontop = true,
     visible = false,
     border_width = 1,
@@ -44,16 +44,16 @@ local count_pop = awful.popup {
             count_list,
 
             margins = 10,
-            widget = wibox.container.margin
+            widget = wibox.container.margin,
         },
 
         strategy = "min",
         width = 350,
-        widget = wibox.container.constraint
+        widget = wibox.container.constraint,
     },
 
-    shape = rounded
-}
+    shape = rounded,
+})
 
 -- Track updates
 local update = function()
@@ -63,7 +63,7 @@ local update = function()
         local u = tonumber(stdout)
 
         if u ~= nil then
-            count.markup = "<span weight='bold'> ".. tostring(u) .."x </span>"
+            count.markup = "<span weight='bold'> " .. tostring(u) .. "x </span>"
         end
     end)
 end
@@ -71,15 +71,15 @@ end
 awesome.connect_signal("signal::packages_upgrade", update)
 awful.placement.top_right(count_pop, {
     margins = { top = 30, right = 10 },
-    parent = awful.screen.focused()
+    parent = awful.screen.focused(),
 })
 
-gears.timer {
+gears.timer({
     timeout = 120,
     call_now = true,
     autostart = true,
-    callback = update
-}
+    callback = update,
+})
 
 -- Handle popup
 count_container:connect_signal("button::press", function(_, _1, _2, button)
@@ -90,7 +90,7 @@ count_container:connect_signal("button::press", function(_, _1, _2, button)
         if count_pop.visible then
             awful.placement.top_right(count_pop, {
                 margins = { top = 30, right = 10 },
-                parent = awful.screen.focused()
+                parent = awful.screen.focused(),
             })
 
             count_container:set_bg(beautiful.bg_focus)
@@ -102,8 +102,8 @@ count_container:connect_signal("button::press", function(_, _1, _2, button)
         else
             count_container:set_bg("#00000000")
         end
-    elseif button == 3
-        then update()
+    elseif button == 3 then
+        update()
     end
 end)
 

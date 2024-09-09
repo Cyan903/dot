@@ -2,5 +2,5 @@
 return {
     taglist = require(... .. ".taglist"),
     tasklist = require(... .. ".tasklist"),
-    layoutbox = require(... .. ".layoutbox")
+    layoutbox = require(... .. ".layoutbox"),
 }

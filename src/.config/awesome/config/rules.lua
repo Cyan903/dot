@@ -10,8 +10,8 @@ ruled.client.connect_signal("request::rules", function()
             focus = awful.client.focus.filter,
             raise = true,
             screen = awful.screen.preferred,
-            placement = awful.placement.no_overlap + awful.placement.no_offscreen
-        }
+            placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+        },
     })
 
     -- Floating clients
@@ -24,24 +24,24 @@ ruled.client.connect_signal("request::rules", function()
             role = {
                 "AlarmWindow",
                 "ConfigManager",
-                "pop-up"
-            }
+                "pop-up",
+            },
         },
 
-        properties = { floating = true }
+        properties = { floating = true },
     })
 
     -- Add titlebars to normal clients and dialogs
     ruled.client.append_rule({
         id = "titlebars",
         rule_any = { type = { "normal", "dialog" } },
-        properties = { titlebars_enabled = true }
+        properties = { titlebars_enabled = true },
     })
 
     -- Application specific rules
     ruled.client.append_rule({
         rule = { class = "discord" },
-        properties = { tag = "9" }
+        properties = { tag = "9" },
     })
 
     ruled.client.append_rule({
@@ -49,7 +49,7 @@ ruled.client.connect_signal("request::rules", function()
         properties = {
             screen = 1,
             maximized_vertical = true,
-            maximized_horizontal = true
-        }
+            maximized_horizontal = true,
+        },
     })
 end)

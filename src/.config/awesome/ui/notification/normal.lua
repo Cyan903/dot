@@ -20,11 +20,11 @@ ruled.notification.connect_signal("request::rules", function()
                             {
                                 halign = "center",
                                 wrap = "word_char",
-                                widget = naughty.widget.title
+                                widget = naughty.widget.title,
                             },
 
                             widget = wibox.container.margin,
-                            margins = 8
+                            margins = 8,
                         },
 
                         -- Message box
@@ -36,40 +36,40 @@ ruled.notification.connect_signal("request::rules", function()
                                         forced_height = 48,
                                         halign = "center",
                                         valign = "center",
-                                        widget = wibox.container.place
+                                        widget = wibox.container.place,
                                     },
 
                                     {
                                         naughty.widget.message,
                                         left = 5,
                                         right = 5,
-                                        widget = wibox.container.margin
+                                        widget = wibox.container.margin,
                                     },
 
-                                    widget = wibox.layout.fixed.horizontal
+                                    widget = wibox.layout.fixed.horizontal,
                                 },
 
                                 margins = beautiful.notification_margin or 4,
-                                widget = wibox.container.margin
+                                widget = wibox.container.margin,
                             },
 
                             bg = beautiful.titlebar_bg_normal,
-                            widget = wibox.container.background
+                            widget = wibox.container.background,
                         },
 
-                        widget = wibox.layout.fixed.vertical
+                        widget = wibox.layout.fixed.vertical,
                     },
 
                     id = "background_role",
-                    widget = naughty.container.background
+                    widget = naughty.container.background,
                 },
 
                 strategy = "min",
                 width = 350,
                 forced_width = 350,
-                widget = wibox.container.constraint
-            }
-        }
+                widget = wibox.container.constraint,
+            },
+        },
     })
 end)
 

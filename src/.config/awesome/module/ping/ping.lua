@@ -30,13 +30,13 @@ local function init(list, count)
     hosts = {}
 
     for _, v in pairs(list) do
-        hosts[#hosts+1] = {
+        hosts[#hosts + 1] = {
             name = v.name,
             host = v.host,
-            status = -1
+            status = -1,
         }
 
-       get_status(v.host, count)
+        get_status(v.host, count)
     end
 
     return hosts

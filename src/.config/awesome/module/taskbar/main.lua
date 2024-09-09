@@ -9,8 +9,10 @@ local beautiful = require("beautiful")
 local ICON_DIR = gears.filesystem.get_dir("config") .. "module/taskbar/icons/"
 
 -- Create elements
-local systray = wibox.widget.systray(); systray.base_size = 24
-local sys_button = wibox.widget {
+local systray = wibox.widget.systray()
+systray.base_size = 24
+
+local sys_button = wibox.widget({
     {
         {
             image = ICON_DIR .. "drop.svg",
@@ -19,7 +21,7 @@ local sys_button = wibox.widget {
         },
 
         margins = 4,
-        layout = wibox.container.margin
+        layout = wibox.container.margin,
     },
 
     shape = function(cr, width, height)
@@ -27,10 +29,10 @@ local sys_button = wibox.widget {
     end,
 
     widget = wibox.container.background,
-}
+})
 
 local rows_tray = { layout = wibox.layout.fixed.vertical }
-local pop_tray = awful.popup {
+local pop_tray = awful.popup({
     ontop = true,
     visible = false,
     border_width = 1,
@@ -39,8 +41,8 @@ local pop_tray = awful.popup {
     widget = {},
     shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 4)
-    end
-}
+    end,
+})
 
 table.insert(rows_tray, {
     {
@@ -51,7 +53,7 @@ table.insert(rows_tray, {
     },
 
     forced_width = 150,
-    widget = wibox.container.background
+    widget = wibox.container.background,
 })
 
 local function get_current_screen()
@@ -60,10 +62,7 @@ local function get_current_screen()
     for i = 1, screen:count() do
         local screen_geom = screen[i].geometry
 
-        if mouse_coords.x >= screen_geom.x and
-                mouse_coords.x < screen_geom.x + screen_geom.width and
-                mouse_coords.y >= screen_geom.y and
-                mouse_coords.y < screen_geom.y + screen_geom.height then
+        if mouse_coords.x >= screen_geom.x and mouse_coords.x < screen_geom.x + screen_geom.width and mouse_coords.y >= screen_geom.y and mouse_coords.y < screen_geom.y + screen_geom.height then
             return i
         end
     end
@@ -79,17 +78,15 @@ local function update_systray()
     end
 end
 
-sys_button:buttons(
-    awful.util.table.join(awful.button({}, 1, function()
-        if pop_tray.visible then
-            pop_tray.visible = not pop_tray.visible
-            sys_button:set_bg("#00000000")
-        else
-            pop_tray:move_next_to(mouse.current_widget_geometry)
-            sys_button:set_bg(beautiful.bg_focus)
-        end
-    end))
-)
+sys_button:buttons(awful.util.table.join(awful.button({}, 1, function()
+    if pop_tray.visible then
+        pop_tray.visible = not pop_tray.visible
+        sys_button:set_bg("#00000000")
+    else
+        pop_tray:move_next_to(mouse.current_widget_geometry)
+        sys_button:set_bg(beautiful.bg_focus)
+    end
+end)))
 
 pop_tray:setup(rows_tray)
 

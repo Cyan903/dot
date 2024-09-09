@@ -11,7 +11,7 @@ apps.editor_cmd = "code"
 apps.context = {
     { "FireFox", "firefox" },
     { "Files", "pcmanfm" },
-    { "Clipboard", "copyq menu" }
+    { "Clipboard", "copyq menu" },
 }
 
 -- Application shortcuts
@@ -21,29 +21,29 @@ apps.shortcuts = {
             alt = {},
             key = "=",
             title = "Audio + 10%",
-            cmd = BIN_DIR .. "set-volume +10 true"
+            cmd = BIN_DIR .. "set-volume +10 true",
         },
 
         {
             alt = {},
             key = "-",
             title = "Audio -10%",
-            cmd = BIN_DIR .. "set-volume -10 true"
+            cmd = BIN_DIR .. "set-volume -10 true",
         },
 
         {
-            alt = {"Shift"},
+            alt = { "Shift" },
             key = "=",
             title = "Audio + 5%",
-            cmd = BIN_DIR .. "set-volume +5 true"
+            cmd = BIN_DIR .. "set-volume +5 true",
         },
 
         {
-            alt = {"Shift"},
+            alt = { "Shift" },
             key = "-",
             title = "Audio -5%",
-            cmd = BIN_DIR .. "set-volume -5 true"
-        }
+            cmd = BIN_DIR .. "set-volume -5 true",
+        },
     },
 
     ["Launcher"] = {
@@ -51,72 +51,72 @@ apps.shortcuts = {
             alt = {},
             key = "\\",
             title = "Firefox",
-            cmd = "firefox"
+            cmd = "firefox",
         },
 
         {
             alt = {},
             key = "BackSpace",
             title = "File Manager",
-            cmd = "pcmanfm"
+            cmd = "pcmanfm",
         },
 
         {
             alt = {},
             key = "f",
             title = "rofi drun",
-            cmd = "rofi -disable-history -show drun"
+            cmd = "rofi -disable-history -show drun",
         },
 
         {
             alt = {},
             key = "r",
             title = "rofi run",
-            cmd = "rofi -disable-history -show run"
+            cmd = "rofi -disable-history -show run",
         },
 
         {
             alt = {},
             key = "w",
             title = "rofi window",
-            cmd = "rofi -disable-history -show window"
+            cmd = "rofi -disable-history -show window",
         },
 
         {
             alt = {},
             key = "c",
             title = "copyq menu",
-            cmd = "copyq menu"
+            cmd = "copyq menu",
         },
 
         {
             alt = {},
             key = "b",
             title = "Show bookmarks",
-            cmd = "bookmark show menu"
+            cmd = "bookmark show menu",
         },
 
         {
             alt = {},
             key = "x",
             title = "Kill window",
-            cmd = "sxkill"
+            cmd = "sxkill",
         },
 
         {
-            alt = {"Ctrl"},
+            alt = { "Ctrl" },
             key = "s",
             title = "Screenshot of selection",
-            cmd = "screenshot"
+            cmd = "screenshot",
         },
 
         {
             alt = {},
             key = "s",
             title = "Screenshot of monitor",
-            cmd = "screenshot --monitor"
+            cmd = "screenshot --monitor",
         },
-    }
+    },
 }
 
 -- Set the terminal for the menubar

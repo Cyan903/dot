@@ -2,6 +2,8 @@ local awful = require("awful")
 
 return {
     mod = "Mod4",
+
+    -- stylua: ignore
     tags = {
         "1", "2", "3",
         "4", "5", "6",
@@ -12,7 +14,7 @@ return {
         awful.layout.suit.tile,
         awful.layout.suit.tile.left,
         awful.layout.suit.max,
-        awful.layout.suit.floating
+        awful.layout.suit.floating,
         -- awful.layout.suit.tile.bottom,
         -- awful.layout.suit.tile.top,
         -- awful.layout.suit.fair,
@@ -22,5 +24,5 @@ return {
         -- awful.layout.suit.max.fullscreen,
         -- awful.layout.suit.magnifier,
         -- awful.layout.suit.corner.nw
-    }
+    },
 }

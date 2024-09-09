@@ -10,7 +10,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
     widgets.wibar(s)
 end)
 
--- Using the deprecated `gears.wallpaper` 
+-- Using the deprecated `gears.wallpaper`
 screen.connect_signal("request::wallpaper", function(s)
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper

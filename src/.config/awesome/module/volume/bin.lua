@@ -5,11 +5,14 @@ local bin = {}
 
 local function popen_and_return(cmd)
     local handle = io.popen(cmd)
-    if handle == nil then return "" end
+
+    if handle == nil then
+        return ""
+    end
 
     local result = handle:read("*a")
-
     handle:close()
+
     return result
 end
 
@@ -40,10 +43,7 @@ end
 function bin.get_mute()
     local stdout = popen_and_return(BIN_DIR .. "get-mute")
 
-    if string.find(stdout, "yes")
-        then return true
-        else return false
-    end
+    return not not string.find(stdout, "yes")
 end
 
 function bin.set_mute(mute)

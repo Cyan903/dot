@@ -10,13 +10,14 @@ theme.font = "FreeMono 8"
 theme.font_bold = "FreeMono Bold 8"
 
 local function bg_check(name)
-	local f = io.open(name, "r")
-	if f ~= nil then
-		io.close(f)
-		return true
-	end
+    local f = io.open(name, "r")
 
-	return false
+    if f ~= nil then
+        io.close(f)
+        return true
+    end
+
+    return false
 end
 
 -- https://github.com/dracula/dracula-theme
@@ -75,20 +76,20 @@ theme.layout_cornerse = themes_path .. "layouts/cornerse.png"
 
 -- Set different colors for urgent notifications
 rnotification.connect_signal("request::rules", function()
-	rnotification.append_rule({
-		rule = { urgency = "critical" },
-		properties = { bg = theme.bg_urgent, fg = theme.fg_urgent },
-	})
+    rnotification.append_rule({
+        rule = { urgency = "critical" },
+        properties = { bg = theme.bg_urgent, fg = theme.fg_urgent },
+    })
 
-	rnotification.append_rule({
-		rule = { urgency = "low" },
-		properties = { bg = theme.bg_focus .. "90", fg = theme.fg_urgent },
-	})
+    rnotification.append_rule({
+        rule = { urgency = "low" },
+        properties = { bg = theme.bg_focus .. "90", fg = theme.fg_urgent },
+    })
 end)
 
 -- Set the background if the image exists
 if bg_check(themes_path .. "bg") then
-	theme.wallpaper = themes_path .. "/bg"
+    theme.wallpaper = themes_path .. "/bg"
 end
 
 return theme

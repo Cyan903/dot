@@ -12,9 +12,17 @@ return function(s)
                 c:activate({ context = "tasklist", action = "toggle_minimization" })
             end),
 
-            awful.button(nil, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end),
-            awful.button(nil, 4, function() awful.client.focus.byidx(-1) end),
-            awful.button(nil, 5, function() awful.client.focus.byidx( 1) end)
+            awful.button(nil, 3, function()
+                awful.menu.client_list({ theme = { width = 250 } })
+            end),
+
+            awful.button(nil, 4, function()
+                awful.client.focus.byidx(-1)
+            end),
+
+            awful.button(nil, 5, function()
+                awful.client.focus.byidx(1)
+            end),
         },
 
         style = {
@@ -25,7 +33,7 @@ return function(s)
 
         layout = {
             spacing = 5,
-            layout = wibox.layout.fixed.horizontal
+            layout = wibox.layout.fixed.horizontal,
         },
 
         widget_template = {
@@ -42,11 +50,11 @@ return function(s)
 
                 left = 10,
                 right = 10,
-                widget = wibox.container.margin
+                widget = wibox.container.margin,
             },
 
             id = "background_role",
             widget = wibox.container.background,
-        }
+        },
     })
 end

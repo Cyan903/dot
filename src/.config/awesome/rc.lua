@@ -5,11 +5,11 @@ pcall(require, "luarocks.loader")
 local naughty = require("naughty")
 
 naughty.connect_signal("request::display_error", function(message, startup)
-	naughty.notification({
-		urgency = "critical",
-		title = "Awesome - An error occurred" .. (startup and " during startup" or ""),
-		message = message,
-	})
+    naughty.notification({
+        urgency = "critical",
+        title = "Awesome - An error occurred" .. (startup and " during startup" or ""),
+        message = message,
+    })
 end)
 
 -- Automatically focus a client & startup script
