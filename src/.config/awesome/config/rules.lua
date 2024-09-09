@@ -19,7 +19,15 @@ ruled.client.connect_signal("request::rules", function()
         id = "floating",
         rule_any = {
             instance = { "copyq" },
-            class = { "Arandr", "Quaver", "XIVLauncher.Core", "Quatracker" },
+            class = {
+                "Arandr",
+                "Quaver",
+                "Quatracker",
+                "XIVLauncher.Core",
+                "osu!.exe",
+                "osu!",
+            },
+
             name = { "Event Tester", "Volume Control" },
             role = {
                 "AlarmWindow",
@@ -41,7 +49,7 @@ ruled.client.connect_signal("request::rules", function()
     -- Application specific rules
     ruled.client.append_rule({
         rule = { class = "discord" },
-        properties = { tag = "9" },
+        properties = { tag = "9", screen = 1 },
     })
 
     ruled.client.append_rule({
