@@ -5,14 +5,14 @@ return {
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-        local harpoon = require "harpoon"
-        local fidget = require "fidget"
+        local harpoon = require("harpoon")
+        local fidget = require("fidget")
 
         harpoon:setup()
 
         vim.keymap.set("n", "<leader>ha", function()
             harpoon:list():add()
-            fidget.notify "[harpoon] file added."
+            fidget.notify("[harpoon] file added.")
         end, { desc = "Add file to harpoon menu" })
 
         vim.keymap.set("n", "<leader>hh", function()

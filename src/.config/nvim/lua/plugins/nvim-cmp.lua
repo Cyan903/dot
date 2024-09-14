@@ -8,7 +8,7 @@ return {
             "L3MON4D3/LuaSnip",
             build = (function()
                 -- Build Step is needed for regex support in snippets
-                if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then
+                if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
                     return
                 end
 
@@ -31,11 +31,11 @@ return {
     },
 
     config = function()
-        local cmp = require "cmp"
-        local luasnip = require "luasnip"
-        luasnip.config.setup {}
+        local cmp = require("cmp")
+        local luasnip = require("luasnip")
+        luasnip.config.setup({})
 
-        cmp.setup {
+        cmp.setup({
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
@@ -43,7 +43,7 @@ return {
             },
 
             completion = { completeopt = "menu,menuone,noinsert" },
-            mapping = cmp.mapping.preset.insert {
+            mapping = cmp.mapping.preset.insert({
                 -- Select the [n]ext item
                 ["<C-n>"] = cmp.mapping.select_next_item(),
 
@@ -55,10 +55,10 @@ return {
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
                 -- Accept the completion
-                ["<C-y>"] = cmp.mapping.confirm { select = true },
+                ["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
                 -- Force completion to open
-                ["<C-Space>"] = cmp.mapping.complete {},
+                ["<C-Space>"] = cmp.mapping.complete({}),
 
                 -- Move right in the snippet
                 ["<C-l>"] = cmp.mapping(function()
@@ -73,7 +73,7 @@ return {
                         luasnip.jump(-1)
                     end
                 end, { "i", "s" }),
-            },
+            }),
 
             sources = {
                 {
@@ -85,6 +85,6 @@ return {
                 { name = "luasnip" },
                 { name = "path" },
             },
-        }
+        })
     end,
 }

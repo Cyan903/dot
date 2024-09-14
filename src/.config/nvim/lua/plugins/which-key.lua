@@ -5,7 +5,7 @@ return {
     event = "VimEnter",
     config = function()
         require("which-key").setup()
-        require("which-key").add {
+        require("which-key").add({
             { "<leader>c", group = "[C]ode" },
             { "<leader>d", group = "[D]ocument" },
             { "<leader>r", group = "[R]ename" },
@@ -14,6 +14,6 @@ return {
             { "<leader>e", group = "[E]xplore" },
             { "<leader>t", group = "[T]erminal" },
             { "<leader>h", group = "[H]arpoon" },
-        }
+        })
     end,
 }

@@ -1,6 +1,6 @@
 -- Set theme
 -- :Telescope colorscheme
-local theme = require "themes.dracula"
+local theme = require("themes.dracula")
 local colorscheme = "dracula"
 
 theme.init = function()

@@ -11,7 +11,7 @@ return {
 
             build = "make",
             cond = function()
-                return vim.fn.executable "make" == 1
+                return vim.fn.executable("make") == 1
             end,
         },
 
@@ -24,7 +24,7 @@ return {
         --  - Insert mode: <c-/>
         --  - Normal mode: ?
 
-        require("telescope").setup {
+        require("telescope").setup({
             extensions = {
                 ["ui-select"] = {
                     require("telescope.themes").get_dropdown(),
@@ -36,14 +36,14 @@ return {
                 grep_string = { additional_args = { "--hidden" } },
                 live_grep = { additional_args = { "--hidden" } },
             },
-        }
+        })
 
         -- Enable Telescope extensions if they are installed
         pcall(require("telescope").load_extension, "fzf")
         pcall(require("telescope").load_extension, "ui-select")
 
         -- :help telescope.builtin
-        local builtin = require "telescope.builtin"
+        local builtin = require("telescope.builtin")
 
         vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
         vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
@@ -58,23 +58,23 @@ return {
 
         -- Search through current file
         vim.keymap.set("n", "<leader>/", function()
-            builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
+            builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
                 winblend = 10,
                 previewer = false,
-            })
+            }))
         end, { desc = "[/] Fuzzily search in current buffer" })
 
         -- Search through current file (live grep)
         vim.keymap.set("n", "<leader>s/", function()
-            builtin.live_grep {
+            builtin.live_grep({
                 grep_open_files = true,
                 prompt_title = "Live Grep in Open Files",
-            }
+            })
         end, { desc = "[S]earch [/] in Open Files" })
 
         -- Shortcut for searching your Neovim configuration files
         vim.keymap.set("n", "<leader>sn", function()
-            builtin.find_files { cwd = vim.fn.stdpath "config" }
+            builtin.find_files({ cwd = vim.fn.stdpath("config") })
         end, { desc = "[S]earch [N]eovim files" })
     end,
 }

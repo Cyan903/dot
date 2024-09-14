@@ -5,13 +5,13 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- Load config
-require "config.opt"
-require "config.keymap"
-require "config.usercommand"
-require "config.autocommand"
+require("config.opt")
+require("config.keymap")
+require("config.usercommand")
+require("config.autocommand")
 
 -- Load plugins
-require "util.lazy" {
+require("util.lazy")({
     { import = "themes" },
     { import = "plugins" },
-}
+})

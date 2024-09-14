@@ -1,9 +1,9 @@
 -- TODO: docs
 
 if vim.g.vscode then
-    require "init.vscode"
+    require("init.vscode")
 elseif vim.g.started_by_firenvim then
-    require "init.fire"
+    require("init.fire")
 else
-    require "init.nvim"
+    require("init.nvim")
 end

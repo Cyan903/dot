@@ -16,7 +16,7 @@ return {
     },
 
     config = function(_, opts)
-        local tree = require "nvim-tree"
+        local tree = require("nvim-tree")
 
         vim.keymap.set("n", "<leader>ex", ":NvimTreeToggle<CR>", { desc = "E[x]plore nvim-tree" })
         vim.keymap.set("n", "<leader>ee", ":NvimTreeFocus<CR>", { desc = "Focus nvim-tr[e]e" })

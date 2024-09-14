@@ -19,14 +19,14 @@ vim.g.firenvim_config = {
 }
 
 -- Load config
-require "config.opt"
-require "config.keymap"
-require "config.usercommand"
-require "config.autocommand"
+require("config.opt")
+require("config.keymap")
+require("config.usercommand")
+require("config.autocommand")
 
 -- Load plugins
-require "util.lazy" {
-    require "plugins.firenvim",
+require("util.lazy")({
+    require("plugins.firenvim"),
 
     { import = "themes" },
-}
+})

@@ -15,7 +15,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 vim.keymap.set("n", "<leader>tt", ":tab term<CR>", { desc = "Open terminal in a new tab" })
 vim.keymap.set("n", "<leader>tj", function()
     vim.cmd.new()
-    vim.cmd.wincmd "J"
+    vim.cmd.wincmd("J")
 
     vim.api.nvim_win_set_height(0, 10)
     vim.wo.winfixheight = true
@@ -32,16 +32,16 @@ vim.keymap.set("n", "<M-[>", "<C-W>-")
 -- Move lines with ALT j/k
 vim.keymap.set("n", "<M-j>", function()
     if vim.opt.diff:get() then
-        vim.cmd [[normal! ]c]]
+        vim.cmd([[normal! ]c]])
     else
-        vim.cmd [[m .+1<CR>==]]
+        vim.cmd([[m .+1<CR>==]])
     end
 end)
 
 vim.keymap.set("n", "<M-k>", function()
     if vim.opt.diff:get() then
-        vim.cmd [[normal! [c]]
+        vim.cmd([[normal! [c]])
     else
-        vim.cmd [[m .-2<CR>==]]
+        vim.cmd([[m .-2<CR>==]])
     end
 end)
