@@ -97,6 +97,7 @@ return {
             gopls = {},
             shellcheck = {},
             prettierd = {},
+            bashls = {},
             emmet_language_server = {},
             lua_ls = {
                 -- cmd = {...},

@@ -49,7 +49,7 @@ ruled.client.connect_signal("request::rules", function()
     -- Application specific rules
     ruled.client.append_rule({
         rule = { class = "discord" },
-        properties = { tag = "9", screen = 1 },
+        properties = { tag = "9" },
     })
 
     ruled.client.append_rule({
