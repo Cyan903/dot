@@ -2,6 +2,7 @@
 -- :help mini
 return {
     "echasnovski/mini.nvim",
+
     config = function()
         -- Better Around/Inside textobjects
         -- Examples:

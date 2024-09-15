@@ -48,7 +48,24 @@ ruled.client.connect_signal("request::rules", function()
 
     -- Application specific rules
     ruled.client.append_rule({
-        rule = { class = "discord" },
+        rule_any = {
+            class = {
+                "Spotify",
+                "Spotify Free",
+            },
+        },
+
+        properties = { tag = "8" },
+    })
+
+    ruled.client.append_rule({
+        rule_any = {
+            class = {
+                "vesktop",
+                "discord",
+            },
+        },
+
         properties = { tag = "9" },
     })
 

@@ -2,6 +2,7 @@
 -- :help gitsigns
 return {
     "lewis6991/gitsigns.nvim",
+
     opts = {
         signs = {
             add = { text = "+" },

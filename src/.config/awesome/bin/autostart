@@ -9,7 +9,7 @@ run() {
 # Applications
 run "picom"
 run "lxsession"
-run "discord"
+run "vesktop"
 run "copyq"
 run "newtab"
 

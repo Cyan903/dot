@@ -5,7 +5,7 @@ local apps = {}
 
 apps.terminal = "alacritty"
 apps.editor = os.getenv("EDITOR") or "vi"
-apps.editor_cmd = "code"
+apps.editor_cmd = apps.terminal .. " -e " .. apps.editor
 
 -- Additional apps for the context menu
 apps.context = {
@@ -169,7 +169,7 @@ apps.active = {
 
     {
         group = "Discord",
-        class = { "discord", "Discord" },
+        class = { "discord", "Discord", "vesktop", "Vesktop" },
         binds = {
             {
                 alt = {},

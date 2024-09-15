@@ -2,6 +2,7 @@
 -- :help harpoon
 return {
     "ThePrimeagen/harpoon",
+
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -20,11 +21,11 @@ return {
         end, { desc = "Toggle harpoon menu" })
 
         -- Toggle previous & next buffers stored within Harpoon list
-        vim.keymap.set("n", "<C-left>", function()
+        vim.keymap.set("n", "<C-M-k>", function()
             harpoon:list():prev()
         end, { desc = "Previous item in harpoon" })
 
-        vim.keymap.set("n", "<C-right>", function()
+        vim.keymap.set("n", "<C-M-j>", function()
             harpoon:list():next()
         end, { desc = "Next item in harpoon" })
     end,

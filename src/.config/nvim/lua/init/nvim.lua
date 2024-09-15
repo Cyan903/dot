@@ -12,6 +12,6 @@ require("config.autocommand")
 
 -- Load plugins
 require("util.lazy")({
-    { import = "themes" },
     { import = "plugins" },
+    { import = "themes" },
 })
