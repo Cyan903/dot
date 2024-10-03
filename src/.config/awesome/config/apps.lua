@@ -127,7 +127,6 @@ apps.shortcuts = {
 
 apps.active = {
     {
-        -- TODO: Rate mods, open beatmap mirror
         group = "osu!",
         class = { "osu!.exe", "osu!" },
         binds = {
@@ -136,6 +135,13 @@ apps.active = {
                 key = "F1",
                 title = "Drop ~/Downloads/*.osz",
                 cmd = 'bash -c "blobdrop ~/Downloads/*.osz"',
+            },
+
+            {
+                alt = {},
+                key = "F2",
+                title = "Start/stop gosumemory",
+                cmd = "gosumem",
             },
         },
     },

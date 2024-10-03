@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- Paste in insert mode
 vim.keymap.set("i", "<C-v>", function()
-    vim.cmd([[norm p]])
+    vim.cmd([[norm P]])
 end, { desc = "Paste in insert mode" })
 
 -- Better split navigation keymaps

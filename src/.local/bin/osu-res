@@ -20,9 +20,9 @@ if [[ ! -f "$RES" ]]; then
 fi
 
 # Read choice
-choice=$(cat "$RES" | rofi -dmenu -p "Select a resolution (esc for 800x600)")
+choice=$(rofi -dmenu -p "Select a resolution (esc for 800x600)" < "$RES")
 
-if [[ ! -n "$choice" ]]; then
+if [[ -z "$choice" ]]; then
     set_xy 800 600
 
     # Launch the game

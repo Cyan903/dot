@@ -168,11 +168,11 @@ end)
 
 volume_slider:buttons(awful.util.table.join(
     awful.button({}, 4, function()
-        inc_vol(-5)
+        inc_vol(-1)
     end),
 
     awful.button({}, 5, function()
-        inc_vol(5)
+        inc_vol(1)
     end)
 ))
 

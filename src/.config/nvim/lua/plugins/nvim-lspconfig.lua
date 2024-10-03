@@ -99,6 +99,8 @@ return {
             clangd = {},
             gopls = {},
             bashls = {},
+            ts_ls = {},
+            angularls = {},
             lua_ls = {
                 settings = {
                     Lua = {

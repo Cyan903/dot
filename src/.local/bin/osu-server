@@ -10,7 +10,7 @@ OSU_BIN="osu-wine"
 
 # Util functions
 set_username() {
-    if [[ ! -n "$1" ]]; then
+    if [[ -z "$1" ]]; then
         sed -i -e "s/^Username = .*/Username = /" "$OSU_CFG"
         sed -i -e "s/^SaveUsername = .*/SaveUsername = 0/" "$OSU_CFG"
         return
@@ -33,7 +33,7 @@ fi
 # Read choice
 choice=$(jq ".[].name" "$SERVERS" --raw-output | rofi -dmenu -p "Select a server (esc to use bancho)")
 
-if [[ ! -n "$choice" ]]; then
+if [[ -z "$choice" ]]; then
     set_username ""
     set_endpoint ""
 
@@ -53,5 +53,5 @@ set_username "$username"
 set_endpoint "$devserver"
 
 # Launch the game
-"$OSU_BIN" --devserver $devserver
+"$OSU_BIN" --devserver "$devserver"
 
