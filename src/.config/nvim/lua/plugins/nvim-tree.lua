@@ -1,10 +1,11 @@
 -- Tree file view :help nvim-tree
+-- :help nvim-tree
 return {
     "nvim-tree/nvim-tree.lua",
 
     opts = {
         sort = { sorter = "case_sensitive" },
-        view = { width = 30, side = "right" },
+        view = { width = 40, side = "right" },
         renderer = { group_empty = false },
         filters = {
             dotfiles = false,

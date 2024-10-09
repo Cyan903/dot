@@ -1,4 +1,5 @@
 -- Additional support for tmux
+-- :help tmux-navigator
 return {
     "christoomey/vim-tmux-navigator",
 
