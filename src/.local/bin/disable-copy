@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Disable mouse copying
+# Disable middle click behavior on X11
 #  https://wiki.archlinux.org/title/clipboard
 
 while true; do
