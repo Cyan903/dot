@@ -13,4 +13,6 @@ require("config.autocommand")
 -- Load plugins
 require("util.lazy")({
     -- TODO: this...
+    require("plugins.ftFT"),
+    require("plugins.flash"),
 })

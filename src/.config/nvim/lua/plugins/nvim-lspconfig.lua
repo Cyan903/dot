@@ -51,6 +51,12 @@ return {
                 -- Execute a code action
                 map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
+                -- Disable LSP
+                -- :edit - to reload
+                map("<leader>cs", function()
+                    vim.lsp.stop_client(vim.lsp.get_clients())
+                end, "[C]ode [S]top")
+
                 --  Jump to declaration
                 map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
@@ -96,6 +102,9 @@ return {
 
         -- NOTE: Servers and tools are configured here
         local servers = {
+            ["termux-language-server"] = {},
+            ["vue-language-server"] = {},
+
             clangd = {},
             gopls = {},
             bashls = {},
