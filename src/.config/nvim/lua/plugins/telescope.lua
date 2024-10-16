@@ -32,6 +32,22 @@ return {
                 },
             },
 
+            defaults = {
+                file_ignore_patterns = {
+                    ".git/",
+                    ".cache",
+                    "node_modules/",
+                    "%.o",
+                    "%.a",
+                    "%.out",
+                    "%.class",
+                    "%.pdf",
+                    "%.mkv",
+                    "%.mp4",
+                    "%.zip",
+                },
+            },
+
             pickers = {
                 find_files = { hidden = true },
                 grep_string = { additional_args = { "--hidden" } },
