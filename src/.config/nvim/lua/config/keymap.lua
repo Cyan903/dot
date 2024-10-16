@@ -4,11 +4,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Paste in insert mode
-vim.keymap.set("i", "<C-v>", function()
-    vim.cmd([[norm P]])
-end, { desc = "Paste in insert mode" })
-
 -- Better split navigation keymaps
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
