@@ -1,4 +1,4 @@
--- Improved Movement
+-- Improved movement
 -- :help flash
 return {
     "folke/flash.nvim",
