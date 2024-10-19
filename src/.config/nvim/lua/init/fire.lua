@@ -26,7 +26,19 @@ require("config.autocommand")
 
 -- Load plugins
 require("util.lazy")({
-    require("plugins.firenvim"),
+    plugins = {
+        "plugins.firenvim",
 
-    { import = "themes" },
+        "plugins.flash",
+        "plugins.ftFT",
+        "plugins.indent-blankline",
+        "plugins.mini",
+        "plugins.nvim-autopairs",
+        "plugins.slide",
+        "plugins.todo-comments",
+        "plugins.vim-sleuth",
+        "plugins.which-key",
+    },
+
+    theme = "rose-pine",
 })

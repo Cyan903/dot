@@ -12,7 +12,12 @@ require("config.autocommand")
 
 -- Load plugins
 require("util.lazy")({
-    -- TODO: this...
-    require("plugins.ftFT"),
-    require("plugins.flash"),
+    plugins = {
+        "plugins.flash",
+        "plugins.ftFT",
+        "plugins.mini",
+        "plugins.nvim-autopairs",
+        "plugins.slide",
+        "plugins.vim-sleuth",
+    },
 })

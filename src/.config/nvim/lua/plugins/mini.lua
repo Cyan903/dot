@@ -44,5 +44,16 @@ return {
                 end
             end,
         },
+
+        {
+            "echasnovski/mini.splitjoin",
+
+            version = false,
+            config = function()
+                -- Split into multiple lines (opposite of J)
+                -- - gS - Split line
+                require("mini.splitjoin").setup()
+            end,
+        },
     },
 }
