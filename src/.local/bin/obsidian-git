@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Sync Obsidian with git
+#  Works with multiple vaults.
+#  Does not require a plugin.
+
+VAULT="$HOME/dev/vault"
+TERM_CMD="alacritty"
+
+err() {
+    notify-send "$1"
+    exit 1
+}
+
+pull() {
+    [[ -n "$(git status --porcelain --untracked-files=no)" ]] && err "Cannot pull due to local changes!"
+    ! git pull && err "Could not pull repository!"
+
+    notify-send "Successfully pulled!"
+}
+
+push() {
+    ! git add . && err "Could not stage changes!"
+    ! git commit -m "$1" && err "Could not commit changes!"
+    ! git push && err "Could not push to remote!"
+
+    notify-send "Successfully pushed!"
+}
+
+diff() {
+    diff="$(git diff --raw)"
+    [[ -z "$diff" ]] && err "No difference with repository."
+
+    notify-send "$diff"
+}
+
+# Show menu
+cd "$VAULT" || err "$VAULT not found!"
+
+case $(printf "Push\nPush (Message)\nPull\nDiff\nOpen" | rofi -dmenu -p "Select git operation ->") in
+    "Push") push "Automated Commit: $(date +'%Y-%m-%d - %l:%M%P')" ;;
+    "Push (Message)")
+        msg=$(zenity --title="Obsidian Commit" --text="Enter the commit message:" --entry)
+        [[ -z "$msg" ]] && err "No message provided!"
+        push "$msg"
+    ;;
+
+    "Pull") pull ;;
+    "Diff") diff ;;
+    "Open") "$TERM_CMD" ;;
+esac
+

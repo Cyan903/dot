@@ -127,6 +127,19 @@ apps.shortcuts = {
 
 apps.active = {
     {
+        group = "Obsidian",
+        class = { "obsidian" },
+        binds = {
+            {
+                alt = {},
+                key = "F1",
+                title = "Git sync",
+                cmd = "obsidian-git",
+            },
+        },
+    },
+
+    {
         group = "osu!",
         class = { "osu!.exe", "osu!" },
         binds = {

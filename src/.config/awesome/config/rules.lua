@@ -50,19 +50,10 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule({
         rule_any = {
             class = {
-                "Spotify",
-                "Spotify Free",
-            },
-        },
-
-        properties = { tag = "8" },
-    })
-
-    ruled.client.append_rule({
-        rule_any = {
-            class = {
                 "vesktop",
                 "discord",
+                "Spotify",
+                "Spotify Free",
             },
         },
 

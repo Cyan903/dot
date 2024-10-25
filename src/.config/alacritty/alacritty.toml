@@ -1,3 +1,4 @@
+[general]
 import = ["/home/hwk/.config/alacritty/dracula.toml"]
 
 [env]
@@ -14,3 +15,4 @@ padding.y = 15
 style.shape = "Block"
 style.blinking = "On"
 blink_interval = 600
+
