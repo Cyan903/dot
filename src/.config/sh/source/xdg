@@ -18,3 +18,9 @@ fi
 if [[ -z "$XDG_CACHE_HOME" ]]; then
     export XDG_CACHE_HOME="$HOME"/.cache
 fi
+
+# Unrelated but useful for my dotfiles
+if [[ -z "$DOTFILE_HOME" ]]; then
+    export DOTFILE_HOME="$HOME"/dot
+fi
+

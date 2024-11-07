@@ -54,6 +54,9 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+-- Set command height
+vim.opt.cmdheight = 1
+
 -- Enable terminal colors
 vim.opt.termguicolors = true
 

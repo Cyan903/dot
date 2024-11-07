@@ -10,6 +10,8 @@ require("config.keymap")
 require("config.usercommand")
 require("config.autocommand")
 
+require("util.load_header")()
+
 -- Load plugins
 require("util.lazy")({
     plugins = { "plugins" },

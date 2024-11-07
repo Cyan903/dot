@@ -19,3 +19,8 @@ alias clipboard="xclip -selection c"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
+
+# Misc
+export AWESOME_CONFIG_DIR="$DOTFILE_HOME"/src/.config/awesome
+export NVIM_CONFIG_DIR="$DOTFILE_HOME"/src/.config/nvim
+
