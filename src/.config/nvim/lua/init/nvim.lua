@@ -13,5 +13,5 @@ require("config.autocommand")
 -- Load plugins
 require("util.lazy")({
     plugins = { "plugins" },
-    theme = "dracula",
+    theme = "vscode",
 })

@@ -40,5 +40,5 @@ require("util.lazy")({
         "plugins.which-key",
     },
 
-    theme = "rose-pine",
+    theme = "dracula",
 })

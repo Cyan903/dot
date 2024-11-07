@@ -21,10 +21,17 @@ return {
     },
 
     config = function()
+        -- Add to which-key menu
+        require("util.safe_require")("which-key", function(key)
+            key.add({
+                { "<leader>s", group = "[S]earch (telescope)" },
+                { "<leader>g", group = "[G]it (telescope)" },
+            })
+        end)
+
         -- Two important keymaps to use while in Telescope are:
         --  - Insert mode: <c-/>
         --  - Normal mode: ?
-
         require("telescope").setup({
             extensions = {
                 ["ui-select"] = {

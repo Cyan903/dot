@@ -26,9 +26,22 @@ return {
                     vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
+                -- Add to which-key menu
+                require("util.safe_require")("which-key", function(key)
+                    key.add({
+                        { "<leader>c", group = "[C]ode (LSP)" },
+                        { "<leader>cd", group = "[C]ode [D]ocument" },
+                        { "<leader>cr", group = "[C]ode [R]ename" },
+                        { "<leader>cw", group = "[C]ode [W]orkspace" },
+                    })
+                end)
+
                 -- Jump to the definition of the word under your cursor
                 -- To jump back, press <C-t>
                 map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+
+                -- Jump to declaration
+                map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
                 -- Find references for the word under your cursor
                 map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -37,16 +50,16 @@ return {
                 map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
                 -- Jump to the type of the word under your cursor
-                map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+                map("<leader>cD", require("telescope.builtin").lsp_type_definitions, "[C]ode Type [D]efinition")
 
                 -- Fuzzy find all the symbols in your current document
-                map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+                map("<leader>cds", require("telescope.builtin").lsp_document_symbols, "[C]ode [D]ocument [S]ymbols")
 
                 -- Fuzzy find all the symbols in your current workspace
-                map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+                map("<leader>cws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[C]ode [W]orkspace [S]ymbols")
 
                 -- Rename the variable under your cursor
-                map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+                map("<leader>crn", vim.lsp.buf.rename, "[C]ode [R]e[n]ame")
 
                 -- Execute a code action
                 map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
@@ -55,10 +68,7 @@ return {
                 -- :edit - to reload
                 map("<leader>cs", function()
                     vim.lsp.stop_client(vim.lsp.get_clients())
-                end, "[C]ode [S]top")
-
-                --  Jump to declaration
-                map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+                end, "[C]ode LSP [S]top")
 
                 -- Highlight references when the cursor idles on a definition
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -98,6 +108,7 @@ return {
 
         -- Extend the lsp's capabilities that nvim-cmp, luasnip, etc offer
         local capabilities = vim.lsp.protocol.make_client_capabilities()
+
         capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
         -- NOTE: Servers and tools are configured here
@@ -127,6 +138,7 @@ return {
             },
         }
 
+        -- NOTE: Extra tools are listed here that aren't exactly "language" servers
         local extra_servers = {
             "stylua",
             "prettierd",

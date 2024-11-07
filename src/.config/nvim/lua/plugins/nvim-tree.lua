@@ -16,6 +16,11 @@ return {
     config = function(_, opts)
         local tree = require("nvim-tree")
 
+        -- Add to which-key menu
+        require("util.safe_require")("which-key", function(key)
+            key.add({ { "<leader>e", group = "[E]xplore (nvim-tree)" } })
+        end)
+
         vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { desc = "[E]xplore nvim-tree" })
         vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", { desc = "[F]ocus file" })
 

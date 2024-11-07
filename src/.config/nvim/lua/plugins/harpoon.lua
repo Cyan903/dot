@@ -9,6 +9,11 @@ return {
         local harpoon = require("harpoon")
         local fidget = require("fidget")
 
+        -- Add to which-key menu
+        require("util.safe_require")("which-key", function(key)
+            key.add({ { "<leader>h", group = "[H]arpoon (harpoon)" } })
+        end)
+
         harpoon:setup()
 
         vim.keymap.set("n", "<leader>ha", function()
