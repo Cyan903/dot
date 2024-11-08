@@ -1,4 +1,4 @@
--- Main LSP Configuration
+-- Main LSP configuration
 -- :help lspconfig-all
 -- :Mason
 return {

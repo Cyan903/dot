@@ -1,4 +1,4 @@
--- Status Line
+-- Status line
 -- :help lualine
 return {
     "nvim-lualine/lualine.nvim",

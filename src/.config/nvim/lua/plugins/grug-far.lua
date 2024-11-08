@@ -1,4 +1,4 @@
--- Grug Far Search/Replace
+-- Grug far search/replace
 -- :help grug-far
 return {
     "MagicDuck/grug-far.nvim",

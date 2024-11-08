@@ -21,8 +21,8 @@ return {
             key.add({ { "<leader>e", group = "[E]xplore (nvim-tree)" } })
         end)
 
-        vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { desc = "[E]xplore nvim-tree" })
-        vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", { desc = "[F]ocus file" })
+        vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "[E]xplore nvim-tree" })
+        vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "[F]ocus file" })
 
         tree.setup(opts)
     end,

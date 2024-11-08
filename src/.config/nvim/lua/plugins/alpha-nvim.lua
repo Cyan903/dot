@@ -1,4 +1,4 @@
--- Landing Page
+-- Landing page
 -- :help alpha-nvim
 return {
     "goolord/alpha-nvim",

@@ -12,8 +12,7 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- Terminal keymaps
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }) -- default is <C-\><C-n>
-vim.keymap.set("n", "<leader>tt", ":tab term<CR>", { desc = "Open terminal in a new tab" })
-vim.keymap.set("n", "<leader>tj", function()
+vim.keymap.set("n", "<leader>tJ", function()
     vim.cmd.new()
     vim.cmd.wincmd("J")
 
@@ -21,7 +20,7 @@ vim.keymap.set("n", "<leader>tj", function()
     vim.wo.winfixheight = true
 
     vim.cmd.term()
-end, { desc = "Open terminal on the bottom" })
+end, { desc = "Open built-in terminal on the bottom" })
 
 -- Split keymaps
 vim.keymap.set("n", "<M-,>", "<c-w>5<")

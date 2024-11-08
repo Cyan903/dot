@@ -1,4 +1,4 @@
--- Key Analyzer
+-- Key analyzer
 -- :help KeyAnalyzer
 return {
     "meznaric/key-analyzer.nvim",

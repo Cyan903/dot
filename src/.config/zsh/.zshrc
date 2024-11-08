@@ -13,6 +13,10 @@ source "$HOME"/.config/sh/hwk
 # Load shell scripts
 source "$SHELL_DIRECTORY_CONFIG"/script/welcome
 
+# Ensure vi mode is disabled when using neovim
+# https://apple.stackexchange.com/a/326623
+[[ -n $ZSH_VI_DISABLED ]] && EDITOR="nano"
+
 # Set history
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 
@@ -51,4 +55,6 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-history-substring-search"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
-plug "jeffreytse/zsh-vi-mode"
+
+[[ -z $ZSH_VI_DISABLED ]] && plug "jeffreytse/zsh-vi-mode"
+
