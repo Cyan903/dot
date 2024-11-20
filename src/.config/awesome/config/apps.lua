@@ -141,7 +141,7 @@ apps.active = {
 
     {
         group = "osu!",
-        class = { "osu!.exe", "osu!" },
+        class = { "osu!.exe", "osu!", "steam_app_727" },
         binds = {
             {
                 alt = {},

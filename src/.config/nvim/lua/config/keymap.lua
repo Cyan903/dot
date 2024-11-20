@@ -4,6 +4,13 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+-- Delete word with CTRL + Backspace
+vim.keymap.set("i", "<C-backspace>", "<C-w>")
+
+-- Better navigation
+vim.keymap.set("n", "Zj", "G", { desc = "Goto end of file" })
+vim.keymap.set("n", "Zk", "gg", { desc = "Goto start of file" })
+
 -- Better split navigation keymaps
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })

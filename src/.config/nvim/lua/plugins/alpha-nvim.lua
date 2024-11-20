@@ -18,7 +18,7 @@ return {
         dashboard.section.header.val = require("util.load_header")
 
         dashboard.section.buttons.val = {
-            dashboard.button("e", "New File", "<cmd>ene <CR>"),
+            dashboard.button("a", "New File", "<cmd>ene <CR>"),
             dashboard.button("r", "Recently Opened", "<cmd>Telescope oldfiles <CR>"),
             dashboard.button("c", "Neovim Config", "<cmd>cd " .. config_path .. "<CR>" .. "<cmd>NvimTreeOpen <CR>"),
             dashboard.button("h", "Check Health", "<cmd>checkhealth <CR>"),

@@ -20,3 +20,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Doom emacs
+export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
+

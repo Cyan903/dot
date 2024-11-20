@@ -95,7 +95,7 @@ return {
         end, { desc = "Exit terminal mode" })
 
         -- Open terminal
-        vim.keymap.set("n", "<leader>tf", function()
+        vim.keymap.set("n", "<leader>tt", function()
             terms[cterm]:toggle(20, "float")
         end, { desc = "Open floating terminal" })
 
