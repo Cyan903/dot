@@ -16,12 +16,21 @@ vim.opt.rtp:prepend(lazypath)
 return function(opts)
     local opt = {}
 
+    -- Load plugin
     for _, plugin in ipairs(opts.plugins) do
         table.insert(opt, { import = plugin })
     end
 
+    -- Load theme
     if opts.theme then
         table.insert(opt, require("themes." .. opts.theme))
+    end
+
+    -- Load custom
+    if opts.custom then
+        for _, custom in ipairs(opts.custom) do
+            table.insert(opt, custom)
+        end
     end
 
     require("lazy").setup(opt)
