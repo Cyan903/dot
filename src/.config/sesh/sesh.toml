@@ -11,12 +11,12 @@ startup_command = "ls"
 
 [[session]]
 name = "dev/git"
-path = "~/dev"
+path = "~/dev/git"
 startup_command = "ls"
 
 [[session]]
 name = "dev/sand"
-path = "~/dev"
+path = "~/dev/sand"
 startup_command = "ls"
 
 [[session]]

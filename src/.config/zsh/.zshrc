@@ -25,11 +25,14 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # Keybinds
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+
+bindkey "^[[1;5C" forward-word # ctrl + ->
+bindkey "^[[1;5D" backward-word # ctrl + <-
+
+bindkey -s "^[y" "y^M" # alt + y
+bindkey -s "^[f" "seshfzf^M" # alt + f
 
 # Tab completions
 autoload -U compinit
