@@ -3,8 +3,11 @@
 return {
     "ThePrimeagen/harpoon",
 
+    enabled = false,
+
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim", "j-hui/fidget.nvim" },
+
     config = function()
         local harpoon = require("harpoon")
         local fidget = require("fidget")

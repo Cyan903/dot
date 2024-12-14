@@ -1,7 +1,9 @@
--- Tree file view :help nvim-tree
+-- Tree file view
 -- :help nvim-tree
 return {
     "nvim-tree/nvim-tree.lua",
+
+    enabled = false,
 
     opts = {
         sort = { sorter = "case_sensitive" },

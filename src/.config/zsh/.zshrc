@@ -32,7 +32,7 @@ bindkey "^[[1;5C" forward-word # ctrl + ->
 bindkey "^[[1;5D" backward-word # ctrl + <-
 
 bindkey -s "^[y" "y^M" # alt + y
-bindkey -s "^[f" "seshfzf^M" # alt + f
+bindkey -s "^[t" "seshfzf^M" # alt + f
 
 # Tab completions
 autoload -U compinit
@@ -45,6 +45,9 @@ _comp_options+=(globdots)
 # Zoxide
 eval "$(zoxide init zsh)"
 alias cd="z"
+
+# direnv
+eval "$(direnv hook zsh)"
 
 # Prompt
 setopt promptsubst

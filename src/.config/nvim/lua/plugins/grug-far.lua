@@ -18,18 +18,11 @@ return {
         })
 
         -- Set keybinds
-        vim.keymap.set("n", "<leader>rr", function()
+        vim.keymap.set("n", "<leader>r", function()
             grug.toggle_instance({
                 instanceName = "far",
                 staticTitle = "Find and Replace",
             })
         end, { desc = "[R]eplace open" })
-
-        -- Add to which-key menu
-        require("util.safe_require")("which-key", function(key)
-            key.add({
-                { "<leader>r", group = "[R]eplace (grug-far)" },
-            })
-        end)
     end,
 }

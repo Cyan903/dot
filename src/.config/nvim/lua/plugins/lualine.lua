@@ -197,6 +197,14 @@ return {
             color = { fg = colors.violet, gui = "bold" },
         })
 
+        -- Spelunk component
+        require("util.safe_require")("spelunk", function()
+            table.insert(config.sections.lualine_x, {
+                "spelunk",
+                color = { fg = colors.red, gui = "bold" },
+            })
+        end)
+
         -- Bar component
         table.insert(config.sections.lualine_x, {
             function()
