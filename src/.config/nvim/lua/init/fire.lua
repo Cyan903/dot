@@ -32,6 +32,7 @@ require("util.lazy")({
         "plugins.flash",
         "plugins.ftFT",
         "plugins.indent-blankline",
+        "plugins.lualine",
         "plugins.mini",
         "plugins.nvim-autopairs",
         "plugins.slide",

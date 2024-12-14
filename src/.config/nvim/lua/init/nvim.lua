@@ -15,5 +15,5 @@ require("util.load_header")()
 -- Load plugins
 require("util.lazy")({
     plugins = { "plugins" },
-    theme = "vscode",
+    theme = "dracula",
 })

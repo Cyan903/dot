@@ -8,7 +8,7 @@ return {
     config = function()
         local lualine = require("lualine")
         local colors = {
-            bg = "#202328",
+            bg = "", -- Transparent
             fg = "#bbc2cf",
             yellow = "#ECBE7B",
             cyan = "#008080",
@@ -19,23 +19,6 @@ return {
             magenta = "#c678dd",
             blue = "#51afef",
             red = "#ec5f67",
-        }
-
-        local conditions = {
-            buffer_not_empty = function()
-                return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-            end,
-
-            hide_in_width = function()
-                return vim.fn.winwidth(0) > 80
-            end,
-
-            check_git_workspace = function()
-                local filepath = vim.fn.expand("%:p:h")
-                local gitdir = vim.fn.finddir(".git", filepath .. ";")
-
-                return gitdir and #gitdir > 0 and #gitdir < #filepath
-            end,
         }
 
         local config = {
@@ -71,16 +54,6 @@ return {
             },
         }
 
-        -- Bar component
-        table.insert(config.sections.lualine_c, {
-            function()
-                return "▊"
-            end,
-
-            color = { fg = colors.blue },
-            padding = { left = 0, right = 1 },
-        })
-
         -- Mode component
         table.insert(config.sections.lualine_c, {
             "mode",
@@ -109,28 +82,31 @@ return {
                     t = colors.red,
                 }
 
-                return { fg = mode_color[vim.fn.mode()] }
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
         })
 
-        -- Filesize component
-        table.insert(config.sections.lualine_c, { "filesize", cond = conditions.buffer_not_empty })
+        -- Spelunk component
+        require("util.safe_require")("spelunk", function()
+            table.insert(config.sections.lualine_c, {
+                "spelunk",
+                color = { fg = colors.orange, gui = "bold" },
+            })
+        end)
 
         -- Filename component
         table.insert(config.sections.lualine_c, {
             "filename",
-            cond = conditions.buffer_not_empty,
+            icon = "",
+            cond = function()
+                return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+            end,
+
             color = { fg = colors.magenta, gui = "bold" },
         })
 
-        -- Location component
-        table.insert(config.sections.lualine_c, { "location" })
-
-        -- Progress component
-        table.insert(config.sections.lualine_c, { "progress", color = { fg = colors.fg, gui = "bold" } })
-
         -- LSP diagnostics component
-        table.insert(config.sections.lualine_c, {
+        table.insert(config.sections.lualine_x, {
             "diagnostics",
             sources = { "nvim_diagnostic" },
             symbols = { error = " ", warn = " ", info = " " },
@@ -141,17 +117,10 @@ return {
             },
         })
 
-        -- Middle component
-        table.insert(config.sections.lualine_c, {
-            function()
-                return "%="
-            end,
-        })
-
         -- LSP component
-        table.insert(config.sections.lualine_c, {
+        table.insert(config.sections.lualine_x, {
             function()
-                local msg = "No Active Lsp"
+                local msg = "None"
                 local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
                 local clients = vim.lsp.get_clients()
 
@@ -174,11 +143,21 @@ return {
             color = { fg = "#ffffff", gui = "bold" },
         })
 
+        -- Git branch component
+        table.insert(config.sections.lualine_x, {
+            "branch",
+            icon = "",
+            color = { fg = colors.violet, gui = "bold" },
+        })
+
         -- Encoding component
         table.insert(config.sections.lualine_x, {
             "o:encoding",
             fmt = string.upper,
-            cond = conditions.hide_in_width,
+            cond = function()
+                return vim.fn.winwidth(0) > 80
+            end,
+
             color = { fg = colors.green, gui = "bold" },
         })
 
@@ -188,31 +167,6 @@ return {
             fmt = string.upper,
             icons_enabled = true,
             color = { fg = colors.green, gui = "bold" },
-        })
-
-        -- Git branch component
-        table.insert(config.sections.lualine_x, {
-            "branch",
-            icon = "",
-            color = { fg = colors.violet, gui = "bold" },
-        })
-
-        -- Spelunk component
-        require("util.safe_require")("spelunk", function()
-            table.insert(config.sections.lualine_x, {
-                "spelunk",
-                color = { fg = colors.red, gui = "bold" },
-            })
-        end)
-
-        -- Bar component
-        table.insert(config.sections.lualine_x, {
-            function()
-                return "▊"
-            end,
-
-            color = { fg = colors.blue },
-            padding = { left = 1 },
         })
 
         lualine.setup(config)
