@@ -20,7 +20,7 @@ return {
         dashboard.section.buttons.val = {
             dashboard.button("a", "New File", "<cmd>ene <CR>"),
             dashboard.button("r", "Recently Opened", "<cmd>Telescope oldfiles <CR>"),
-            dashboard.button("c", "Neovim Config", "<cmd>cd " .. config_path .. "<CR>" .. "<cmd>NvimTreeOpen <CR>"),
+            dashboard.button("c", "Neovim Config", "<cmd>cd " .. config_path .. "<CR>" .. "<cmd>Oil <CR>"),
             dashboard.button("h", "Check Health", "<cmd>checkhealth <CR>"),
             dashboard.button("q", "Quit", "<cmd>qa <CR>"),
         }

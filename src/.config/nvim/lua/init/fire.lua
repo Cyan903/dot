@@ -28,11 +28,8 @@ require("config.autocommand")
 require("util.lazy")({
     plugins = {
         "plugins.firenvim",
-
-        "plugins.flash",
         "plugins.ftFT",
         "plugins.indent-blankline",
-        "plugins.lualine",
         "plugins.mini",
         "plugins.nvim-autopairs",
         "plugins.slide",
@@ -41,5 +38,5 @@ require("util.lazy")({
         "plugins.which-key",
     },
 
-    theme = "dracula",
+    theme = "vscode",
 })
