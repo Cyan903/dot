@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+DEFAULT_SOURCE=$(pactl get-default-source)
+MUTED=$(pactl get-source-mute "$DEFAULT_SOURCE" | grep -q "yes" && echo 1 || echo 0)
+
+echo "awesome.emit_signal('signal::update_muted', $MUTED)" | awesome-client

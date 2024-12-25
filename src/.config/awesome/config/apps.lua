@@ -44,7 +44,14 @@ apps.shortcuts = {
                 alt = { "Shift" },
                 key = "-",
                 title = "Audio -5%",
-                cmd = BIN_DIR .. "set-volume -5 true",
+                cmd = "set-volume -5 true",
+            },
+
+            {
+                alt = { "Shift" },
+                key = "m",
+                title = "Microphone mute toggle",
+                cmd = "mute-toggle",
             },
         },
     },
