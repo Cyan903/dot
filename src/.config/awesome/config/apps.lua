@@ -201,7 +201,7 @@ apps.active = {
                 alt = {},
                 key = "F1",
                 title = "Toggle microphone mute",
-                cmd = "mutetoggle",
+                cmd = "mute-toggle",
             },
         },
     },

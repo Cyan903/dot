@@ -4,6 +4,8 @@ local naughty = require("naughty")
 local wibox = require("wibox")
 local gears = require("gears")
 
+math.randomseed(os.time())
+
 local ui = require("module.notification.ui")
 local ICON_DIR = gears.filesystem.get_dir("config") .. "module/notification/icons/"
 
@@ -36,7 +38,7 @@ local notify_pop = awful.popup({
 })
 
 -- Track updates
-local update = function()
+local function update()
     local img = "empty.svg"
     local amt = ui.generate_count()
 
@@ -47,6 +49,14 @@ local update = function()
 
     notify.markup = "<span weight='bold'> " .. tostring(amt) .. "x </span>"
     notify_icon.image = ICON_DIR .. img
+end
+
+local function uuid()
+    local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+
+    return string.gsub(template, "[xy]", function(c)
+        return string.format("%x", (c == "x") and math.random(0, 0xf) or math.random(8, 0xb))
+    end)
 end
 
 awful.placement.top_right(notify_pop, {
@@ -70,12 +80,23 @@ notify_container:connect_signal("button::press", function(_, _1, _2, button)
         else
             notify_container:set_bg("#00000000")
         end
+    elseif button == 3 then
+        ui.clear()
     end
 end)
 
 naughty.connect_signal("added", function(n)
+    n._ID = uuid()
+    n._DATE = os.time()
+
     ui.add(n)
     update()
+end)
+
+naughty.connect_signal("destroyed", function(n, reason)
+    if reason == 2 or reason == 3 then
+        ui.remove(n._ID)
+    end
 end)
 
 awesome.connect_signal("signal::notification_redraw", function()

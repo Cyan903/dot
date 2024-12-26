@@ -2,8 +2,6 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
 
-math.randomseed(os.time())
-
 local ICON_DIR = gears.filesystem.get_dir("config") .. "module/notification/icons/"
 local WIDTH, HEIGHT = 500, 500
 local MAX_NOTIFICATIONS = 5
@@ -13,14 +11,6 @@ local notify_list = { layout = wibox.layout.fixed.vertical }
 -- Helper functions
 local rounded = function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, 4)
-end
-
-local function uuid()
-    local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
-
-    return string.gsub(template, "[xy]", function(c)
-        return string.format("%x", (c == "x") and math.random(0, 0xf) or math.random(8, 0xb))
-    end)
 end
 
 -- Main widgets
@@ -61,8 +51,7 @@ local function add(n)
     local title = n.title
     local message = n.message
 
-    local id = uuid()
-    local time = os.time()
+    local id = n._ID
     local close_button = wibox.widget({
         {
             {
@@ -92,9 +81,11 @@ local function add(n)
     if title == "" then
         title = "Awesome - No Title"
     end
+
     if message == "" then
         message = "..."
     end
+
     if not n.icon then
         icon = nil
     end
@@ -103,9 +94,11 @@ local function add(n)
     close_button:connect_signal("mouse::enter", function()
         close_button.bg = beautiful.bg_focus
     end)
+
     close_button:connect_signal("mouse::leave", function()
         close_button.bg = beautiful.bg_focus .. "44"
     end)
+
     close_button:connect_signal("button::press", function(_, _1, _2, button)
         if button == 1 then
             remove(id)
@@ -114,7 +107,7 @@ local function add(n)
 
     table.insert(notify_list, 1, {
         _ID = id,
-        _DATE = time,
+        _DATE = n._DATE,
 
         {
             {
@@ -329,6 +322,7 @@ end)
 return {
     add = add,
     remove = remove,
+    clear = clear,
     rounded = rounded,
     generate_count = generate_count,
     generate_popup = generate_popup,
