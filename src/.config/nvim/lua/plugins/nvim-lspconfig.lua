@@ -65,7 +65,6 @@ return {
                 map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
                 -- Disable LSP
-                -- :edit - to reload
                 map("<leader>cs", function()
                     vim.lsp.stop_client(vim.lsp.get_clients())
                 end, "[C]ode LSP [S]top")

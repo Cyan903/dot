@@ -3,8 +3,6 @@
 return {
     "stevearc/oil.nvim",
 
-    enabled = true,
-
     opts = { view_options = { show_hidden = true } },
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
 

@@ -68,3 +68,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.netrw_browse_split = 4
 vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3
+
+-- Abbreviations
+vim.cmd("cabbrev W w")
+vim.cmd("cabbrev WQ wq")

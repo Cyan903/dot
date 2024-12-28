@@ -18,3 +18,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.bo.filetype = "terminal"
     end,
 })
+
+-- Enable folds {{{
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("fold-filetype", { clear = true }),
+    pattern = { "vim", "lua" },
+    callback = function()
+        vim.opt_local.foldmethod = "marker"
+    end,
+})
+-- }}}

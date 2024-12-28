@@ -2,7 +2,7 @@
 local wrapped = false
 
 vim.api.nvim_create_user_command("WordWrapToggle", function()
-    wrapped = not wrapped -- vim.opt.wrap returns a table, not a boolean
+    wrapped = not wrapped
     vim.opt.wrap = wrapped
 
     if wrapped then
