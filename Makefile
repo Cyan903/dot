@@ -1,3 +1,5 @@
+.PHONY: link unlink relink list
+
 link:
 	@echo "Setting symlinks"
 	@stow src

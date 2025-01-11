@@ -1,3 +1,5 @@
+.PHONY: dev format
+
 dev:
 	@bin/awdebug
 

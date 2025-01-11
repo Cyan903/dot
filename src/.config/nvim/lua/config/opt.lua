@@ -11,6 +11,11 @@ vim.schedule(function()
     vim.opt.clipboard = "unnamedplus"
 end)
 
+-- Use ripgrep over grep
+if vim.fn.executable("rg") == 1 then
+    vim.opt.grepprg = "rg --vimgrep"
+end
+
 -- Save undo history
 vim.opt.undofile = true
 

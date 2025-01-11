@@ -114,11 +114,15 @@ return {
         local servers = {
             ["termux-language-server"] = {},
             ["vue-language-server"] = {},
+            ["vim-language-server"] = {},
+            ["docker-compose-language-service"] = {},
+            ["dockerfile-language-server"] = {},
 
             clangd = {},
             gopls = {},
             bashls = {},
             angularls = {},
+            pyright = {},
 
             ts_ls = {
                 filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },

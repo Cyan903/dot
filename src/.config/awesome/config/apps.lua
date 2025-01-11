@@ -67,6 +67,13 @@ apps.shortcuts = {
             },
 
             {
+                alt = { "Shift" },
+                key = "\\",
+                title = "Chromium (Incognito)",
+                cmd = "chromium --incognito",
+            },
+
+            {
                 alt = {},
                 key = "BackSpace",
                 title = "File Manager",
@@ -120,6 +127,13 @@ apps.shortcuts = {
                 key = "s",
                 title = "Screenshot of selection",
                 cmd = "screenshot",
+            },
+
+            {
+                alt = { "Shift" },
+                key = "s",
+                title = "Screenshot with ocr-shot",
+                cmd = "ocr-shot",
             },
 
             {
