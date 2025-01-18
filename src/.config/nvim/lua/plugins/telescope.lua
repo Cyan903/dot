@@ -22,7 +22,7 @@ return {
 
     config = function()
         -- Add to which-key menu
-        require("util.safe_require")("which-key", function(key)
+        require("util.srequire")("which-key", function(key)
             key.add({
                 { "<leader>s", group = "[S]earch (telescope)" },
                 { "<leader>g", group = "[G]it (telescope)" },
@@ -40,19 +40,10 @@ return {
             },
 
             defaults = {
-                file_ignore_patterns = {
+                file_ignore_patterns = vim.tbl_deep_extend("force", {
                     ".git/",
                     ".cache",
-                    "node_modules/",
-                    "%.o",
-                    "%.a",
-                    "%.out",
-                    "%.class",
-                    "%.pdf",
-                    "%.mkv",
-                    "%.mp4",
-                    "%.zip",
-                },
+                }, require("cfg").ignore),
             },
 
             pickers = {

@@ -17,7 +17,7 @@ return {
         local cterm = "Default"
 
         -- Add to which-key menu
-        require("util.safe_require")("which-key", function(key)
+        require("util.srequire")("which-key", function(key)
             key.add({
                 { "<leader>t", group = "[T]erminal (toggleterm)" },
             })
@@ -28,13 +28,13 @@ return {
             local name = vim.fn.input("Enter terminal name: ")
 
             if name == "" then
-                print("[toggleterm] nothing to create!")
+                vim.print("[toggleterm] nothing to create!")
                 return
             end
 
             for t in pairs(terms) do
                 if t == name then
-                    print("[toggleterm] `" .. name .. "` is a duplicate session!")
+                    vim.print("[toggleterm] " .. name .. " is a duplicate session!")
                     return
                 end
             end
@@ -79,7 +79,7 @@ return {
                 end
 
                 if cterm == session_name then
-                    print("[toggleterm] Cannot delete current session!")
+                    vim.print("[toggleterm] Cannot delete current session!")
                     return
                 end
 
@@ -103,7 +103,7 @@ return {
             terms[cterm]:toggle(20, "horizontal")
         end, { desc = "Open horizontal terminal" })
 
-        -- The kemap set in `config/keymap.lua` can interfere with this plugin
+        -- The kemap set in config/keymap.lua can interfere with this plugin
         vim.keymap.del("t", "<Esc><Esc>")
 
         -- Setup terminal

@@ -5,28 +5,23 @@ return {
 
     build = ":TSUpdate",
     opts = {
-        ensure_installed = {
-            "bash",
-            "c",
-            "diff",
-            "html",
+        ensure_installed = vim.tbl_deep_extend("force", {
             "lua",
             "luadoc",
-            "markdown",
-            "markdown_inline",
-            "query",
             "vim",
             "vimdoc",
-        },
+        }, require("cfg").treesitter.ensure_installed),
 
         auto_install = true,
         highlight = {
             enable = true,
-            -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules
-            additional_vim_regex_highlighting = { "ruby" },
+            additional_vim_regex_highlighting = require("cfg").treesitter.vim_regex,
         },
 
-        indent = { enable = true, disable = { "ruby" } },
+        indent = {
+            enable = true,
+            disable = require("cfg").treesitter.indent_disable,
+        },
     },
 
     config = function(_, opts)

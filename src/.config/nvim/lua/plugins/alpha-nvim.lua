@@ -15,7 +15,7 @@ return {
         local config_path = os.getenv("NVIM_CONFIG_DIR") or "~/.config/nvim"
         local stats = require("lazy").stats()
 
-        dashboard.section.header.val = require("util.load_header")
+        dashboard.section.header.val = require("util.header")
 
         dashboard.section.buttons.val = {
             dashboard.button("a", "New File", "<cmd>ene <CR>"),

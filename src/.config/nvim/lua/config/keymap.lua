@@ -14,7 +14,7 @@ vim.keymap.set("n", "<leader>qq", function()
         end
     end
 
-    if qf_exists == true then
+    if qf_exists then
         vim.cmd("cclose")
         return
     end
@@ -31,10 +31,6 @@ vim.cmd([[
 
 -- Delete word with CTRL + Backspace
 vim.keymap.set("i", "<C-backspace>", "<C-w>")
-
--- Better navigation
-vim.keymap.set("n", "Zj", "G", { desc = "Goto end of file" })
-vim.keymap.set("n", "Zk", "gg", { desc = "Goto start of file" })
 
 -- Better split navigation keymaps
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })

@@ -38,7 +38,6 @@ return {
         },
 
         enable_persist = true,
-        statusline_prefix = "",
         orientation = "vertical",
         enable_status_col_display = true,
     },
@@ -47,7 +46,7 @@ return {
         local spelunk = require("spelunk")
 
         -- Add to which-key menu
-        require("util.safe_require")("which-key", function(key)
+        require("util.srequire")("which-key", function(key)
             key.add({ { "<leader>h", group = "[H]otspot Marks (spelunk)" } })
         end)
 

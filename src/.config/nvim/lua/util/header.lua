@@ -1,10 +1,10 @@
--- Read random header from `./header`
+-- Read random header from ./header
 return function()
     local config_path = os.getenv("NVIM_CONFIG_DIR") or "~/.config/nvim"
     local content = vim.split(vim.fn.glob(config_path .. "/header/*"), "\n", { trimempty = true })
 
     if not content or #content <= 0 then
-        print("[load_header] Header directory not found or empty!")
+        vim.print("[header] Header directory not found or empty!")
         return {}
     end
 

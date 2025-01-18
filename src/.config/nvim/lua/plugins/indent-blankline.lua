@@ -1,4 +1,4 @@
--- Indentation guide
+-- Indentation guides
 -- :help ibl
 return {
     "lukas-reineke/indent-blankline.nvim",

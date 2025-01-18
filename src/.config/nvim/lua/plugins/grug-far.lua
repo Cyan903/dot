@@ -24,5 +24,12 @@ return {
                 staticTitle = "Find and Replace",
             })
         end, { desc = "[R]eplace open" })
+
+        vim.keymap.set("v", "<leader>r", function()
+            grug.with_visual_selection({
+                instanceName = "far",
+                staticTitle = "Find and Replace",
+            })
+        end, { desc = "[R]eplace open (word)" })
     end,
 }

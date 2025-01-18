@@ -30,9 +30,7 @@ bindkey "^[[B" history-substring-search-down
 
 bindkey "^[[1;5C" forward-word # ctrl + ->
 bindkey "^[[1;5D" backward-word # ctrl + <-
-
 bindkey -s "^[y" "y^M" # alt + y
-bindkey -s "^[t" "seshfzf^M" # alt + f
 
 # Tab completions
 autoload -U compinit

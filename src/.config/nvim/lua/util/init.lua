@@ -1,4 +1,4 @@
--- Load `init.X` based on config
+-- Load init.X based on config
 return function(config)
     for _, app in ipairs(config) do
         if app[2] then

@@ -19,8 +19,12 @@ y() {
 	rm -f -- "$tmp"
 }
 
-seshfzf() {
+s() {
 	sesh connect "$(sesh list | fzf)"
+}
+
+uri_cp() {
+	echo "file://$(realpath "$1")" | xclip -selection clipboard -t text/uri-list
 }
 
 # Alias

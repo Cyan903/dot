@@ -6,7 +6,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 
--- Schedule the setting after `UiEnter` because it can increase startup-time.
+-- Schedule the setting after UiEnter because it can increase startup-time.
 vim.schedule(function()
     vim.opt.clipboard = "unnamedplus"
 end)

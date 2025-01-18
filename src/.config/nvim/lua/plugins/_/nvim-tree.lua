@@ -19,7 +19,7 @@ return {
         local tree = require("nvim-tree")
 
         -- Add to which-key menu
-        require("util.safe_require")("which-key", function(key)
+        require("util.srequire")("which-key", function(key)
             key.add({ { "<leader>e", group = "[E]xplore (nvim-tree)" } })
         end)
 

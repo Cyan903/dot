@@ -87,7 +87,7 @@ return {
         })
 
         -- Spelunk component
-        require("util.safe_require")("spelunk", function()
+        require("util.srequire")("spelunk", function()
             table.insert(config.sections.lualine_c, {
                 "spelunk",
                 color = { fg = colors.orange, gui = "bold" },

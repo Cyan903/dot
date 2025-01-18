@@ -3,6 +3,8 @@
 return {
     "amitds1997/remote-nvim.nvim",
 
+    enabled = false,
+
     version = "*",
     dependencies = {
         "nvim-lua/plenary.nvim",
