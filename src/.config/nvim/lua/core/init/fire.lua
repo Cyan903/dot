@@ -19,10 +19,10 @@ vim.g.firenvim_config = {
 }
 
 -- Load config
-require("config.opt")
-require("config.keymap")
-require("config.usercommand")
-require("config.autocommand")
+require("core.config.options")
+require("core.config.keymap")
+require("core.config.usercommand")
+require("core.config.autocommand")
 
 -- Load plugins
 require("util.lazy")({

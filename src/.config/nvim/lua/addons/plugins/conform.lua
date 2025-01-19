@@ -22,12 +22,12 @@ return {
         format_on_save = function(bufnr)
             return {
                 timeout_ms = 500,
-                lsp_fallback = not require("cfg").format.ft[vim.bo[bufnr].filetype],
+                lsp_fallback = not require("addons.cfg").format.ft[vim.bo[bufnr].filetype],
             }
         end,
 
         formatters_by_ft = vim.tbl_deep_extend("force", {
             lua = { "stylua" },
-        }, require("cfg").format.ft),
+        }, require("addons.cfg").format.ft),
     },
 }

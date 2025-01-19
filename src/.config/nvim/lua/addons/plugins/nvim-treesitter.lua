@@ -10,17 +10,17 @@ return {
             "luadoc",
             "vim",
             "vimdoc",
-        }, require("cfg").treesitter.ensure_installed),
+        }, require("addons.cfg").treesitter.ensure_installed),
 
         auto_install = true,
         highlight = {
             enable = true,
-            additional_vim_regex_highlighting = require("cfg").treesitter.vim_regex,
+            additional_vim_regex_highlighting = require("addons.cfg").treesitter.vim_regex,
         },
 
         indent = {
             enable = true,
-            disable = require("cfg").treesitter.indent_disable,
+            disable = require("addons.cfg").treesitter.indent_disable,
         },
     },
 

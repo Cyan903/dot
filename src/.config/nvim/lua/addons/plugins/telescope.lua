@@ -43,7 +43,7 @@ return {
                 file_ignore_patterns = vim.tbl_deep_extend("force", {
                     ".git/",
                     ".cache",
-                }, require("cfg").ignore),
+                }, require("addons.cfg").ignore),
             },
 
             pickers = {

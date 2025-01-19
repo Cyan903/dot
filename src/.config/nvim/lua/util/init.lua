@@ -2,10 +2,10 @@
 return function(config)
     for _, app in ipairs(config) do
         if app[2] then
-            require("init." .. app[1])
+            require("core.init." .. app[1])
             return
         end
     end
 
-    require("init.nvim")
+    require("core.init.nvim")
 end
