@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# Create a GIF wallpaper and set it as a dynamic background
+#  Reads from ~/Desktop/.wall/
+
+color="#181920"
+size="1920x1080"
+
+input="$HOME/Desktop/.wall/"
+location="/tmp/BG-GIF"
+
+get_bg() {
+    # shellcheck disable=SC2012
+    input+="$(ls -A "$input" | rofi -dmenu -p "Select a Wallpaper")"
+
+    if [[ ! -f "$input" ]]; then
+        notify-send "Invalid choice!"
+        exit 1
+    fi
+}
+
+overlay_bg() {
+    magick convert -size "$size" canvas:"$color" "$location-bg-color.png"
+
+    bg="$location-bg-color.png"
+    out="$location-bg-loop.mp4"
+
+    # Get background width/height
+    w=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$bg")
+    h=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$bg")
+
+    # Get gif width/height
+    gw=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$input")
+    gh=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$input")
+
+    ffmpeg -i "$bg" \
+        -color_trc smpte2084 -color_primaries bt2020 \
+        -vf "movie=$input [mov]; [in][mov] overlay=$((w-gw-10)):$((h-gh-45)) [out]" \
+        -y "$out"
+}
+
+play_bg() {
+    xwinwrap \
+        -fdt -argb -b -nf -un -fs -st -s -d \
+        -- mpv --fullscreen --no-stop-screensaver --loop --no-audio --no-border --no-osc --no-osd-bar --no-input-default-bindings -wid %WID "$location-bg-loop.mp4"
+}
+
+if [[ -d "$input" ]]; then
+    get_bg
+    overlay_bg
+    play_bg
+fi
+

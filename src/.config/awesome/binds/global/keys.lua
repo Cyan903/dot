@@ -9,7 +9,7 @@ local apps = require("config.apps")
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
     -- General Awesome keys
-    awful.key({ modkey }, "/", require("awful.hotkeys_popup").show_help, { description = "Show help", group = "Awesome" }),
+    awful.key({ modkey, mod.shift }, "/", require("awful.hotkeys_popup").show_help, { description = "Show help", group = "Awesome" }),
     awful.key({ modkey, mod.ctrl }, "r", awesome.restart, { description = "Reload awesome", group = "Awesome" }),
     awful.key({ modkey, mod.shift }, "q", awesome.quit, { description = "Quit awesome", group = "Awesome" }),
 

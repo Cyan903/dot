@@ -8,6 +8,10 @@ vcode() {
 	exit
 }
 
+uri_cp() {
+	echo "file://$(realpath "$1")" | xclip -selection clipboard -t text/uri-list
+}
+
 y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -21,10 +25,6 @@ y() {
 
 s() {
 	sesh connect "$(sesh list | fzf)"
-}
-
-uri_cp() {
-	echo "file://$(realpath "$1")" | xclip -selection clipboard -t text/uri-list
 }
 
 # Alias

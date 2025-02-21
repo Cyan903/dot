@@ -2,6 +2,7 @@ local awful = require("awful")
 
 return {
     mod = "Mod4",
+    titlebar = false,
 
     -- stylua: ignore
     tags = {

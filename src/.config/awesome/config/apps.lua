@@ -142,6 +142,13 @@ apps.shortcuts = {
                 title = "Screenshot of monitor",
                 cmd = "screenshot --monitor",
             },
+
+            {
+                alt = { "Shift" },
+                key = "d",
+                title = "Open dynamic wallpaper",
+                cmd = "dynamic-wallpaper",
+            },
         },
     },
 }

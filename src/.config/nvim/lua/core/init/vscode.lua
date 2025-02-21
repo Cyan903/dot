@@ -17,6 +17,7 @@ require("util.lazy")({
         "plugins.ftFT",
         "plugins.mini",
         "plugins.nvim-autopairs",
+        "plugins.nvim-treesitter",
         "plugins.slide",
         "plugins.vim-sleuth",
     },
