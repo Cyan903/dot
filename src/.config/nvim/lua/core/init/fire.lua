@@ -30,6 +30,7 @@ require("util.lazy")({
         "plugins.firenvim",
         "plugins.ftFT",
         "plugins.indent-blankline",
+        "plugins.lorem",
         "plugins.mini",
         "plugins.nvim-autopairs",
         "plugins.slide",

@@ -8,7 +8,7 @@ return {
     config = function()
         local lualine = require("lualine")
         local colors = {
-            bg = "", -- Transparent
+            bg = "#282A36", -- Transparent
             fg = "#bbc2cf",
             yellow = "#ECBE7B",
             cyan = "#008080",
