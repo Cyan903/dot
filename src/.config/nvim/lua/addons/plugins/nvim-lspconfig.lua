@@ -51,6 +51,9 @@ return {
                     -- Jump to the implementation of the word under your cursor
                     map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
+                    -- Open floating window with error
+                    map("gh", vim.diagnostic.open_float, "[G]oto [H]elp popup")
+
                     -- Jump to the type of the word under your cursor
                     map("<leader>cD", require("telescope.builtin").lsp_type_definitions, "[C]ode Type [D]efinition")
 
