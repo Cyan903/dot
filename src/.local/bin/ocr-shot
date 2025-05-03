@@ -3,6 +3,13 @@
 # Client for ocr-shot
 #  Copy response from ocr-shot to clipboard
 
+# TODO: Wayland
+
+! xhost >& /dev/null && {
+    echo "Invalid X11 session!"
+    exit 1
+}
+
 PORT=5003
 HOST=0.0.0.0
 PROTOCOL=http

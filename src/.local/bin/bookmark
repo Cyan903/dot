@@ -6,6 +6,13 @@
 #  - xdotool, xclip
 #  - fzf, rofi
 
+# TODO: Wayland
+
+! xhost >& /dev/null && {
+    echo "Invalid X11 session!"
+    exit 1
+}
+
 marks="$XDG_DATA_HOME/bookmarks"
 
 usage() {

@@ -119,14 +119,14 @@ apps.shortcuts = {
                 alt = {},
                 key = "x",
                 title = "Kill window",
-                cmd = "sxkill",
+                cmd = "X11-sxkill",
             },
 
             {
                 alt = { "Ctrl" },
                 key = "s",
                 title = "Screenshot of selection",
-                cmd = "screenshot",
+                cmd = "X11-screenshot",
             },
 
             {
@@ -140,14 +140,14 @@ apps.shortcuts = {
                 alt = {},
                 key = "s",
                 title = "Screenshot of monitor",
-                cmd = "screenshot --monitor",
+                cmd = "X11-screenshot --monitor",
             },
 
             {
                 alt = { "Shift" },
                 key = "d",
                 title = "Open dynamic wallpaper",
-                cmd = "dynamic-wallpaper",
+                cmd = "X11-dynamic-wallpaper",
             },
         },
     },

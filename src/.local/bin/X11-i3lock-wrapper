@@ -3,6 +3,11 @@
 # Wrapper script for i3lock-color
 #  Based on the dracula theme
 
+! xhost >& /dev/null && {
+    echo "Invalid X11 session!"
+    exit 1
+}
+
 font="sans-serif"
 
 bg="1e2029"
