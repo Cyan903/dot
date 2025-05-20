@@ -26,6 +26,7 @@ ruled.client.connect_signal("request::rules", function()
                 "XIVLauncher.Core",
                 "osu!.exe",
                 "osu!",
+                "steam",
             },
 
             name = { "Event Tester", "Volume Control" },

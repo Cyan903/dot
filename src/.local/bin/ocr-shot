@@ -4,7 +4,6 @@
 #  Copy response from ocr-shot to clipboard
 
 # TODO: Wayland
-
 ! xhost >& /dev/null && {
     echo "Invalid X11 session!"
     exit 1

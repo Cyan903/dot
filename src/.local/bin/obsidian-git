@@ -27,6 +27,10 @@ push() {
     notify-send "Successfully pushed!"
 }
 
+status() {
+    notify-send "$(git status -s)"
+}
+
 diff() {
     diff="$(git diff --raw)"
     [[ -z "$diff" ]] && err "No difference with repository."
@@ -37,7 +41,7 @@ diff() {
 # Show menu
 cd "$VAULT" || err "$VAULT not found!"
 
-case $(printf "Push\nPush (Message)\nPull\nDiff\nOpen" | rofi -dmenu -p "Select git operation ->") in
+case $(printf "Push\nPush (Message)\nPull\nStatus\nDiff\nOpen" | rofi -dmenu -p "Select git operation ->") in
     "Push") push "Automated Commit: $(date +'%Y-%m-%d - %l:%M%P')" ;;
     "Push (Message)")
         msg=$(zenity --title="Obsidian Commit" --text="Enter the commit message:" --entry)
@@ -46,6 +50,7 @@ case $(printf "Push\nPush (Message)\nPull\nDiff\nOpen" | rofi -dmenu -p "Select 
     ;;
 
     "Pull") pull ;;
+    "Status") status ;;
     "Diff") diff ;;
     "Open") "$TERM_CMD" ;;
 esac

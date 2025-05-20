@@ -6,9 +6,8 @@ displayCenter="HDMI-A-0"
 displayLeft="DisplayPort-1"
 displayTV="DisplayPort-2"
 
-xrandr --output DisplayPort-0 --off \
-    --output DVI-D-0 --off \
-    --output "$displayCenter" --primary --mode 1920x1080 --pos 1920x1050 --rotate normal --rate 60 \
-    --output "$displayLeft" --mode 1920x1080 --pos 0x1170 --rotate normal --rate 60 \
-    --output "$displayTV" --mode 1680x1050 --pos 1920x0 --rotate normal --rate 60
+xrandr --output DisplayPort-0 --off --output DVI-D-0 --off \
+    --output "$displayLeft" --mode 1920x1080 --pos 0x1050 --rotate normal \
+    --output "$displayTV" --mode 1680x1050 --pos 2160x0 --rotate normal \
+    --output "$displayCenter" --primary --mode 1920x1080 --pos 1920x1050 --rotate normal \
 

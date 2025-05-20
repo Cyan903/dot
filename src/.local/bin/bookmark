@@ -3,21 +3,14 @@
 # Simple bookmarking script.
 #  Required:
 #  - $EDITOR (can be any editor)
-#  - xdotool, xclip
+#  - xdotool, xclip OR wtype, wl-clipboard
 #  - fzf, rofi
-
-# TODO: Wayland
-
-! xhost >& /dev/null && {
-    echo "Invalid X11 session!"
-    exit 1
-}
 
 marks="$XDG_DATA_HOME/bookmarks"
 
 usage() {
     cat <<EOF
-X11 Bookmarking rofi/fzf Script
+Bookmarking rofi/fzf Script
 
 Usage: bookmark [options]
 
@@ -36,11 +29,18 @@ add() {
 
 show() {
     if [[ $1 == "menu" ]]; then
-        xdotool type "$(rofi -disable-history -dmenu < "$marks")"
+        if xhost >& /dev/null
+            then xdotool type "$(rofi -disable-history -dmenu < "$marks")"
+            else wtype "$(rofi -disable-history -dmenu < "$marks")"
+        fi
+
         exit 0
     fi
 
-    fzf < "$marks" | xclip -selection c
+    if xhost >& /dev/null
+        then fzf < "$marks" | xclip -selection c
+        else wl-copy "$(fzf < "$marks")"
+    fi
 }
 
 # Parse arguments & run
