@@ -6,8 +6,36 @@ local modkey = mod.modkey
 
 local apps = require("config.apps")
 
+-- https://www.reddit.com/r/awesomewm/comments/9mpmtl/comment/lo8iiwg/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+local function swap_screens(dir)
+    return function()
+        local currentScreen = awful.screen.focused()
+        local targetScreen = currentScreen:get_next_in_direction(dir)
+
+        if targetScreen then
+            local targetClients = currentScreen:get_clients()
+            local swapedClients = targetScreen:get_clients()
+
+            for _, client in ipairs(targetClients) do
+                client:move_to_screen(targetScreen.index)
+            end
+
+            for _, client in ipairs(swapedClients) do
+                client:move_to_screen(currentScreen.index)
+            end
+
+            awful.screen.focus(targetScreen)
+        end
+    end
+end
+
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
+    awful.key({ modkey, mod.ctrl }, "Right", swap_screens("right"), { description = "Swap right", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Left", swap_screens("left"), { description = "Swap left", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Up", swap_screens("up"), { description = "Swap up", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Down", swap_screens("down"), { description = "Swap down", group = "Client" }),
+
     -- General Awesome keys
     awful.key({ modkey, mod.shift }, "/", require("awful.hotkeys_popup").show_help, { description = "Show help", group = "Awesome" }),
     awful.key({ modkey, mod.ctrl }, "r", awesome.restart, { description = "Reload awesome", group = "Awesome" }),
