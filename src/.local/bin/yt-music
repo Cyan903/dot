@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# Interact with the YouTube Music API
+#   https://github.com/th-ch/youtube-music
+
+ENDPOINT="http://localhost:26538"
+TITLE="yt-music"
+
+req() {
+    ! curl --request POST --url "$ENDPOINT$1" &&
+        notify-send "$TITLE" "Error - $1"
+}
+
+vol() {
+    local state amt
+
+    state=$(curl --request GET --url "$ENDPOINT/api/v1/volume" | jq ".state" -r)
+    amt="$1"
+
+    ! curl --request POST \
+        --url "$ENDPOINT"/api/v1/volume \
+        --header 'Content-Type: application/json' \
+        --data "{ \"volume\": $(( state + amt)) }" \
+        && notify-send "$TITLE" "Failed to update volume!"
+}
+
+usage() {
+    cat <<EOF
+Interact with YouTube Music
+
+Usage: yt-music [options]
+
+Options:
+  prev      jump to previous song
+  next      jump to next song
+  toggle    toggle audio
+  vol       set the audio, requires an argument
+  help      display help
+EOF
+}
+
+case $1 in
+    prev) req /api/v1/previous ;;
+    next) req /api/v1/next ;;
+    toggle) req /api/v1/toggle-play ;;
+    vol) vol "$2" ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+

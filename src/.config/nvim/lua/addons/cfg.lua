@@ -47,6 +47,7 @@ M.tools = {
     "prettierd",
     "emmet_language_server",
     "shellcheck",
+    "ruff",
 }
 
 -- NOTE: Treesitter parsers

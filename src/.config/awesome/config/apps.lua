@@ -57,6 +57,46 @@ apps.shortcuts = {
     },
 
     {
+        group = "Music",
+        binds = {
+            {
+                alt = { "Ctrl" },
+                key = "p",
+                title = "Toggle music",
+                cmd = "yt-music toggle",
+            },
+
+            {
+                alt = { "Ctrl" },
+                key = "[",
+                title = "Previous song",
+                cmd = "yt-music prev",
+            },
+
+            {
+                alt = { "Ctrl" },
+                key = "]",
+                title = "Next song",
+                cmd = "yt-music next",
+            },
+
+            {
+                alt = { "Ctrl" },
+                key = "-",
+                title = "Volume -10",
+                cmd = "yt-music vol -10",
+            },
+
+            {
+                alt = { "Ctrl" },
+                key = "=",
+                title = "Volume +10",
+                cmd = "yt-music vol 10",
+            },
+        },
+    },
+
+    {
         group = "Launcher",
         binds = {
             {
