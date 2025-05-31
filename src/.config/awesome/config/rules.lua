@@ -55,6 +55,8 @@ ruled.client.connect_signal("request::rules", function()
                 "discord",
                 "Spotify",
                 "Spotify Free",
+                "com.github.th_ch.youtube_music",
+                "com.github.th_ch.youtube_music",
             },
         },
 

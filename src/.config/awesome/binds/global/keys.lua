@@ -57,7 +57,7 @@ local function swap_screens(dir)
             client:move_to_screen(currentScreen.index)
         end
 
-        -- awful.screen.focus(targetScreen)
+        awful.screen.focus(targetScreen)
     end
 end
 

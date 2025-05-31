@@ -42,6 +42,7 @@ tag.connect_signal("property::selected", function(t)
     for s in screen do
         if s ~= t.screen then
             local other_tag = awful.tag.find_by_name(s, t.name)
+
             if other_tag then
                 other_tag:view_only()
             end
