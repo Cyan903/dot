@@ -3,6 +3,7 @@ local awful = require("awful")
 return {
     mod = "Mod4",
     titlebar = false,
+    locked_tags = true,
 
     -- stylua: ignore
     tags = {

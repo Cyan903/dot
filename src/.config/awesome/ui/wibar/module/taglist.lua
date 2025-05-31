@@ -1,6 +1,8 @@
 local awful = require("awful")
 local wibox = require("wibox")
 
+local user = require("config.user")
+
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
@@ -31,6 +33,21 @@ local function createFade(self, c3, index, objects)
 
     self:get_children_by_id("index_role")[1].markup = "<span weight='" .. weight .. "' color='" .. fade[math.abs(index - sel) + 1] .. "' font_desc='FreeMono 8'>" .. index .. "</span>"
 end
+
+tag.connect_signal("property::selected", function(t)
+    if not t.selected or not user.locked_tags then
+        return
+    end
+
+    for s in screen do
+        if s ~= t.screen then
+            local other_tag = awful.tag.find_by_name(s, t.name)
+            if other_tag then
+                other_tag:view_only()
+            end
+        end
+    end
+end)
 
 return function(s)
     return awful.widget.taglist({
