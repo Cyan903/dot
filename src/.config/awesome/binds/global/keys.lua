@@ -71,6 +71,11 @@ local function focus_screens(dir)
     end
 end
 
+-- TODO: This
+local function move_screens(dir)
+    -- replace mod + o/O
+end
+
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
     -- Screen management

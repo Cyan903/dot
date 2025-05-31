@@ -1,12 +1,13 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local gears = require("gears")
 
 local user = require("config.user")
 
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
-local function createFade(self, c3, index, objects)
+local function create_fade(self, c3, index, objects)
     local sel = 1
     local weight = "normal"
     local fade = {
@@ -31,7 +32,7 @@ local function createFade(self, c3, index, objects)
         weight = "ultrabold"
     end
 
-    self:get_children_by_id("index_role")[1].markup = "<span weight='" .. weight .. "' color='" .. fade[math.abs(index - sel) + 1] .. "' font_desc='FreeMono 8'>" .. index .. "</span>"
+    self:get_children_by_id("index_role")[1].markup = "<span weight='" .. weight .. "' color='" .. fade[math.abs(index - sel) + 1] .. "' font_desc='FreeMono 8'>" .. objects[index].name .. "</span>"
 end
 
 tag.connect_signal("property::selected", function(t)
@@ -48,6 +49,32 @@ tag.connect_signal("property::selected", function(t)
             end
         end
     end
+
+    -- Ensure the master window is always focused (or whatever is found first as a fallback)
+    gears.timer.delayed_call(function()
+        local mouse_screen = screen[mouse.screen]
+
+        if not mouse_screen then
+            return
+        end
+
+        local tag = mouse_screen.selected_tag
+
+        if not tag then
+            return
+        end
+
+        local clients = tag:clients()
+
+        if #clients > 0 then
+            local master_client = awful.client.getmaster()
+
+            if master_client then
+                client.focus = master_client
+                master_client:raise()
+            end
+        end
+    end)
 end)
 
 return function(s)
@@ -100,8 +127,8 @@ return function(s)
 
             id = "background_role",
             widget = wibox.container.background,
-            create_callback = createFade,
-            update_callback = createFade,
+            create_callback = create_fade,
+            update_callback = create_fade,
         },
     })
 end
