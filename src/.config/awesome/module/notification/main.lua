@@ -99,9 +99,7 @@ naughty.connect_signal("destroyed", function(n, reason)
     end
 end)
 
-awesome.connect_signal("signal::notification_redraw", function()
-    update()
-end)
+awesome.connect_signal("signal::notification_redraw", update)
 
 awesome.connect_signal("signal::notification_close", function()
     notify_pop.visible = false
