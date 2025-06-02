@@ -26,6 +26,7 @@ local function toggle_bar(c, show)
 end
 
 -- Enable border/titlebar toggle for floating windows
+-- TODO: Simplify
 local function toggle_borders(c)
     if c.maximized then
         c.border_color = beautiful.border_color_normal
@@ -46,8 +47,6 @@ local function toggle_borders(c)
     end
 end
 
-client.connect_signal("property::floating", toggle_borders)
-client.connect_signal("property::maximized", toggle_borders)
 client.connect_signal("focus", toggle_borders)
 client.connect_signal("unfocus", toggle_borders)
 client.connect_signal("manage", toggle_borders)
