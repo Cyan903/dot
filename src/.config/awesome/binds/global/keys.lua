@@ -12,21 +12,23 @@ local user = require("config.user")
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
     -- Monitor management
-    awful.key({ modkey, mod.ctrl }, "Right", monitor.focus_screens("right"), { description = "Focus screen right", group = "Client" }),
-    awful.key({ modkey, mod.ctrl }, "Left", monitor.focus_screens("left"), { description = "Focus screen left", group = "Client" }),
-    awful.key({ modkey, mod.ctrl }, "Up", monitor.focus_screens("up"), { description = "Focus screen up", group = "Client" }),
-    awful.key({ modkey, mod.ctrl }, "Down", monitor.focus_screens("down"), { description = "Focus screen down", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Right", monitor.focus_screens("right"), { description = "Focus screen right", group = "Screen" }),
+    awful.key({ modkey, mod.ctrl }, "Left", monitor.focus_screens("left"), { description = "Focus screen left", group = "Screen" }),
+    awful.key({ modkey, mod.ctrl }, "Up", monitor.focus_screens("up"), { description = "Focus screen up", group = "Screen" }),
+    awful.key({ modkey, mod.ctrl }, "Down", monitor.focus_screens("down"), { description = "Focus screen down", group = "Screen" }),
 
-    awful.key({ modkey, mod.ctrl, mod.alt }, "Right", monitor.swap_screens("right"), { description = "Swap screen right", group = "Client" }),
-    awful.key({ modkey, mod.ctrl, mod.alt }, "Left", monitor.swap_screens("left"), { description = "Swap screen left", group = "Client" }),
-    awful.key({ modkey, mod.ctrl, mod.alt }, "Up", monitor.swap_screens("up"), { description = "Swap screen up", group = "Client" }),
-    awful.key({ modkey, mod.ctrl, mod.alt }, "Down", monitor.swap_screens("down"), { description = "Swap screen down", group = "Client" }),
+    awful.key({ modkey, mod.ctrl, mod.alt, mod.shift }, "Right", monitor.swap_screens("right"), { description = "Swap screen right", group = "Screen" }),
+    awful.key({ modkey, mod.ctrl, mod.alt, mod.shift }, "Left", monitor.swap_screens("left"), { description = "Swap screen left", group = "Screen" }),
+    awful.key({ modkey, mod.ctrl, mod.alt, mod.shift }, "Up", monitor.swap_screens("up"), { description = "Swap screen up", group = "Screen" }),
+    awful.key({ modkey, mod.ctrl, mod.alt, mod.shift }, "Down", monitor.swap_screens("down"), { description = "Swap screen down", group = "Screen" }),
 
-    awful.key({ modkey, mod.ctrl }, "f", function()
-        if client.focus then
-            client.focus.sticky = not client.focus.sticky
-        end
-    end, { description = "Toggle sticky window", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "j", function()
+        awful.screen.focus_relative(1)
+    end, { description = "Focus the next screen", group = "Screen" }),
+
+    awful.key({ modkey, mod.ctrl }, "k", function()
+        awful.screen.focus_relative(-1)
+    end, { description = "Focus the next screen", group = "Screen" }),
 
     -- General Awesome keys
     awful.key({ modkey, mod.shift }, "/", require("awful.hotkeys_popup").show_help, { description = "Show help", group = "Awesome" }),
@@ -51,6 +53,12 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "k", function()
         awful.client.focus.byidx(-1)
     end, { description = "Focus previous by index", group = "Client" }),
+
+    awful.key({ modkey, mod.ctrl }, "f", function()
+        if client.focus then
+            client.focus.sticky = not client.focus.sticky
+        end
+    end, { description = "Toggle sticky window", group = "Client" }),
 
     awful.key({ modkey }, "Tab", function()
         awful.client.focus.history.previous()

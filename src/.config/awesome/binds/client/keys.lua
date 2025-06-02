@@ -39,10 +39,10 @@ client.connect_signal("request::default_keybindings", function()
         end, { description = "Move to master", group = "Client" }),
 
         -- Client screen management
-        awful.key({ modkey, mod.shift, mod.alt }, "Right", monitor.move_screens("right"), { description = "Swap window right", group = "Client" }),
-        awful.key({ modkey, mod.shift, mod.alt }, "Left", monitor.move_screens("left"), { description = "Swap window left", group = "Client" }),
-        awful.key({ modkey, mod.shift, mod.alt }, "Up", monitor.move_screens("up"), { description = "Swap window up", group = "Client" }),
-        awful.key({ modkey, mod.shift, mod.alt }, "Down", monitor.move_screens("down"), { description = "Swap window down", group = "Client" }),
+        awful.key({ modkey, mod.ctrl, mod.alt }, "Right", monitor.move_screens("right"), { description = "Swap window right", group = "Client" }),
+        awful.key({ modkey, mod.ctrl, mod.alt }, "Left", monitor.move_screens("left"), { description = "Swap window left", group = "Client" }),
+        awful.key({ modkey, mod.ctrl, mod.alt }, "Up", monitor.move_screens("up"), { description = "Swap window up", group = "Client" }),
+        awful.key({ modkey, mod.ctrl, mod.alt }, "Down", monitor.move_screens("down"), { description = "Swap window down", group = "Client" }),
 
         -- Client position for floating management
         awful.key({ modkey, mod.shift }, "Up", function(c)
