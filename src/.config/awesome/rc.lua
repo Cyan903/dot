@@ -14,7 +14,10 @@ end)
 
 -- Automatically focus a client & startup script
 require("awful.autofocus")
-require("awful.spawn").with_shell(require("gears.filesystem").get_dir("config") .. "bin/autostart")
+require("awful.spawn").with_shell(
+    -- stylua: ignore
+    require("gears.filesystem").get_dir("config") .. "bin/autostart"
+)
 
 require("theme")
 require("signal")

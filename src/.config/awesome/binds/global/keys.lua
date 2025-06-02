@@ -1,93 +1,32 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
+local monitor = require("utils.workspaces").monitor
+
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
 local apps = require("config.apps")
 local user = require("config.user")
 
-local function swap_screens(dir)
-    return function()
-        local currentScreen = awful.screen.focused()
-        local targetScreen = currentScreen:get_next_in_direction(dir)
-
-        -- Validate
-        if not targetScreen then
-            return
-        end
-
-        -- Swap layouts
-        local targetLayout = awful.layout.get(currentScreen)
-        local swappedLayout = awful.layout.get(targetScreen)
-
-        awful.layout.set(swappedLayout, currentScreen.selected_tag)
-        awful.layout.set(targetLayout, targetScreen.selected_tag)
-
-        -- Swap number of master clients
-        local targetMaster = awful.tag.getnmaster(currentScreen.selected_tag)
-        local swappedMaster = awful.tag.getnmaster(targetScreen.selected_tag)
-
-        awful.tag.setnmaster(swappedMaster, currentScreen.selected_tag)
-        awful.tag.setnmaster(targetMaster, targetScreen.selected_tag)
-
-        -- Swap master width
-        local targetWidth = awful.tag.getmwfact(currentScreen.selected_tag)
-        local swappedWidth = awful.tag.getmwfact(targetScreen.selected_tag)
-
-        awful.tag.setmwfact(swappedWidth, currentScreen.selected_tag)
-        awful.tag.setmwfact(targetWidth, targetScreen.selected_tag)
-
-        -- Swap number of columns
-        local targetCols = awful.tag.getncol(currentScreen.selected_tag)
-        local swappedCols = awful.tag.getncol(targetScreen.selected_tag)
-
-        awful.tag.setncol(swappedCols, currentScreen.selected_tag)
-        awful.tag.setncol(targetCols, targetScreen.selected_tag)
-
-        -- Swap clients
-        local targetClients = currentScreen.selected_tag:clients()
-        local swappedClients = targetScreen.selected_tag:clients()
-
-        for _, client in ipairs(targetClients) do
-            client:move_to_screen(targetScreen.index)
-        end
-
-        for _, client in ipairs(swappedClients) do
-            client:move_to_screen(currentScreen.index)
-        end
-
-        awful.screen.focus(targetScreen)
-    end
-end
-
-local function focus_screens(dir)
-    return function()
-        local targetScreen = awful.screen.focused():get_next_in_direction(dir)
-
-        if targetScreen then
-            awful.screen.focus(targetScreen)
-        end
-    end
-end
-
--- TODO: This
-local function move_screens(dir)
-    -- replace mod + o/O
-end
-
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
-    -- Screen management
-    awful.key({ modkey, mod.ctrl }, "Right", focus_screens("right"), { description = "Focus right", group = "Client" }),
-    awful.key({ modkey, mod.ctrl }, "Left", focus_screens("left"), { description = "Focus left", group = "Client" }),
-    awful.key({ modkey, mod.ctrl }, "Up", focus_screens("up"), { description = "Focus up", group = "Client" }),
-    awful.key({ modkey, mod.ctrl }, "Down", focus_screens("down"), { description = "Focus down", group = "Client" }),
+    -- Monitor management
+    awful.key({ modkey, mod.ctrl }, "Right", monitor.focus_screens("right"), { description = "Focus screen right", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Left", monitor.focus_screens("left"), { description = "Focus screen left", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Up", monitor.focus_screens("up"), { description = "Focus screen up", group = "Client" }),
+    awful.key({ modkey, mod.ctrl }, "Down", monitor.focus_screens("down"), { description = "Focus screen down", group = "Client" }),
 
-    awful.key({ modkey, mod.alt }, "Right", swap_screens("right"), { description = "Swap right", group = "Client" }),
-    awful.key({ modkey, mod.alt }, "Left", swap_screens("left"), { description = "Swap left", group = "Client" }),
-    awful.key({ modkey, mod.alt }, "Up", swap_screens("up"), { description = "Swap up", group = "Client" }),
-    awful.key({ modkey, mod.alt }, "Down", swap_screens("down"), { description = "Swap down", group = "Client" }),
+    awful.key({ modkey, mod.ctrl, mod.alt }, "Right", monitor.swap_screens("right"), { description = "Swap screen right", group = "Client" }),
+    awful.key({ modkey, mod.ctrl, mod.alt }, "Left", monitor.swap_screens("left"), { description = "Swap screen left", group = "Client" }),
+    awful.key({ modkey, mod.ctrl, mod.alt }, "Up", monitor.swap_screens("up"), { description = "Swap screen up", group = "Client" }),
+    awful.key({ modkey, mod.ctrl, mod.alt }, "Down", monitor.swap_screens("down"), { description = "Swap screen down", group = "Client" }),
+
+    awful.key({ modkey, mod.ctrl }, "f", function()
+        if client.focus then
+            client.focus.sticky = not client.focus.sticky
+        end
+    end, { description = "Toggle sticky window", group = "Client" }),
 
     -- General Awesome keys
     awful.key({ modkey, mod.shift }, "/", require("awful.hotkeys_popup").show_help, { description = "Show help", group = "Awesome" }),
@@ -218,20 +157,6 @@ awful.keyboard.append_global_keybindings({
                 if tag then
                     client.focus:move_to_tag(tag)
                 end
-            end
-        end,
-    }),
-
-    awful.key({
-        modifiers = { modkey },
-        keygroup = "numpad",
-        description = "Select layout directly",
-        group = "Layout",
-
-        on_press = function(index)
-            local t = awful.screen.focused().selected_tag
-            if t then
-                t.layout = t.layouts[index] or t.layout
             end
         end,
     }),

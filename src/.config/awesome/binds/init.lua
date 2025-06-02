@@ -1,5 +1,6 @@
--- Returns all mouse and keybinds for both clients and the WM
+-- Retrieves all keybindings for the mouse, keyboard, and active applications across both clients and the wm
 return {
+    active = require(... .. ".active"),
     global = require(... .. ".global"),
     client = require(... .. ".client"),
 }

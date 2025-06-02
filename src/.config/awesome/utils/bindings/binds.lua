@@ -4,8 +4,8 @@ local gears = require("gears.table")
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
-local apps = require("config.apps")
 local app_binds = {}
+local apps = {}
 
 -- Application shortcuts - Read from app.shortcuts & bind them
 local function init_shortcuts()
@@ -53,19 +53,20 @@ local function set_app(e)
     end
 end
 
+local function set_apps(config)
+    apps = config
+end
+
 local function remove_apps()
     for _, bind in pairs(app_binds) do
         awful.keyboard.remove_client_keybinding(bind)
     end
 end
 
--- Set the keybinds
-awesome.connect_signal("startup", function()
-    init_shortcuts()
-    init_keybinds()
-end)
-
-client.connect_signal("focus", function(e)
-    remove_apps()
-    set_app(e)
-end)
+return {
+    init_shortcuts = init_shortcuts,
+    init_keybinds = init_keybinds,
+    remove_apps = remove_apps,
+    set_app = set_app,
+    set_apps = set_apps,
+}
