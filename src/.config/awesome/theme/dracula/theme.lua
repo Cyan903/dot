@@ -32,7 +32,7 @@ theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#f8f8f2"
 
 -- Borders
-theme.useless_gap = dpi(6)
+theme.useless_gap = dpi(4)
 theme.border_width = dpi(2)
 theme.border_color_normal = theme.bg_normal
 theme.border_color_active = "#bd93f9" -- "#6272a4"
