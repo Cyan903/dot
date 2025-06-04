@@ -22,6 +22,15 @@ local term_scratch = bling.module.scratchpad({
     dont_focus_before_close = false,
 })
 
+-- Not a very good hotfix but I'm using tmux anyway
+term_scratch:connect_signal("turn_off", function()
+    -- stylua: ignore
+    for c in
+        awful.client.iterate(function(c) return c.instance == term_id end)
+        do c:kill()
+    end
+end)
+
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
     -- Monitor management

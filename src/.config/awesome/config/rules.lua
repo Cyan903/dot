@@ -59,7 +59,29 @@ ruled.client.connect_signal("request::rules", function()
             },
         },
 
-        properties = { tag = "9" },
+        properties = { tag = "chat" },
+    })
+
+    ruled.client.append_rule({
+        rule_any = {
+            class = {
+                "anki",
+                "Anki",
+                "chromium",
+                "Chromium",
+                "obsidian",
+            },
+        },
+
+        properties = { tag = "study" },
+    })
+
+    ruled.client.append_rule({
+        rule_any = {
+            class = { "steam" },
+        },
+
+        properties = { tag = "game" },
     })
 
     ruled.client.append_rule({

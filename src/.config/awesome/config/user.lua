@@ -1,4 +1,5 @@
 local awful = require("awful")
+local bling = require("lib.bling")
 
 return {
     mod = "Mod4",
@@ -7,12 +8,13 @@ return {
 
     -- stylua: ignore
     tags = {
-        "1", "2", "3",
-        "4", "5", "6",
-        "7", "8", "9"
+        "www", "dev", "study",
+        "game", "sandbox", "chat"
     },
 
     layouts = {
+        bling.layout.mstab,
+
         awful.layout.suit.tile,
         awful.layout.suit.tile.left,
         awful.layout.suit.floating,

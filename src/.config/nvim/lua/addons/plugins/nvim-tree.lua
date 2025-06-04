@@ -27,11 +27,6 @@ return {
         local tree = require("nvim-tree")
 
         vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "[E]xplore nvim-tree" })
-        vim.api.nvim_create_autocmd("VimEnter", {
-            callback = function()
-                require("nvim-tree.api").tree.open()
-            end,
-        })
 
         tree.setup(opts)
     end,
