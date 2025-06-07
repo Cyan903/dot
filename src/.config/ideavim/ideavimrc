@@ -1,0 +1,48 @@
+" Config {{{
+let mapleader = " "
+let maplocalleader = ","
+
+set number relativenumber nowrap cursorline " Line number
+set ignorecase smartcase hlsearch incsearch " Searching
+set nowrap " Wrapping
+
+set list listchars=tab:»\ ,trail:·,nbsp:␣
+" }}}
+
+" Abbreviations & remaps {{{
+cabbrev W w
+cabbrev WQ wq
+
+nnoremap gcc :action CommentByLineComment<cr>
+nnoremap gh :action ShowIntentionActions<cr>
+" }}}
+
+" User commands {{{
+function! ToggleWrap()
+    set wrap!
+
+    if &wrap
+        nnoremap j gj
+        nnoremap k gk
+    else
+        nunmap j
+        nunmap k
+    endif
+endfunction
+
+command WordWrapToggle call ToggleWrap()
+" }}}
+
+" Plugins {{{
+" https://plugins.jetbrains.com/plugin/23451-fuzzier
+nnoremap <leader>sf :action com.mituuz.fuzzier.Fuzzier<cr>
+nnoremap <leader>sg :action com.mituuz.fuzzier.FuzzyGrep<cr>
+
+" https://plugins.jetbrains.com/plugin/20782-harpoonij
+nnoremap <leader>hh :action ShowHarpoon<cr>
+nnoremap <leader>ha :action AddToHarpoon<cr>
+nnoremap <leader>hs :action SelectHarpoonItem<cr>
+" }}}
+
+" vim: ts=4:sw=4:et
+
