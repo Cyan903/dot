@@ -1,5 +1,4 @@
 local awful = require("awful")
-local bling = require("lib.bling")
 
 return {
     mod = "Mod4",
@@ -13,8 +12,6 @@ return {
     },
 
     layouts = {
-        bling.layout.mstab,
-
         awful.layout.suit.tile,
         awful.layout.suit.tile.left,
         awful.layout.suit.floating,
