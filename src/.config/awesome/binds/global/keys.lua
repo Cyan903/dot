@@ -2,34 +2,12 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 
 local monitor = require("utils.workspaces").monitor
-local bling = require("lib.bling")
 
 local mod = require("binds.mod")
 local modkey = mod.modkey
 
 local apps = require("config.apps")
 local user = require("config.user")
-
-local term_id = "spad"
-local term_scratch = bling.module.scratchpad({
-    command = apps.terminal .. " --class=" .. term_id .. " " .. apps.scratch,
-    rule = { instance = term_id },
-    sticky = true,
-    autoclose = true,
-    floating = true,
-    geometry = { x = 360, y = 90, height = 900, width = 1200 },
-    reapply = true,
-    dont_focus_before_close = false,
-})
-
--- Not a very good hotfix but I'm using tmux anyway
-term_scratch:connect_signal("turn_off", function()
-    -- stylua: ignore
-    for c in
-        awful.client.iterate(function(c) return c.instance == term_id end)
-        do c:kill()
-    end
-end)
 
 -- Global key bindings
 awful.keyboard.append_global_keybindings({
@@ -61,10 +39,6 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "Return", function()
         awful.spawn(apps.terminal)
     end, { description = "Open a terminal", group = "Launcher" }),
-
-    awful.key({ modkey }, "t", function()
-        term_scratch:toggle()
-    end, { description = "Open scratchpad", group = "Launcher" }),
 
     -- Tags related keybindings
     awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "View previous", group = "Tag" }),

@@ -4,6 +4,7 @@ local wibox = require("wibox")
 local module = require(... .. ".module")
 
 local taskbar = require("module.taskbar")
+local anki = require("module.anki")
 local notifications = require("module.notification")
 local ping = require("module.ping")
 local volume = require("module.volume")
@@ -36,7 +37,8 @@ return function(s)
             {
                 layout = wibox.layout.fixed.horizontal,
 
-                wibox.container.margin(taskbar, 4, 4),
+                wibox.container.margin(taskbar, 2, 2),
+                wibox.container.margin(anki, 4, 4),
                 wibox.container.margin(notifications, 4, 4),
                 wibox.container.margin(ping, 4, 4),
                 wibox.container.margin(volume, 4, 4),

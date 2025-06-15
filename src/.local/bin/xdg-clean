@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# XDG Clean
+#  Clean up the home folder
+
+store=".xdg-clean"
+
+keep=(
+    .android
+    .java
+    .javacpp
+    .jdks
+    .openjfx
+    .gradle
+    .emulator_console_auth_token
+    .skiko
+    Android
+)
+
+remove=(
+    .pki
+    .angular-config.json
+    .steampath
+    .steampid
+    .steam
+    .wget-hsts
+    .dosbox
+    .nimble
+    .viminfo
+    .m2
+    .python_history
+    .bash_history
+    .wine
+    .dotnet
+    .mplayer
+)
+
+mkdir "$HOME/$store" 2> /dev/null
+
+info() {
+    echo "$(tput bold)Total: $(ls -A "$HOME" | wc -l)$(tput sgr0)"
+}
+
+exists() {
+    [ -d "$1" ] && c=$(tput setaf 2) || c=$(tput setaf 1)
+    echo "${c}$1$(tput sgr0)"
+}
+
+mv_in() {
+    for i in "${keep[@]}"; do
+        exists "$HOME/$i"
+        mv "$HOME/$i" "$HOME/$store" 2> /dev/null
+    done
+}
+
+mv_out() {
+    for i in "${keep[@]}"; do
+        exists "$HOME/$store/$i"
+        mv "$HOME/$store/$i" "$HOME" 2> /dev/null
+    done
+
+    rmdir "$HOME/$store"
+}
+
+clean() {
+    for i in "${remove[@]}"; do
+        exists "$HOME/$i"
+        trash-put "$HOME/$i" 2> /dev/null
+    done
+}
+
+case "$1" in
+    in) info ; mv_in ; info ;;
+    out) info ; mv_out ; info ;;
+    clean) info ; clean ; info ;;
+    *) echo "$0 <in/out/clean>"
+esac
+

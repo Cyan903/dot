@@ -4,7 +4,6 @@ local BIN_DIR = gears.filesystem.get_dir("config") .. "bin/"
 local apps = {}
 
 apps.terminal = "alacritty"
-apps.scratch = "-e scratchpad"
 apps.editor = os.getenv("EDITOR") or "vi"
 apps.editor_cmd = apps.terminal .. " -e " .. apps.editor
 
