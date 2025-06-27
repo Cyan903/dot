@@ -1,7 +1,0 @@
-#
-# Execute if shell is interactive and supports colors
-#
-
-if [[ "$TERM" == "xterm-256color" ]]; then
-    export IS_WELCOME=true
-fi
