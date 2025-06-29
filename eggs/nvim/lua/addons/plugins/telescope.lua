@@ -40,9 +40,10 @@ return {
             },
 
             defaults = {
-                file_ignore_patterns = vim.tbl_deep_extend("force", {
+                file_ignore_patterns = vim.list_extend({
                     ".git/",
-                    ".cache",
+                    ".cache/",
+                    ".deployed_cache/",
                 }, require("addons.cfg").ignore),
             },
 

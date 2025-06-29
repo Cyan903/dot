@@ -57,33 +57,33 @@ export const obsidian = #{
     primary: "#6a82fb",
 };
 
-export const gruvbox_light = #{
-    foreground: "#3c3836",
-    background: "#fbf1c7",
-    wallpaper: "#f2e5bc",
+export const dark = #{
+    foreground: "#FFFFFF",
+    background: "#000000",
+    wallpaper: "#000000",
 
-    bright: "#ffffff",
-    dim: "#ebdbb2",
-    dark: "#d5c4a1",
+    bright: "#FFFFFF",
+    dim: "#1A1A1A",
+    dark: "#000000",
 
-    black: "#928374",
-    red: "#cc241d",
-    blue: "#458588",
-    green: "#98971a",
-    yellow: "#d79921",
-    cyan: "#689d6a",
-    magenta: "#b16286",
-    orange: "#d65d0e",
+    black: "#1C1C1C",
+    red: "#FF0000",
+    blue: "#5C5CFF",
+    green: "#00FF00",
+    yellow: "#FFFF00",
+    cyan: "#00FFFF",
+    magenta: "#FF00FF",
+    orange: "#FFA500",
 
-    hblack: "#a89984",
-    hred: "#9d0006",
-    hblue: "#076678",
-    hgreen: "#79740e",
-    hyellow: "#b57614",
-    hcyan: "#427b58",
-    hmagenta: "#8f3f71",
+    hblack: "#333333",
+    hred: "#FF4C4C",
+    hblue: "#8080FF",
+    hgreen: "#66FF66",
+    hyellow: "#FFFF99",
+    hcyan: "#66FFFF",
+    hmagenta: "#FF66FF",
 
-    primary: "#076678"
+    primary: "#5C5CFF",
 };
 
 // vim: syntax=rust

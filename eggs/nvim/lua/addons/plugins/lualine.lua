@@ -8,17 +8,17 @@ return {
     config = function()
         local lualine = require("lualine")
         local colors = {
-            bg = "#282A36", -- Transparent
-            fg = "#bbc2cf",
-            yellow = "#ECBE7B",
-            cyan = "#008080",
-            darkblue = "#081633",
-            green = "#98be65",
-            orange = "#FF8800",
-            violet = "#a9a1e1",
-            magenta = "#c678dd",
-            blue = "#51afef",
-            red = "#ec5f67",
+            bg = "#000000", -- {< replace_color(data.colors.background) >}
+            fg = "#FFFFFF", -- {< replace_color(data.colors.foreground) >}
+            yellow = "#FFFF00", -- {< replace_color(data.colors.yellow) >}
+            cyan = "#00FFFF", -- {< replace_color(data.colors.cyan) >}
+            darkblue = "#8080FF", -- {< replace_color(data.colors.hblue) >}
+            green = "#00FF00", -- {< replace_color(data.colors.green) >}
+            orange = "#FFA500", -- {< replace_color(data.colors.orange) >}
+            violet = "#FFFF99", -- {< replace_color(data.colors.hyellow) >}
+            magenta = "#FF00FF", -- {< replace_color(data.colors.magenta) >}
+            blue = "#5C5CFF", -- {< replace_color(data.colors.blue) >}
+            red = "#FF0000", -- {< replace_color(data.colors.red) >}
         }
 
         local config = {

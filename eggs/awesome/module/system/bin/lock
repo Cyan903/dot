@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
-# Dracula theme for i3lock-color
+# Lock theme for i3lock-color
 # https://github.com/Raymo111/i3lock-color
 
 font="sans-serif"
 
-bg="1e2029"
-fg="f8f8f2"
-primary="bd93f9"
+bg="#000000" # {< replace_color(data.colors.wallpaper) >}
+fg="#FFFFFF" # {< replace_color(data.colors.foreground) >}
+primary="#5C5CFF" # {< replace_color(data.colors.primary) >}
 
-green="50fa7b"
-red="ff5555"
+green="#00FF00" # {< replace_color(data.colors.green) >}
+red="#FF0000" # {< replace_color(data.colors.red) >}
+light="#333333" # {< replace_color(data.colors.hblack) >}
 
 i3lock \
     --clock \
@@ -19,7 +20,7 @@ i3lock \
     --inside-color="$bg" \
     --ring-color="$primary" \
     --insidever-color="$bg" \
-    --ringver-color="6272a4" \
+    --ringver-color="$light" \
     --insidewrong-color="$bg" \
     --ringwrong-color="$red" \
     --line-color="000000ee" \

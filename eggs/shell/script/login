@@ -3,5 +3,9 @@
 #
 
 if [[ $(tty) = "/dev/tty1" ]]; then
-    pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
+    # {% if data.wayland %}
+        #<yolk> niri --session
+    # {% else %}
+        pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
+    # {% end %}
 fi

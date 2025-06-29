@@ -15,5 +15,5 @@ require("util.header")()
 -- Load plugins
 require("util.lazy")({
     plugins = { "plugins" },
-    theme = "dracula",
+    theme = "noctis-high-contrast",
 })
