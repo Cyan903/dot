@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+format="%a, %l:%M%P"
+timezones="$XDG_DATA_HOME/timezones"
+
+# Read and create the tooltip
+declare tooltip
+
+while IFS="" read -r p; do
+    user="$(echo "$p" | awk -F: '{ print $1 }')"
+    zone="$(echo "$p" | awk -F: '{ print $2 }')"
+
+    tooltip+="<span weight='bold'>$user</span> - $(TZ="$zone" date +"$format")\r"
+done < "$timezones"
+
+# Print as JSON
+echo "{\"text\": \"$(date +"$format")\", \"tooltip\": \"$tooltip\"}"
+

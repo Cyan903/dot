@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 URL="http://127.0.0.1:8765/"
-DECK="Mining"
+DECK="Vocabulary::Mining"
 
 curl -s --request GET --url "$URL" --header 'Content-Type: application/json' --data \
     "{

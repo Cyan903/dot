@@ -6,7 +6,7 @@ export let data = #{
     linux: SYSTEM.hostname == "hwk",
     wayland: io::path_is_file(".wayland"),
 
-    colors: colors::dark,
+    colors: colors::dracula,
 };
 
 export let eggs = #{

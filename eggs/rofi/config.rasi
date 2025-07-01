@@ -6,12 +6,12 @@ configuration {
 
 * {
     font: "FreeMono 12";
-    foreground: #FFFFFF; /* {< replace_color(data.colors.foreground) >} */
-    background-color: #000000; /* {< replace_color(data.colors.background) >} */
-    active-background: #5C5CFF; /* {< replace_color(data.colors.primary) >} */
-    urgent-background: #FF0000; /* {< replace_color(data.colors.red) >} */
-    urgent-foreground: #000000; /* {< replace_color(data.colors.background) >} */
-    info-foreground: #00FFFF; /* {< replace_color(data.colors.cyan) >} */
+    foreground: #f8f8f2; /* {< replace_color(data.colors.foreground) >} */
+    background-color: #282a36; /* {< replace_color(data.colors.background) >} */
+    active-background: #bd93f9; /* {< replace_color(data.colors.primary) >} */
+    urgent-background: #ff5555; /* {< replace_color(data.colors.red) >} */
+    urgent-foreground: #282a36; /* {< replace_color(data.colors.background) >} */
+    info-foreground: #8be9fd; /* {< replace_color(data.colors.cyan) >} */
     selected-background: @active-background;
     selected-urgent-background: @urgent-background;
     selected-active-background: @active-background;

@@ -1,78 +1,46 @@
-// -*- mode: jsonc -*-
 {
     "layer": "top",
     "position": "top",
     "height": 30,
-    "spacing": 4,
+    "spacing": 8,
 
     "modules-left": ["niri/workspaces"],
     "modules-center": ["niri/window"],
     "modules-right": [
         "tray",
+        "privacy",
 
         "cpu",
-        "memory",
         "temperature",
-
-        "privacy",
+        "memory",
         "pulseaudio",
+
         "custom/packages",
-        "clock",
+        "custom/clock",
     ],
 
     // Left
     "niri/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "www-1": "www",
-            "www-2": "www",
-            "dev-1": "dev",
-            "dev-2": "dev",
-            "study-1": "study",
-            "study-2": "study",
-            "game-1": "game",
-            "game-2": "game",
-            "chat-1": "chat",
-            "chat-2": "chat",
-
-            "default": "-",
-        }
+        "format": "{value}",
     },
 
     // Middle
     "niri/window": {
         "format": "{}",
         "separate-outputs": true,
-        "icon": true,
-        "icon-size": 20,
     },
 
     // Right
     "tray": {
         "icon-size": 10,
         "spacing": 10,
-    },
-
-    "cpu": {
-        "interval": 10,
-        "format": "cpu: {}%",
-        "max-length": 100
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": "ram: {}%",
-        "max-length": 10
-    },
-
-    "temperature": {
-        "format": "{temperatureC}°C"
+        "show-passive-items": true
     },
 
     "privacy": {
         "icon-spacing": 4,
         "icon-size": 18,
-        "transition-duration": 250,
+        "transition-duration": 0,
         "ignore-monitor": true,
         "modules": [
             {
@@ -80,6 +48,7 @@
                 "tooltip": true,
                 "tooltip-icon-size": 24
             },
+
             {
                 "type": "audio-in",
                 "tooltip": true,
@@ -88,24 +57,59 @@
         ],
     },
 
-    // TODO: THIS
+    "cpu": {
+        "interval": 20,
+        "format": "  {usage}%",
+        "max-length": 100
+    },
+
+    "temperature": {
+        "format": "{temperatureC}°C"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "  {}%",
+        "max-length": 10
+    },
+
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format": "{icon} {volume}% ({format_source})",
+        "format-muted": "󰖁  X% ",
+        "format-source-muted": "X%",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                "",
+                "",
+                " "
+            ]
         },
-        "on-click": "pavucontrol"
+
+        "on-click-right": "pavucontrol -t 3",
+        "on-click": "pactl -- set-sink-mute 0 toggle",
+        "tooltip": true,
+        "tooltip-format": "  {volume}%  ||   {format_source}"
+    },
+
+    "custom/packages": {
+        "exec": "package-checker",
+        "return-type": "json",
+        "interval": 300,
+        "format": "  {text}",
+        "tooltip": true,
+    },
+
+    "custom/clock": {
+        "exec": "timezone-clock",
+        "return-type": "json",
+        "interval": 1,
+        "format": "{text}",
+        "tooltip": true,
     },
 }

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+export CHECKUPDATES_DB="/tmp/checkup-db-${UID}-$$" 
+declare tooltip
+
+# Parse updates
+if ! checkupdates > /dev/null; then
+    tooltip+="\r<span weight='bold'>No updates!</span>\r"
+else
+    readarray -t updates <<< "$(checkupdates --nocolor)"
+    tooltip+="\r"
+
+    # Create tooltip
+    for i in "${updates[@]}"; do
+        tooltip+=$(echo "$i" | awk "{
+            printf \"<span weight='bold'>\" \$1 \"</span>\"
+            printf \"<span weight='bold' color='red'> \" \$2 \" </span>\"
+            printf \"->\"
+            printf \"<span weight='bold' color='green'> \" \$4 \" </span>\\r\"
+        }")
+    done
+fi
+
+
+
+# Print as JSON
+echo "{\"text\": \"$(checkupdates | wc -l)x\", \"tooltip\": \"$tooltip\"}"
+
