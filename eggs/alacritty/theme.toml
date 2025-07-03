@@ -1,0 +1,67 @@
+[colors.primary]
+
+background = "#000000" # {< replace_color(data.colors.background) >}
+foreground = "#FFFFFF" # {< replace_color(data.colors.foreground) >}
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+
+text = "#000000" # {< replace_color(data.colors.background) >}
+cursor = "#FFFFFF" # {< replace_color(data.colors.foreground) >}
+
+[colors.vi_mode_cursor]
+
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.selection]
+
+text = "CellForeground"
+background = "#1A1A1A" # {< replace_color(data.colors.dim) >}
+
+[colors.normal]
+
+black = "#1C1C1C" # {< replace_color(data.colors.black) >}
+red = "#FF0000" # {< replace_color(data.colors.red) >}
+green = "#00FF00" # {< replace_color(data.colors.green) >}
+yellow = "#FFFF00" # {< replace_color(data.colors.yellow) >}
+blue = "#5C5CFF" # {< replace_color(data.colors.blue) >}
+magenta = "#FF00FF" # {< replace_color(data.colors.magenta) >}
+cyan = "#00FFFF" # {< replace_color(data.colors.cyan) >}
+white = "#FFFFFF" # {< replace_color(data.colors.foreground) >}
+
+[colors.bright]
+
+black = "#333333" # {< replace_color(data.colors.hblack) >}
+red = "#FF4C4C" # {< replace_color(data.colors.hred) >}
+green = "#66FF66" # {< replace_color(data.colors.hgreen) >}
+yellow = "#FFFF99" # {< replace_color(data.colors.hyellow) >}
+blue = "#8080FF" # {< replace_color(data.colors.hblue) >}
+magenta = "#FF66FF" # {< replace_color(data.colors.hmagenta) >}
+cyan = "#66FFFF" # {< replace_color(data.colors.hcyan) >}
+white = "#FFFFFF" # {< replace_color(data.colors.bright) >}
+
+[colors.search.matches]
+
+foreground = "#1A1A1A" # {< replace_color(data.colors.dim) >}
+background = "#00FF00" # # {< replace_color(data.colors.green) >}
+
+[colors.search.focused_match]
+
+foreground = "#1A1A1A" # {< replace_color(data.colors.dim) >}
+background = "#FFA500" # {< replace_color(data.colors.orange) >}
+
+[colors.footer_bar]
+
+background = "#000000" # {< replace_color(data.colors.background) >}
+foreground = "#FFFFFF" # {< replace_color(data.colors.foreground) >}
+
+[colors.hints.start]
+
+foreground = "#000000" # {< replace_color(data.colors.background) >}
+background = "#FFFF00" # {< replace_color(data.colors.yellow) >}
+
+[colors.hints.end]
+
+foreground = "#FFFF00" # {< replace_color(data.colors.yellow) >}
+background = "#000000" # {< replace_color(data.colors.background) >}

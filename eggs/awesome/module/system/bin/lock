@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Lock theme for i3lock-color
+# https://github.com/Raymo111/i3lock-color
+
+font="sans-serif"
+
+bg="#000000" # {< replace_color(data.colors.wallpaper) >}
+fg="#FFFFFF" # {< replace_color(data.colors.foreground) >}
+primary="#5C5CFF" # {< replace_color(data.colors.primary) >}
+
+green="#00FF00" # {< replace_color(data.colors.green) >}
+red="#FF0000" # {< replace_color(data.colors.red) >}
+light="#333333" # {< replace_color(data.colors.hblack) >}
+
+i3lock \
+    --clock \
+    --indicator \
+    --color="$bg" \
+    --inside-color="$bg" \
+    --ring-color="$primary" \
+    --insidever-color="$bg" \
+    --ringver-color="$light" \
+    --insidewrong-color="$bg" \
+    --ringwrong-color="$red" \
+    --line-color="000000ee" \
+    --keyhl-color="$green" \
+    --bshl-color="$red" \
+    --separator-color="$primary" \
+    --verif-color="$fg" \
+    --wrong-color="$fg" \
+    --modif-color="$fg" \
+    --layout-color="$fg" \
+    --time-color="$fg" \
+    --date-color="$fg" \
+    --greeter-color="$fg" \
+    --time-str="%l:%M%P" \
+    --date-str="%A, %e/%m/%Y" \
+    --radius="125" \
+    --verif-text="..." \
+    --wrong-text="Try again" \
+    --noinput-text=":(" \
+    --time-font="$font" \
+    --date-font="$font" \
+    --layout-font="$font" \
+    --verif-font="$font" \
+    --wrong-font="$font" \
+    --greeter-font="$font" \
+    -p default

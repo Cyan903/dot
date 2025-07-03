@@ -1,0 +1,370 @@
+workspace "TV" { open-on-output "DP-3"; }
+
+// TODO: Kill window
+// TODO: Dynamic keybinds
+// TODO: Notification widget
+
+input {
+    keyboard {
+        xkb {}
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    mouse {
+        accel-speed 0.15
+        accel-profile "flat"
+    }
+
+    trackball {
+        accel-profile "flat"
+        accel-speed 0.5
+    }
+
+    focus-follows-mouse max-scroll-amount="95%"
+
+    // Disabled
+    // warp-mouse-to-focus mode="center-xy"
+}
+
+// Main monitor
+output "HDMI-A-1" {
+    mode "1920x1080@143.981"
+    scale 1
+    transform "normal"
+    position x=1920 y=1080
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+
+    focus-at-startup
+}
+
+// Left
+output "DP-2" {
+    mode "1920x1080@165.001"
+    scale 1
+    transform "normal"
+    position x=0 y=1080
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+}
+
+// TV
+output "DP-3" {
+    mode "1680x1050@59.883"
+    scale 1
+    transform "normal"
+    position x=2250 y=30
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+}
+
+layout {
+    gaps 12
+
+    // never, always, on-overflow
+    center-focused-column "on-overflow"
+    default-column-width { /* proportion 0.5; */ }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.99
+    }
+
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.99
+    }
+
+    focus-ring {
+        off
+        width 2
+        active-color "#5C5CFF" // {< replace_color(data.colors.primary) >}
+        inactive-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    }
+
+    border {
+        width 2
+        active-color "#5C5CFF" // {< replace_color(data.colors.primary) >}
+        inactive-color "#1C1C1C" // {< replace_color(data.colors.black) >}
+        urgent-color "#FFFFFF" // {< replace_color(data.colors.foreground) >}
+    }
+
+    shadow {
+        on
+        softness 20
+        spread 1
+        offset x=0 y=5
+        color "#000000"
+    }
+
+    struts {}
+}
+
+animations {
+    // off
+    slowdown 0.2
+}
+
+// Window rules
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"vesktop$"#
+    match app-id=r#"com.github.th_ch.youtube_music"#
+
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"ibus-ui-gtk3$"# title="^ibus-ui-gtk3$"
+    open-floating true
+    open-maximized false
+    default-floating-position x=810 y=40 relative-to="bottom-right"
+    open-focused false
+
+    max-width 300
+    max-height 200
+}
+
+binds {
+    // wev | grep sym
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+
+    // Audio
+    Mod+Equal hotkey-overlay-title="Volume: +10%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    Mod+Minus hotkey-overlay-title="Volume: -10%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    Mod+Shift+Equal hotkey-overlay-title="Volume: +5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    Mod+Shift+Minus hotkey-overlay-title="Volume: -5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "mute-toggle"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+
+    // Music
+    Mod+Ctrl+Alt+Equal hotkey-overlay-title="Music: Volume +10%" repeat=false { spawn "yt-music" "vol" "+10"; }
+    Mod+Ctrl+Alt+Minus hotkey-overlay-title="Music: Volume -10%" repeat=false { spawn "yt-music" "vol" "-10"; }
+
+    Mod+Ctrl+Equal hotkey-overlay-title="Music: Next" repeat=false { spawn "yt-music" "next"; }
+    Mod+Ctrl+Minus hotkey-overlay-title="Music: Previous" repeat=false { spawn "yt-music" "prev"; }
+    Mod+Ctrl+Backspace hotkey-overlay-title="Music: Toggle" repeat=false { spawn "yt-music" "toggle"; }
+
+
+    // Launcher
+    Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }
+    Mod+Backslash hotkey-overlay-title="Launcher: Firefox" repeat=false { spawn "firefox"; }
+    Mod+Shift+Backslash hotkey-overlay-title="Launcher: Chromium" repeat=false { spawn "chromium" "--incognito"; }
+    Mod+Backspace hotkey-overlay-title="Launcher: File manager" repeat=false { spawn "pcmanfm"; }
+    Mod+Shift+S hotkey-overlay-title="Launcher: ocr-shot" { spawn "ocr-shot"; }
+
+    Mod+F hotkey-overlay-title="Launcher: Find application" repeat=false { spawn "rofi" "-disable-history" "-show" "drun"; }
+    Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
+    Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
+    Mod+C hotkey-overlay-title="Launcher: Open copyq menu" repeat=false { spawn "copyq" "menu"; }
+
+
+    // Client
+    Mod+O hotkey-overlay-title="Client: Toggle overview" repeat=false { toggle-overview; }
+    Mod+Shift+C hotkey-overlay-title="Client: Close window" { close-window; }
+
+
+    // Client: Focus
+    Mod+H hotkey-overlay-title="Client: Focus left" { focus-column-left; }
+    Mod+J hotkey-overlay-title="Client: Focus down" { focus-window-or-workspace-down; }
+    Mod+K hotkey-overlay-title="Client: Focus up" { focus-window-or-workspace-up; }
+    Mod+L hotkey-overlay-title="Client: Focus right" { focus-column-right; }
+
+    /*
+     * Mod+Left hotkey-overlay-title="Client: Focus left" { focus-column-left; }
+     * Mod+Down hotkey-overlay-title="Client: Focus down" { focus-window-down; }
+     * Mod+Up hotkey-overlay-title="Client: Focus up" { focus-window-up; }
+     * Mod+Right hotkey-overlay-title="Client: Focus right" { focus-column-right; }
+     */
+
+    Mod+Home hotkey-overlay-title="Client: Focus first" { focus-column-first; }
+    Mod+End hotkey-overlay-title="Client: Focus last" { focus-column-last; }
+
+
+    // Client: Move
+    Mod+Shift+H hotkey-overlay-title="Client: Move left" { move-column-left; }
+    Mod+Shift+J hotkey-overlay-title="Client: Move down" { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K hotkey-overlay-title="Client: Move up" { move-window-up-or-to-workspace-up; }
+    Mod+Shift+L hotkey-overlay-title="Client: Move right" { move-column-right; }
+
+    /*
+     * Mod+Ctrl+Left hotkey-overlay-title="Client: Move left" { move-column-left; }
+     * Mod+Ctrl+Down hotkey-overlay-title="Client: Move down" { move-window-down; }
+     * Mod+Ctrl+Up hotkey-overlay-title="Client: Move up" { move-window-up; }
+     * Mod+Ctrl+Right hotkey-overlay-title="Client: Move right" { move-column-right; }
+     */
+
+    Mod+Shift+Home hotkey-overlay-title="Client: Move to first" { move-column-to-first; }
+    Mod+Shift+End hotkey-overlay-title="Client: Move to last" { move-column-to-last; }
+
+
+    // Monitor: Focus
+    Mod+Ctrl+H hotkey-overlay-title="Monitor: Focus left" { focus-monitor-left; }
+    Mod+Ctrl+J hotkey-overlay-title="Monitor: Focus down" { focus-monitor-down; }
+    Mod+Ctrl+K hotkey-overlay-title="Monitor: Focus up" { focus-monitor-up; }
+    Mod+Ctrl+L hotkey-overlay-title="Monitor: Focus right" { focus-monitor-right; }
+
+    /*
+     * Mod+Ctrl+Left hotkey-overlay-title="Monitor: Focus left" { focus-monitor-left; }
+     * Mod+Ctrl+Down hotkey-overlay-title="Monitor: Focus down" { focus-monitor-down; }
+     * Mod+Ctrl+Up hotkey-overlay-title="Monitor: Focus up" { focus-monitor-up; }
+     * Mod+Ctrl+Right hotkey-overlay-title="Monitor: Focus right" { focus-monitor-right; }
+     */
+
+
+    // Monitor: Move
+    Mod+Shift+Ctrl+H hotkey-overlay-title="Monitor: Move left" { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J hotkey-overlay-title="Monitor: Move down" { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K hotkey-overlay-title="Monitor: Move up" { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L hotkey-overlay-title="Monitor: Move right" { move-column-to-monitor-right; }
+
+    /*
+     * Mod+Shift+Ctrl+Left hotkey-overlay-title="Monitor: Focus left" { move-column-to-monitor-left; }
+     * Mod+Shift+Ctrl+Down hotkey-overlay-title="Monitor: Focus down" { move-column-to-monitor-down; }
+     * Mod+Shift+Ctrl+Up hotkey-overlay-title="Monitor: Focus up" { move-column-to-monitor-up; }
+     * Mod+Shift+Ctrl+Right hotkey-overlay-title="Monitor: Focus right" { move-column-to-monitor-right; }
+     */
+
+
+    // Workspace: Focus
+    Mod+Page_Down hotkey-overlay-title="Workspace: Focus down" { focus-workspace-down; }
+    Mod+Page_Up hotkey-overlay-title="Workspace: Focus up" { focus-workspace-up; }
+
+    Mod+Tab hotkey-overlay-title="Workspace: Focus previous" { focus-workspace-previous; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+
+    // Workspace: Move
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+
+    // Workspace: Named
+    Mod+0 { focus-workspace "TV"; }
+    Mod+Shift+0 { move-column-to-workspace "TV"; }
+
+
+    // Workspace: Swap
+    Mod+Alt+J hotkey-overlay-title="Workspace: Swap down" { move-workspace-down; }
+    Mod+Alt+K hotkey-overlay-title="Workspace: Swap up" { move-workspace-up; }
+
+    Mod+Shift+Page_Down hotkey-overlay-title="Workspace: Swap down" { move-workspace-down; }
+    Mod+Shift+Page_Up hotkey-overlay-title="Workspace: Swap up" { move-workspace-up; }
+
+
+    // Workspace: Mouse
+    Mod+WheelScrollDown cooldown-ms=50 { focus-column-right; }
+    Mod+WheelScrollUp cooldown-ms=50 { focus-column-left; }
+
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+
+    Mod+Shift+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+
+
+    // Layout: Windows
+    Mod+BracketLeft hotkey-overlay-title="Layout: Move left" { consume-or-expel-window-left; }
+    Mod+BracketRight hotkey-overlay-title="Layout: Move right" { consume-or-expel-window-right; }
+
+    Mod+Ctrl+BracketLeft hotkey-overlay-title="Layout: Consume left" { consume-window-into-column; }
+    Mod+Ctrl+BracketRight hotkey-overlay-title="Layout: Expel right" { expel-window-from-column; }
+
+    Mod+Comma hotkey-overlay-title="Layout: Decrease width" { set-column-width "-10%"; }
+    Mod+Period hotkey-overlay-title="Layout: Increase width" { set-column-width "+10%"; }
+    Mod+Shift+Period hotkey-overlay-title="Layout: Decrease height" { set-window-height "-10%"; }
+    Mod+Shift+Comma hotkey-overlay-title="Layout: Increase height" { set-window-height "+10%"; }
+
+
+    // Layout: Preset
+    Mod+R hotkey-overlay-title="Layout: Switch width" { switch-preset-column-width; }
+    Mod+Shift+R hotkey-overlay-title="Layout: Switch height" { switch-preset-window-height; }
+    Mod+Ctrl+R hotkey-overlay-title="Layout: Reset height" { reset-window-height; }
+
+    Mod+M hotkey-overlay-title="Layout: Maximize column" { maximize-column; }
+    Mod+Shift+M hotkey-overlay-title="Layout: Fullscreen window" { fullscreen-window; }
+    Mod+Ctrl+F hotkey-overlay-title="Layout: Maximum width" { expand-column-to-available-width; }
+
+    Mod+Z hotkey-overlay-title="Layout: Center column" { center-column; }
+    Mod+Ctrl+Z hotkey-overlay-title="Layout: Center all columns" { center-visible-columns; }
+
+
+    // Layout: Floating and tabs
+    Mod+Space hotkey-overlay-title="Layout: Toggle Floating" { toggle-window-floating; }
+    Mod+Shift+Space hotkey-overlay-title="Layout: Focus floating" { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+T hotkey-overlay-title="Layout: Toggle tabbed" { toggle-column-tabbed-display; }
+
+
+    // Screenshots
+    Mod+S hotkey-overlay-title="Screenshot: Select" { screenshot; }
+    Mod+Ctrl+S hotkey-overlay-title="Screenshot: Screen" { screenshot-screen; }
+    Mod+Alt+S hotkey-overlay-title="Screenshot: Window" { screenshot-window; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+
+    // Misc
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}
+
+// Disable unused
+hotkey-overlay { skip-at-startup; }
+gestures { hot-corners { off; }; }
+
+// Misc
+prefer-no-csd
+
+// Autostart
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+spawn-at-startup "newtab"
+
+// For xwayland-satellite
+environment {
+    DISPLAY ":0"
+    XDG_CURRENT_DESKTOP "niri"
+    MOZ_ENABLE_WAYLAND "1"
+    QT_QPA_PLATFORM "xcb"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_IM_MODULES "wayland;fcitx;ibus"
+}
+

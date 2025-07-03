@@ -1,0 +1,38 @@
+import = ["~/.config/sesh/.sesh.toml"]
+
+[default_session]
+startup_command = "nvim ."
+
+# ~/dev
+[[session]]
+name = "dev"
+path = "~/dev"
+startup_command = "ls"
+
+[[session]]
+name = "dev/git"
+path = "~/dev/git"
+startup_command = "ls"
+
+[[session]]
+name = "dev/sand"
+path = "~/dev/sand"
+startup_command = "ls"
+
+[[session]]
+name = "dev/vault"
+path = "~/dev/vault"
+
+[[session]]
+name = "dev/service"
+path = "~/dev/service"
+
+# ~/dot
+[[session]]
+name = "dot"
+path = "~/.config/yolk"
+
+[[session]]
+name = "dot/nvim"
+path = "~/.config/yolk/eggs/nvim"
+

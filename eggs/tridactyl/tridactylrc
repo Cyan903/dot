@@ -1,0 +1,6 @@
+# Theme
+colors dark
+
+# Landing
+set newtab about:blank
+set smoothscroll true

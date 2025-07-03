@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# Lock theme for swaylock
+# https://git.sr.ht/~mvforell/swaylock
+
+font="sans-serif"
+
+bg="#000000" # {< replace_color(data.colors.wallpaper) >}
+fg="#FFFFFF" # {< replace_color(data.colors.foreground) >}
+primary="#5C5CFF" # {< replace_color(data.colors.primary) >}
+
+green="#00FF00" # {< replace_color(data.colors.green) >}
+red="#FF0000" # {< replace_color(data.colors.red) >}
+orange="#FFA500" # {< replace_color(data.colors.orange) >}
+
+swaylock \
+    --clock \
+    --timestr="%l:%M%P" \
+    --datestr="%A, %e/%m/%Y" \
+    --color "$bg" \
+    --ignore-empty-password \
+    --show-failed-attempts \
+    --indicator-caps-lock \
+    --bs-hl-color "$red" \
+    --caps-lock-bs-hl-color "$red" \
+    --caps-lock-key-hl-color "$green" \
+    --key-hl-color "$green" \
+    --font "$font" \
+    --font-size "40" \
+    --indicator-radius "140" \
+    --indicator-thickness "12" \
+    --indicator-idle-visible \
+    --inside-color "$bg" \
+    --inside-clear-color "$bg" \
+    --inside-caps-lock-color "$bg" \
+    --inside-ver-color "$bg" \
+    --inside-wrong-color "$bg" \
+    --line-color "$bg" \
+    --line-clear-color "$bg" \
+    --line-caps-lock-color "$bg" \
+    --line-ver-color "$bg" \
+    --line-wrong-color "$bg" \
+    --line-uses-inside \
+    --ring-color "$primary" \
+    --ring-clear-color "$red" \
+    --ring-caps-lock-color "$orange" \
+    --ring-ver-color "$green" \
+    --ring-wrong-color "$red" \
+    --text-color "$fg" \
+    --text-clear-color "$fg" \
+    --text-caps-lock-color "$fg" \
+    --text-ver-color "$fg" \
+    --text-wrong-color "$fg"
+

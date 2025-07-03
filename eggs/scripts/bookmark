@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# Simple bookmarking script.
+#  Required:
+#  - $EDITOR (can be any editor)
+#  - xdotool, xclip OR wtype, wl-clipboard
+#  - fzf, rofi
+
+marks="$XDG_DATA_HOME/bookmarks"
+
+usage() {
+    cat <<EOF
+Bookmarking rofi/fzf Script
+
+Usage: bookmark [options]
+
+Options:
+  edit    open the bookmarks storage with "$EDITOR"
+  add     append a bookmark, supports piping
+  show    type the bookmark with xdotool, select using fzf or rofi
+  help    display help
+EOF
+}
+
+add() {
+    read -r -p "-> " val
+    printf "%s\n" "$val" >> "$marks"
+}
+
+show() {
+    if [[ $1 == "menu" ]]; then
+        if [[ "$XDG_CURRENT_DESKTOP" == "niri" ]]
+            then wtype "$(rofi -disable-history -dmenu < "$marks")"
+            else xdotool type "$(rofi -disable-history -dmenu < "$marks")"
+        fi
+
+        exit 0
+    fi
+
+    if [[ "$XDG_CURRENT_DESKTOP" == "niri" ]]
+        then wl-copy "$(fzf < "$marks")"
+        else fzf < "$marks" | xclip -selection c
+    fi
+}
+
+# Parse arguments & run
+if [[ ! -f $marks ]]; then
+    printf "" >> "$marks"
+    echo "$marks created!"
+    exit 1
+fi
+
+case $1 in
+    edit)
+        $EDITOR "$marks"
+    ;;
+
+    add) add;;
+    show) show "$2";;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
