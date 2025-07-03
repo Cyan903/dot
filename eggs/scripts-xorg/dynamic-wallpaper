@@ -3,11 +3,6 @@
 # Create a GIF wallpaper and set it as a dynamic background
 #  Reads from ~/Desktop/.wall/
 
-! xhost >& /dev/null && {
-    echo "Invalid X11 session!"
-    exit 1
-}
-
 color="#181920"
 size="1920x1080"
 

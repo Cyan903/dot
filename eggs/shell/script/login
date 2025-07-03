@@ -6,6 +6,7 @@ if [[ $(tty) = "/dev/tty1" ]]; then
     # {% if data.wayland %}
         #<yolk> niri --session
     # {% else %}
+        # iBus
         pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
     # {% end %}
 fi

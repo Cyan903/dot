@@ -1,0 +1,125 @@
+@define-color foreground #FFFFFF; /* {< replace_color(data.colors.foreground) >} */
+@define-color background #000000; /* {< replace_color(data.colors.background) >} */
+@define-color wallpaper #000000; /* {< replace_color(data.colors.wallpaper) >} */
+
+@define-color bright #FFFFFF; /* {< replace_color(data.colors.bright) >} */
+@define-color dim #1A1A1A; /* {< replace_color(data.colors.dim) >} */
+@define-color dark #000000; /* {< replace_color(data.colors.dark) >} */
+
+@define-color black #1C1C1C; /* {< replace_color(data.colors.black) >} */
+@define-color red #FF0000; /* {< replace_color(data.colors.red) >} */
+@define-color blue #5C5CFF; /* {< replace_color(data.colors.blue) >} */
+@define-color green #00FF00; /* {< replace_color(data.colors.green) >} */
+@define-color yellow #FFFF00; /* {< replace_color(data.colors.yellow) >} */
+@define-color cyan #00FFFF; /* {< replace_color(data.colors.cyan) >} */
+@define-color magenta #FF00FF; /* {< replace_color(data.colors.magenta) >} */
+@define-color orange #FFA500; /* {< replace_color(data.colors.orange) >} */
+
+@define-color hblack #333333; /* {< replace_color(data.colors.hblack) >} */
+@define-color hred #FF4C4C; /* {< replace_color(data.colors.hred) >} */
+@define-color hblue #8080FF; /* {< replace_color(data.colors.hblue) >} */
+@define-color hgreen #66FF66; /* {< replace_color(data.colors.hgreen) >} */
+@define-color hyellow #FFFF99; /* {< replace_color(data.colors.hyellow) >} */
+@define-color hcyan #66FFFF; /* {< replace_color(data.colors.hcyan) >} */
+@define-color hmagenta #FF66FF; /* {< replace_color(data.colors.hmagenta) >} */
+
+@define-color primary #5C5CFF; /* {< replace_color(data.colors.primary) >} */
+
+* {
+    font-family: "UbuntuMono Nerd Font", FontAwesome, FreeMono;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: @background;
+    color: @foreground;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+}
+
+button {
+    box-shadow: inset 0 -2px transparent;
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    opacity: 0.9;
+    box-shadow: inset 0 -2px @foreground;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+}
+
+#workspaces button.focused {
+    font-weight: bolder;
+}
+
+#workspaces button.active {
+    background-color: @wallpaper;
+    box-shadow: inset 0 -2px @foreground;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+}
+
+/* Window */
+#window {
+    font-weight: bolder;
+}
+
+/* Widgets */
+#tray,
+#privacy,
+#cpu,
+#temperature,
+#memory,
+#pulseaudio,
+#custom-anki,
+#custom-packages,
+#custom-clock,
+#custom-power {
+    margin: 6px 0;
+    padding: 3px 5px;
+    border-radius: 2px;
+    font-weight: bolder;
+}
+
+#tray:hover,
+#privacy:hover,
+#cpu:hover,
+#temperature:hover,
+#memory:hover,
+#pulseaudio:hover,
+#custom-anki:hover,
+#custom-packages:hover,
+#custom-clock:hover,
+#custom-power:hover {
+    background-color: @wallpaper;
+}
+
+/* Tray & Privacy */
+#tray,
+#privacy {
+    opacity: 0.5;
+}
+
+/* Muted */
+#custom-muted.muted {
+    color: @red;
+}
+
+#custom-muted.active {
+    color: @foreground;
+}
+
+/* Power */
+#custom-power {
+    margin-right: 10px;
+    padding-right: 10px;
+    color: @primary;
+}

@@ -29,17 +29,17 @@ add() {
 
 show() {
     if [[ $1 == "menu" ]]; then
-        if xhost >& /dev/null
-            then xdotool type "$(rofi -disable-history -dmenu < "$marks")"
-            else wtype "$(rofi -disable-history -dmenu < "$marks")"
+        if [[ "$XDG_CURRENT_DESKTOP" == "niri" ]]
+            then wtype "$(rofi -disable-history -dmenu < "$marks")"
+            else xdotool type "$(rofi -disable-history -dmenu < "$marks")"
         fi
 
         exit 0
     fi
 
-    if xhost >& /dev/null
-        then fzf < "$marks" | xclip -selection c
-        else wl-copy "$(fzf < "$marks")"
+    if [[ "$XDG_CURRENT_DESKTOP" == "niri" ]]
+        then wl-copy "$(fzf < "$marks")"
+        else fzf < "$marks" | xclip -selection c
     fi
 }
 

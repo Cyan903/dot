@@ -1,5 +1,9 @@
 workspace "TV" { open-on-output "DP-3"; }
 
+// TODO: Kill window
+// TODO: Dynamic keybinds
+// TODO: Notification widget
+
 input {
     keyboard {
         xkb {}
@@ -33,8 +37,8 @@ output "HDMI-A-1" {
     scale 1
     transform "normal"
     position x=1920 y=1080
-    background-color "#1e2029" // {< replace_color(data.colors.wallpaper) >}
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     focus-at-startup
 }
@@ -45,8 +49,8 @@ output "DP-2" {
     scale 1
     transform "normal"
     position x=0 y=1080
-    background-color "#1e2029" // {< replace_color(data.colors.wallpaper) >}
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 }
 
 // TV
@@ -55,8 +59,8 @@ output "DP-3" {
     scale 1
     transform "normal"
     position x=2250 y=30
-    background-color "#1e2029" // {< replace_color(data.colors.wallpaper) >}
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 }
 
 layout {
@@ -70,28 +74,28 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 0.98
+        proportion 0.99
     }
 
     preset-window-heights {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 0.98
+        proportion 0.99
     }
 
     focus-ring {
         off
         width 2
-        active-color "#bd93f9" // {< replace_color(data.colors.primary) >}
-        inactive-color "#1e2029" // {< replace_color(data.colors.wallpaper) >}
+        active-color "#5C5CFF" // {< replace_color(data.colors.primary) >}
+        inactive-color "#000000" // {< replace_color(data.colors.wallpaper) >}
     }
 
     border {
         width 2
-        active-color "#bd93f9" // {< replace_color(data.colors.primary) >}
-        inactive-color "#1e2029" // {< replace_color(data.colors.wallpaper) >}
-        urgent-color "#f8f8f2" // {< replace_color(data.colors.foreground) >}
+        active-color "#5C5CFF" // {< replace_color(data.colors.primary) >}
+        inactive-color "#1C1C1C" // {< replace_color(data.colors.black) >}
+        urgent-color "#FFFFFF" // {< replace_color(data.colors.foreground) >}
     }
 
     shadow {
@@ -130,7 +134,6 @@ window-rule {
     default-floating-position x=810 y=40 relative-to="bottom-right"
     open-focused false
 
-    // TODO: This sucks
     max-width 300
     max-height 200
 }
@@ -139,20 +142,13 @@ binds {
     // wev | grep sym
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // TODO: Notification system
-    // TODO: Kill window
-    // TODO: ocr-shot
-    // TODO: Copyq
-    // TODO: Dynamic keybinds
-    // TODO: ~/.config/shell should not have xclip
-    // TODO: Dark GTK theme
 
     // Audio
     Mod+Equal hotkey-overlay-title="Volume: +10%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     Mod+Minus hotkey-overlay-title="Volume: -10%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     Mod+Shift+Equal hotkey-overlay-title="Volume: +5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     Mod+Shift+Minus hotkey-overlay-title="Volume: -5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
-    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "mute-toggle"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
@@ -174,11 +170,12 @@ binds {
     Mod+Backslash hotkey-overlay-title="Launcher: Firefox" repeat=false { spawn "firefox"; }
     Mod+Shift+Backslash hotkey-overlay-title="Launcher: Chromium" repeat=false { spawn "chromium" "--incognito"; }
     Mod+Backspace hotkey-overlay-title="Launcher: File manager" repeat=false { spawn "pcmanfm"; }
+    Mod+Shift+S hotkey-overlay-title="Launcher: ocr-shot" { spawn "ocr-shot"; }
 
     Mod+F hotkey-overlay-title="Launcher: Find application" repeat=false { spawn "rofi" "-disable-history" "-show" "drun"; }
     Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
     Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
-    Super+Ctrl+Alt+L hotkey-overlay-title="Launcher: Lock the screen" repeat=false { spawn "swaylock-wrapper"; }
+    Mod+C hotkey-overlay-title="Launcher: Open copyq menu" repeat=false { spawn "copyq" "menu"; }
 
 
     // Client
@@ -204,10 +201,10 @@ binds {
 
 
     // Client: Move
-    Mod+Ctrl+H hotkey-overlay-title="Client: Move left" { move-column-left; }
-    Mod+Ctrl+J hotkey-overlay-title="Client: Move down" { move-window-down-or-to-workspace-down; }
-    Mod+Ctrl+K hotkey-overlay-title="Client: Move up" { move-window-up-or-to-workspace-up; }
-    Mod+Ctrl+L hotkey-overlay-title="Client: Move right" { move-column-right; }
+    Mod+Shift+H hotkey-overlay-title="Client: Move left" { move-column-left; }
+    Mod+Shift+J hotkey-overlay-title="Client: Move down" { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K hotkey-overlay-title="Client: Move up" { move-window-up-or-to-workspace-up; }
+    Mod+Shift+L hotkey-overlay-title="Client: Move right" { move-column-right; }
 
     /*
      * Mod+Ctrl+Left hotkey-overlay-title="Client: Move left" { move-column-left; }
@@ -216,21 +213,21 @@ binds {
      * Mod+Ctrl+Right hotkey-overlay-title="Client: Move right" { move-column-right; }
      */
 
-    Mod+Ctrl+Home hotkey-overlay-title="Client: Move to first" { move-column-to-first; }
-    Mod+Ctrl+End hotkey-overlay-title="Client: Move to last" { move-column-to-last; }
+    Mod+Shift+Home hotkey-overlay-title="Client: Move to first" { move-column-to-first; }
+    Mod+Shift+End hotkey-overlay-title="Client: Move to last" { move-column-to-last; }
 
 
     // Monitor: Focus
-    Mod+Shift+H hotkey-overlay-title="Monitor: Focus left" { focus-monitor-left; }
-    Mod+Shift+J hotkey-overlay-title="Monitor: Focus down" { focus-monitor-down; }
-    Mod+Shift+K hotkey-overlay-title="Monitor: Focus up" { focus-monitor-up; }
-    Mod+Shift+L hotkey-overlay-title="Monitor: Focus right" { focus-monitor-right; }
+    Mod+Ctrl+H hotkey-overlay-title="Monitor: Focus left" { focus-monitor-left; }
+    Mod+Ctrl+J hotkey-overlay-title="Monitor: Focus down" { focus-monitor-down; }
+    Mod+Ctrl+K hotkey-overlay-title="Monitor: Focus up" { focus-monitor-up; }
+    Mod+Ctrl+L hotkey-overlay-title="Monitor: Focus right" { focus-monitor-right; }
 
     /*
-     * Mod+Shift+Left hotkey-overlay-title="Monitor: Focus left" { focus-monitor-left; }
-     * Mod+Shift+Down hotkey-overlay-title="Monitor: Focus down" { focus-monitor-down; }
-     * Mod+Shift+Up hotkey-overlay-title="Monitor: Focus up" { focus-monitor-up; }
-     * Mod+Shift+Right hotkey-overlay-title="Monitor: Focus right" { focus-monitor-right; }
+     * Mod+Ctrl+Left hotkey-overlay-title="Monitor: Focus left" { focus-monitor-left; }
+     * Mod+Ctrl+Down hotkey-overlay-title="Monitor: Focus down" { focus-monitor-down; }
+     * Mod+Ctrl+Up hotkey-overlay-title="Monitor: Focus up" { focus-monitor-up; }
+     * Mod+Ctrl+Right hotkey-overlay-title="Monitor: Focus right" { focus-monitor-right; }
      */
 
 
@@ -294,11 +291,11 @@ binds {
     Mod+WheelScrollDown cooldown-ms=50 { focus-column-right; }
     Mod+WheelScrollUp cooldown-ms=50 { focus-column-left; }
 
-    Mod+Alt+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
-    Mod+Alt+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
 
-    Mod+Alt+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Alt+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Shift+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
 
     // Layout: Windows
@@ -355,7 +352,6 @@ gestures { hot-corners { off; }; }
 
 // Misc
 prefer-no-csd
-// screenshot-path "~/Pictures/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // Autostart
 spawn-at-startup "xwayland-satellite"
@@ -369,5 +365,6 @@ environment {
     MOZ_ENABLE_WAYLAND "1"
     QT_QPA_PLATFORM "xcb"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_IM_MODULES "wayland;fcitx;ibus"
 }
 

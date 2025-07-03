@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+
+URL="http://127.0.0.1:8765/"
+DECK="Vocabulary::Mining"
+
+# Get new/added cards
+new=$(curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
+    --data "$(jq -n --arg deck "$DECK" \
+        '{
+            action: "findNotes",
+            version: 5,
+            params: {
+                query: "\"deck:\($deck)\" is:new"
+            }
+        }')" | jq ".result | length"
+)
+
+added=$(curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
+    --data "$(jq -n --arg deck "$DECK" \
+        '{
+            action: "findNotes",
+            version: 5,
+            params: {
+                query: "\"deck:\($deck)\" added:1"
+            }
+        }')" | jq ".result | length"
+)
+
+color="color='green'"
+
+# Check for valid cards
+[[ -z "$new" || -z "$added" ]] && exit 1
+[[ "$added" -lt 1 ]] && color="color='red'"
+
+# Print as JSON
+echo "{\"text\": \"  ${new}x (<span $color>+$added</span>)\", \"tooltip\": \"<span weight='bold'>New:</span> ${new}x ⏽ <span weight='bold'>Added:</span> ${added}x\"}"
+

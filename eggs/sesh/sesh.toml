@@ -30,17 +30,9 @@ path = "~/dev/service"
 # ~/dot
 [[session]]
 name = "dot"
-path = "~/dot"
+path = "~/.config/yolk"
 
 [[session]]
 name = "dot/nvim"
-path = "~/dot/src/.config/nvim"
-
-[[session]]
-name = "dot/awesome"
-path = "~/dot/src/.config/awesome"
-
-[[session]]
-name = "dot/shell"
-path = "~/dot/src/.config/sh"
+path = "~/.config/yolk/eggs/nvim"
 

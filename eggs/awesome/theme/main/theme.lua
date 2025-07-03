@@ -20,26 +20,26 @@ local function bg_check(name)
     return false
 end
 
-theme.bg_normal = "#1e2029" -- {< replace_color(data.colors.wallpaper) >}
-theme.bg_focus = "#282a36" -- {< replace_color(data.colors.background) >}
-theme.bg_urgent = "#ff5555" -- {< replace_color(data.colors.red) >}
+theme.bg_normal = "#000000" -- {< replace_color(data.colors.wallpaper) >}
+theme.bg_focus = "#000000" -- {< replace_color(data.colors.background) >}
+theme.bg_urgent = "#FF0000" -- {< replace_color(data.colors.red) >}
 theme.bg_minimize = "#000000" -- {< replace_color(data.colors.dark) >}
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#f8f8f2" -- {< replace_color(data.colors.foreground) >}
-theme.fg_focus = "#ffffff" -- {< replace_color(data.colors.bright) >}
-theme.fg_urgent = "#f8f8f2" -- {< replace_color(data.colors.foreground) >}
+theme.fg_normal = "#FFFFFF" -- {< replace_color(data.colors.foreground) >}
+theme.fg_focus = "#FFFFFF" -- {< replace_color(data.colors.bright) >}
+theme.fg_urgent = "#FFFFFF" -- {< replace_color(data.colors.foreground) >}
 
 -- Borders
 theme.useless_gap = dpi(4)
 theme.border_width = dpi(2)
 theme.border_color_normal = theme.bg_normal
-theme.border_color_active = "#bd93f9" -- {< replace_color(data.colors.primary) >}
-theme.border_color_marked = "#ff79c6" -- {< replace_color(data.colors.magenta) >}
+theme.border_color_active = "#5C5CFF" -- {< replace_color(data.colors.primary) >}
+theme.border_color_marked = "#FF00FF" -- {< replace_color(data.colors.magenta) >}
 
-theme.primary = "#bd93f9" -- {< replace_color(data.colors.primary) >}
-theme.bright = "#ffffff" -- {< replace_color(data.colors.bright) >}
-theme.red = "#ff5555" -- {< replace_color(data.colors.red) >}
+theme.primary = "#5C5CFF" -- {< replace_color(data.colors.primary) >}
+theme.bright = "#FFFFFF" -- {< replace_color(data.colors.bright) >}
+theme.red = "#FF0000" -- {< replace_color(data.colors.red) >}
 
 -- Titlebars
 theme.titlebar_bg_focus = theme.bg_normal
@@ -47,7 +47,7 @@ theme.titlebar_bg_normal = theme.bg_focus
 theme.taglist_bg_focus = theme.bg_normal
 
 -- Hotkeys
-theme.hotkeys_modifiers_fg = "#ffffff" -- {< replace_color(data.colors.bright) >}
+theme.hotkeys_modifiers_fg = "#FFFFFF" -- {< replace_color(data.colors.bright) >}
 theme.hotkeys_border_color = theme.border_color_active
 
 -- Menu

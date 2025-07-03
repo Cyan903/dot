@@ -10,9 +10,9 @@ while IFS="" read -r p; do
     user="$(echo "$p" | awk -F: '{ print $1 }')"
     zone="$(echo "$p" | awk -F: '{ print $2 }')"
 
-    tooltip+="<span weight='bold'>$user</span> - $(TZ="$zone" date +"$format")\r"
+    tooltip+="<span weight='bold'>$user</span>\t $(TZ="$zone" date +"$format (%H:%M)")\r"
 done < "$timezones"
 
 # Print as JSON
-echo "{\"text\": \"$(date +"$format")\", \"tooltip\": \"$tooltip\"}"
+echo "{\"text\": \"$(date +"$format")\", \"tooltip\": \"\r$tooltip\"}"
 

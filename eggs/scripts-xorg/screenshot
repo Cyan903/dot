@@ -3,11 +3,6 @@
 # Screenshot utility
 #  --monitor to take a picture of the entire screen
 
-! xhost >& /dev/null && {
-    echo "Invalid X11 session!"
-    exit 1
-}
-
 notify() {
     notify-send "Copied to clipboard $1"
     exit 0

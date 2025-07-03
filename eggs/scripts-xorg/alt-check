@@ -3,11 +3,6 @@
 # osu! alternate trainer
 #  $XDG_DATA_HOME/osuconfig/alt.wav needs to exist
 
-! xhost >& /dev/null && {
-    echo "Invalid X11 session!"
-    exit 1
-}
-
 xtable=$(xmodmap -pke)
 device=$(xinput --list --long | grep XIKeyClass | head -n 1 | grep -E -o '[0-9]+')
 hit_new=-1; last=-1

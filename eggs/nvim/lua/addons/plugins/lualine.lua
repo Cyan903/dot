@@ -8,17 +8,17 @@ return {
     config = function()
         local lualine = require("lualine")
         local colors = {
-            bg = "#282a36", -- {< replace_color(data.colors.background) >}
-            fg = "#f8f8f2", -- {< replace_color(data.colors.foreground) >}
-            yellow = "#f1fa8c", -- {< replace_color(data.colors.yellow) >}
-            cyan = "#8be9fd", -- {< replace_color(data.colors.cyan) >}
-            darkblue = "#d6acff", -- {< replace_color(data.colors.hblue) >}
-            green = "#50fa7b", -- {< replace_color(data.colors.green) >}
-            orange = "#ffb86c", -- {< replace_color(data.colors.orange) >}
-            violet = "#ffffa5", -- {< replace_color(data.colors.hyellow) >}
-            magenta = "#ff79c6", -- {< replace_color(data.colors.magenta) >}
-            blue = "#bd93f9", -- {< replace_color(data.colors.blue) >}
-            red = "#ff5555", -- {< replace_color(data.colors.red) >}
+            bg = "#000000", -- {< replace_color(data.colors.background) >}
+            fg = "#FFFFFF", -- {< replace_color(data.colors.foreground) >}
+            yellow = "#FFFF00", -- {< replace_color(data.colors.yellow) >}
+            cyan = "#00FFFF", -- {< replace_color(data.colors.cyan) >}
+            darkblue = "#8080FF", -- {< replace_color(data.colors.hblue) >}
+            green = "#00FF00", -- {< replace_color(data.colors.green) >}
+            orange = "#FFA500", -- {< replace_color(data.colors.orange) >}
+            violet = "#FFFF99", -- {< replace_color(data.colors.hyellow) >}
+            magenta = "#FF00FF", -- {< replace_color(data.colors.magenta) >}
+            blue = "#5C5CFF", -- {< replace_color(data.colors.blue) >}
+            red = "#FF0000", -- {< replace_color(data.colors.red) >}
         }
 
         local config = {

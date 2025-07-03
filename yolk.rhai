@@ -6,7 +6,7 @@ export let data = #{
     linux: SYSTEM.hostname == "hwk",
     wayland: io::path_is_file(".wayland"),
 
-    colors: colors::dracula,
+    colors: colors::dark,
 };
 
 export let eggs = #{
@@ -90,6 +90,12 @@ export let eggs = #{
     ideavim: #{
         targets: "~/.config/ideavim",
         enabled: io::command_available("android-studio") || io::command_available("idea"),
+    },
+
+    mako: #{
+        targets: "~/.config/mako",
+        templates: ["config"],
+        enabled: data.wayland && io::command_available("mako"),
     },
 
     niri: #{

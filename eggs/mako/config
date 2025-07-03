@@ -1,0 +1,16 @@
+# {# replace_color(data.colors.background) #}
+background-color=#000000
+
+# {# replace_color(data.colors.foreground) #}
+text-color=#FFFFFF
+
+# {# replace_color(data.colors.primary) #}
+border-color=#5C5CFF
+
+# Other
+font=UbuntuMono Nerd Font 10
+default-timeout=3000
+ignore-timeout=1
+history=1
+height=200
+
