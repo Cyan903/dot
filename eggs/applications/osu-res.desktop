@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=osu!resolution
+Comment=osu! - Rhythm is just a *click* away!
+Type=Application
+Exec=sh -c "$HOME/.local/bin/osu-res"
+Terminal=false
+Categories=Wine;Game;

@@ -1,0 +1,8 @@
+device_name = "MOSART Semi. 2.4G Keyboard Mouse"
+phys = "usb-0000:07:00.3-4.1/input1"
+
+[[remap]]
+input = ["BTN_SIDE"]
+output = ["KEY_LEFTALT"]
+
+

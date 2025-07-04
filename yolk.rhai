@@ -33,7 +33,7 @@ export let eggs = #{
     },
 
     //
-    // ~/.local/bin/share/*
+    // ~/.local/share/*
     //
     osuconfig: #{
         targets: "~/.local/share/osuconfig",
@@ -45,6 +45,12 @@ export let eggs = #{
         targets: "~/.local/share/Anki2/addons21",
         strategy: "merge",
         enabled: io::command_available("anki"),
+    },
+
+    applications: #{
+        targets: "~/.local/share/applications/",
+        strategy: "merge",
+        enabled: data.linux && io::command_available("evremap"),
     },
 
     //
@@ -74,6 +80,11 @@ export let eggs = #{
         },
 
         enabled: data.linux && io::command_available("bash"),
+    },
+
+    evremap: #{
+        targets: "~/.config/evremap",
+        enabled: data.wayland && io::command_available("evremap"),
     },
 
     fbterm: #{

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if ! pgrep evremap; then
+    notify-send "evremap-manager" "Starting..."
+    pkexec evremap remap "$XDG_CONFIG_HOME/evremap/config.toml"
+else
+    pkexec killall evremap
+    notify-send "evremap-manager" "Stopped"
+fi
+

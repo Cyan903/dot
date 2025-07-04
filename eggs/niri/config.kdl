@@ -168,11 +168,12 @@ binds {
     // Launcher
     Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }
     Mod+Backslash hotkey-overlay-title="Launcher: Firefox" repeat=false { spawn "firefox"; }
-    Mod+Shift+Backslash hotkey-overlay-title="Launcher: Chromium" repeat=false { spawn "chromium" "--incognito"; }
+    Mod+Shift+Backslash hotkey-overlay-title="Launcher: Chromium" repeat=false { spawn "chromium" "--incognito" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
     Mod+Backspace hotkey-overlay-title="Launcher: File manager" repeat=false { spawn "pcmanfm"; }
     Mod+Shift+S hotkey-overlay-title="Launcher: ocr-shot" { spawn "ocr-shot"; }
 
     Mod+F hotkey-overlay-title="Launcher: Find application" repeat=false { spawn "rofi" "-disable-history" "-show" "drun"; }
+    Mod+Shift+F hotkey-overlay-title="Launcher: Run application" repeat=false { spawn "rofi" "-disable-history" "-show" "run"; }
     Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
     Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
     Mod+C hotkey-overlay-title="Launcher: Open copyq menu" repeat=false { spawn "copyq" "menu"; }
@@ -357,6 +358,7 @@ prefer-no-csd
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
 spawn-at-startup "newtab"
+spawn-at-startup "rofi-polkit-agent"
 
 // For xwayland-satellite
 environment {
