@@ -109,6 +109,11 @@ export let eggs = #{
         enabled: data.wayland && io::command_available("mako"),
     },
 
+    mpv: #{
+        targets: "~/.config/mpv",
+        enabled: io::command_available("mpv"),
+    },
+
     niri: #{
         targets: "~/.config/niri",
         templates: ["config.kdl"],

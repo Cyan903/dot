@@ -68,7 +68,7 @@ layout {
 
     // never, always, on-overflow
     center-focused-column "on-overflow"
-    default-column-width { /* proportion 0.5; */ }
+    default-column-width { proportion 0.5; }
 
     preset-column-widths {
         proportion 0.33333
@@ -273,6 +273,11 @@ binds {
     Mod+Shift+7 { move-column-to-workspace 7; }
     Mod+Shift+8 { move-column-to-workspace 8; }
     Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+Ctrl+Alt+H hotkey-overlay-title="Workspace: Move left monitor" { move-workspace-to-monitor-left; }
+    Mod+Ctrl+Alt+J hotkey-overlay-title="Workspace: Move down monitor" { move-workspace-to-monitor-down; }
+    Mod+Ctrl+Alt+K hotkey-overlay-title="Workspace: Move up monitor" { move-workspace-to-monitor-up; }
+    Mod+Ctrl+Alt+L hotkey-overlay-title="Workspace: Move right monitor" { move-workspace-to-monitor-right; }
 
 
     // Workspace: Named

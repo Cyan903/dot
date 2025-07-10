@@ -5,4 +5,7 @@ phys = "usb-0000:07:00.3-4.1/input1"
 input = ["BTN_SIDE"]
 output = ["KEY_LEFTALT"]
 
+[[remap]]
+input = ["BTN_EXTRA"]
+output = ["KEY_ESC"]
 
