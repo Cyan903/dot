@@ -1,9 +1,3 @@
-workspace "TV" { open-on-output "DP-3"; }
-
-// TODO: Kill window
-// TODO: Dynamic keybinds
-// TODO: Notification widget
-
 input {
     keyboard {
         xkb {}
@@ -74,14 +68,12 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 0.99
     }
 
     preset-window-heights {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 0.99
     }
 
     focus-ring {
@@ -117,21 +109,25 @@ animations {
 // Window rules
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
     open-floating true
 }
 
 window-rule {
     match app-id=r#"vesktop$"#
-    match app-id=r#"com.github.th_ch.youtube_music"#
+    default-column-width { proportion 0.66667; }
+}
 
-    open-maximized true
+window-rule {
+    match app-id=r#"com.github.th_ch.youtube_music"#
+    default-column-width { proportion 0.33333; }
 }
 
 window-rule {
     match app-id=r#"ibus-ui-gtk3$"# title="^ibus-ui-gtk3$"
+    default-floating-position x=810 y=40 relative-to="bottom-right"
     open-floating true
     open-maximized false
-    default-floating-position x=810 y=40 relative-to="bottom-right"
     open-focused false
 
     max-width 300
@@ -167,7 +163,7 @@ binds {
 
     // Launcher
     Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }
-    Mod+Backslash hotkey-overlay-title="Launcher: Firefox" repeat=false { spawn "firefox"; }
+    Mod+Backslash hotkey-overlay-title="Launcher: Librewolf" repeat=false { spawn "librewolf"; }
     Mod+Shift+Backslash hotkey-overlay-title="Launcher: Chromium" repeat=false { spawn "chromium" "--incognito" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
     Mod+Backspace hotkey-overlay-title="Launcher: File manager" repeat=false { spawn "pcmanfm"; }
     Mod+Shift+S hotkey-overlay-title="Launcher: ocr-shot" { spawn "ocr-shot"; }
@@ -278,11 +274,6 @@ binds {
     Mod+Ctrl+Alt+J hotkey-overlay-title="Workspace: Move down monitor" { move-workspace-to-monitor-down; }
     Mod+Ctrl+Alt+K hotkey-overlay-title="Workspace: Move up monitor" { move-workspace-to-monitor-up; }
     Mod+Ctrl+Alt+L hotkey-overlay-title="Workspace: Move right monitor" { move-workspace-to-monitor-right; }
-
-
-    // Workspace: Named
-    Mod+0 { focus-workspace "TV"; }
-    Mod+Shift+0 { move-column-to-workspace "TV"; }
 
 
     // Workspace: Swap

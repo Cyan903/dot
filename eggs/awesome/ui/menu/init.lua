@@ -19,7 +19,7 @@ menu.awesome = {
         "Help",
         {
             { "Manual", apps.terminal .. " -e man awesome" },
-            { "Documentation", (os.getenv("BROWSER") or "firefox") .. " https://awesomewm.org/apidoc" },
+            { "Documentation", (os.getenv("BROWSER") or "librewolf") .. " https://awesomewm.org/apidoc" },
         },
     },
 

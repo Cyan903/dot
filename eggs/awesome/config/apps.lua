@@ -9,7 +9,7 @@ apps.editor_cmd = apps.terminal .. " -e " .. apps.editor
 
 -- Additional apps for the context menu
 apps.context = {
-    { "FireFox", "firefox" },
+    { "Librewolf", "librewolf" },
     { "Files", "pcmanfm" },
     { "Clipboard", "copyq menu" },
 }
@@ -102,8 +102,8 @@ apps.shortcuts = {
             {
                 alt = {},
                 key = "\\",
-                title = "Firefox",
-                cmd = "firefox",
+                title = "Librewolf",
+                cmd = "librewolf",
             },
 
             {

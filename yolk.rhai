@@ -13,7 +13,7 @@ export let eggs = #{
     //
     // ~/.local/bin/*
     //
-    scripts: #{
+    "scripts": #{
         targets: "~/.local/bin",
         strategy: "merge",
         enabled: data.linux,
@@ -35,7 +35,7 @@ export let eggs = #{
     //
     // ~/.local/share/*
     //
-    osuconfig: #{
+    "osuconfig": #{
         targets: "~/.local/share/osuconfig",
         strategy: "merge",
         enabled: data.linux && io::command_available("osu-wine"),
@@ -47,7 +47,7 @@ export let eggs = #{
         enabled: io::command_available("anki"),
     },
 
-    applications: #{
+    "applications": #{
         targets: "~/.local/share/applications/",
         strategy: "merge",
         enabled: data.linux && io::command_available("evremap"),
@@ -56,24 +56,24 @@ export let eggs = #{
     //
     // ~/.config/*
     //
-    X11: #{
+    "X11": #{
         targets: "~/.config/X11",
         enabled: data.linux && !data.wayland,
     },
 
-    alacritty: #{
+    "alacritty": #{
         targets: "~/.config/alacritty",
         templates: ["theme.toml"],
         enabled: io::command_available("alacritty"),
     },
 
-    awesome: #{
+    "awesome": #{
         targets: "~/.config/awesome",
         templates: ["theme/main/theme.lua", "module/system/bin/lock"],
         enabled: data.linux && !data.wayland && io::command_available("awesome"),
     },
 
-    bash: #{
+    "bash": #{
         targets: #{
             ".bashrc": "~/.bashrc",
             ".bash_profile": "~/.bash_profile",
@@ -82,67 +82,67 @@ export let eggs = #{
         enabled: data.linux && io::command_available("bash"),
     },
 
-    evremap: #{
+    "evremap": #{
         targets: "~/.config/evremap",
         enabled: data.wayland && io::command_available("evremap"),
     },
 
-    fbterm: #{
+    "fbterm": #{
         targets: "~/.config/fbterm",
         enabled: data.linux && io::command_available("fbterm"),
     },
 
-    firefox: #{
+    "firefox": #{
         targets: "~/.config/firefox",
         templates: ["userHome.html"],
-        enabled: io::command_available("firefox"),
+        enabled: io::command_available("firefox") || io::command_available("librewolf"),
     },
 
-    ideavim: #{
+    "ideavim": #{
         targets: "~/.config/ideavim",
         enabled: io::command_available("android-studio") || io::command_available("idea"),
     },
 
-    mako: #{
+    "mako": #{
         targets: "~/.config/mako",
         templates: ["config"],
         enabled: data.wayland && io::command_available("mako"),
     },
 
-    mpv: #{
+    "mpv": #{
         targets: "~/.config/mpv",
         enabled: io::command_available("mpv"),
     },
 
-    niri: #{
+    "niri": #{
         targets: "~/.config/niri",
         templates: ["config.kdl"],
         enabled: data.wayland && io::command_available("niri"),
     },
 
-    nvim: #{
+    "nvim": #{
         targets: "~/.config/nvim",
         templates: ["lua/addons/plugins/lualine.lua"],
         enabled: io::command_available("nvim"),
     },
 
-    rofi: #{
+    "rofi": #{
         targets: "~/.config/rofi",
         templates: ["config.rasi"],
         enabled: data.linux && io::command_available("rofi"),
     },
 
-    screenlayout: #{
+    "screenlayout": #{
         targets: "~/.config/screenlayout",
         enabled: data.linux && !data.wayland,
     },
 
-    sesh: #{
+    "sesh": #{
         targets: "~/.config/sesh",
         enabled: io::command_available("sesh") && io::command_available("tmux"),
     },
 
-    shell: #{
+    "shell": #{
         targets: "~/.config/shell",
         templates: ["script/login"],
         enabled: data.linux && (
@@ -151,18 +151,18 @@ export let eggs = #{
         ),
     },
 
-    tmux: #{
+    "tmux": #{
         targets: "~/.config/tmux",
         templates: ["tmux.conf"],
         enabled: io::command_available("tmux"),
     },
 
-    tridactyl: #{
+    "tridactyl": #{
         targets: "~/.config/tridactyl",
         enabled: io::command_available("firefox") || io::command_available("librewolf"),
     },
 
-    waybar: #{
+    "waybar": #{
         targets: "~/.config/waybar",
         templates: ["style.css"],
         enabled: data.wayland && io::command_available("waybar"),
@@ -173,12 +173,12 @@ export let eggs = #{
         enabled: data.wayland,
     },
 
-    yazi: #{
+    "yazi": #{
         targets: "~/.config/yazi",
         enabled: io::command_available("yazi"),
     },
 
-    zsh: #{
+    "zsh": #{
         targets: #{
             ".": "~/.config/zsh",
             ".zprofile": "~/.zprofile",

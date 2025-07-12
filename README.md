@@ -11,8 +11,8 @@
 Requires [yolk](https://elkowar.github.io/yolk/). To use Wayland, create an empty file at `~/.config/yolk/.wayland`. Themes and settings can be configured in [colors.rhai](colors.rhai) and [yolk.rhai](yolk.rhai).
 
 ```sh
-git clone https://github.com/Cyan903/dot.git "$XDG_CONFIG_HOME/yolk"
-yolk sync
+$ yolk help
+$ yolk sync
 ```
 
 ## License

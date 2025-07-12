@@ -1,4 +1,4 @@
--- Embedded neovim in Firefox
+-- Embedded neovim in Firefox/Librewolf
 -- :help firenvim
 return {
     "glacambre/firenvim",
