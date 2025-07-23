@@ -28,7 +28,7 @@
 
     // Middle
     "niri/window": {
-        "format": "{}",
+        "format": "{title:.50}",
         "separate-outputs": true,
     },
 

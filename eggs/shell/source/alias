@@ -23,6 +23,10 @@ s() {
 	sesh connect "$(sesh list | fzf)"
 }
 
+f() {
+	cd "${$(fd --type directory | fzf):-.}"
+}
+
 # Alias
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"

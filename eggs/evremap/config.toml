@@ -3,7 +3,7 @@ phys = "usb-0000:07:00.3-4.1/input1"
 
 [[remap]]
 input = ["BTN_SIDE"]
-output = ["KEY_LEFTCTRL"]
+output = ["KEY_LEFTALT"]
 
 [[remap]]
 input = ["BTN_EXTRA"]

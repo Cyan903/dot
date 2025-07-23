@@ -1,2 +1,11 @@
 [mgr]
 show_hidden = true
+
+[[opener.add-sub]]
+run  = ''' echo sub-add "'$0'" | socat - /tmp/mpv-socket '''
+desc = "Add sub to MPV"
+
+[[open.prepend_rules]]
+name = "*.{ass,srt,ssa,sty,sup,vtt}"
+use  = [ "add-sub", "edit" ]
+

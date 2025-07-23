@@ -103,6 +103,12 @@ export let eggs = #{
         enabled: io::command_available("android-studio") || io::command_available("idea"),
     },
 
+    "lightdm": #{
+        targets: "~/.config/lightdm",
+        templates: ["hwk/css/style.css"],
+        enabled: data.linux && io::command_available("lightdm") && io::command_available("web-greeter"),
+    },
+
     "mako": #{
         targets: "~/.config/mako",
         templates: ["config"],
