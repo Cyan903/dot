@@ -15,6 +15,7 @@ keep=(
     .emulator_console_auth_token
     .skiko
     .xlcore
+    .designer
     Android
 )
 

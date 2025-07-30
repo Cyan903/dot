@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Toggle pi.hole DNS
+#  chatter +/-i for VPNs and such
+
+DNS="192.168.0.5"
+
+reload() {
+    systemctl restart NetworkManager
+    sleep 1 # stupid hack
+
+    printf "\n-> cat /etc/resolv.conf\n"
+    cat /etc/resolv.conf
+}
+
+wipe() {
+    chattr -i /etc/resolv.conf
+    truncate -s 0 /etc/resolv.conf
+}
+
+enable() {
+    echo "Enabling pi.hole..."; wipe
+    echo "# pi.hole" >> /etc/resolv.conf
+    echo "nameserver $DNS" >> /etc/resolv.conf
+
+    chattr +i /etc/resolv.conf
+    reload
+
+    exit 0
+}
+
+disable() {
+    echo "Disabling pi.hole and reverting to defaults..."
+
+    wipe
+    reload
+
+    exit 0
+}
+
+usage() {
+    cat <<EOF
+Manage pi.hole DNS
+
+Usage: pihole [enable/disable]
+
+Options:
+enable    enable the pi.hole DNS
+disable   disable the pi.hole DNS
+help      display help
+EOF
+}
+
+# Parse arguments
+[[ "$EUID" == 0 ]] || exec sudo -s "$0" "$@"
+
+case $1 in
+    enable) enable ;;
+    disable) disable ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+

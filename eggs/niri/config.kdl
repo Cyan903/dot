@@ -57,6 +57,16 @@ output "DP-3" {
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 }
 
+// Bed
+output "DP-1" {
+    mode "1920x1080@60.000"
+    scale 1
+    transform "normal"
+    position x=3840 y=1080
+    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+}
+
 layout {
     gaps 4
 
@@ -170,6 +180,8 @@ binds {
     Mod+Ctrl+Minus hotkey-overlay-title="Music: Previous" repeat=false { spawn "yt-music" "prev"; }
     Mod+Ctrl+Backspace hotkey-overlay-title="Music: Toggle" repeat=false { spawn "yt-music" "toggle"; }
 
+    // Video
+    Mod+Ctrl+Alt+Backspace hotkey-overlay-title="Video: Toggle" repeat=false { spawn "mpv-cli" "toggle"; }
 
     // Launcher
     Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }

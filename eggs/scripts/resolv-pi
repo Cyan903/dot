@@ -3,6 +3,8 @@
 # Toggle pi.hole server
 #  chatter +/-i for VPNs and such
 
+# One of the first bash scripts I wrote
+
 pipath="192.168.0.5"
 
 reload_network() {

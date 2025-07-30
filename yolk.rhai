@@ -50,7 +50,7 @@ export let eggs = #{
     "applications": #{
         targets: "~/.local/share/applications/",
         strategy: "merge",
-        enabled: data.linux && io::command_available("evremap"),
+        enabled: data.linux,
     },
 
     //
@@ -82,11 +82,6 @@ export let eggs = #{
         enabled: data.linux && io::command_available("bash"),
     },
 
-    "evremap": #{
-        targets: "~/.config/evremap",
-        enabled: data.wayland && io::command_available("evremap"),
-    },
-
     "fbterm": #{
         targets: "~/.config/fbterm",
         enabled: data.linux && io::command_available("fbterm"),
@@ -101,12 +96,6 @@ export let eggs = #{
     "ideavim": #{
         targets: "~/.config/ideavim",
         enabled: io::command_available("android-studio") || io::command_available("idea"),
-    },
-
-    "lightdm": #{
-        targets: "~/.config/lightdm",
-        templates: ["hwk/css/style.css"],
-        enabled: data.linux && io::command_available("lightdm") && io::command_available("web-greeter"),
     },
 
     "mako": #{
@@ -193,6 +182,22 @@ export let eggs = #{
 
         enabled: data.linux && io::command_available("zsh"),
     },
+
+    /**
+     * Not in use!
+     * Can be found in ext/.config
+     *
+     * "lightdm": #{
+     *    targets: "~/.config/lightdm",
+     *    templates: ["hwk/css/style.css"],
+     *    enabled: data.linux && io::command_available("lightdm") && io::command_available("web-greeter"),
+     * },
+     *
+     * "evremap": #{
+     *    targets: "~/.config/evremap",
+     *    enabled: data.wayland && io::command_available("evremap"),
+     * },
+     */
 };
 
 // vim: syntax=rust

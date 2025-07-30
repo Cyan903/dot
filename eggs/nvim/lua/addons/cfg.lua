@@ -12,7 +12,19 @@ M.servers = {
     gopls = {},
     bashls = {},
     angularls = {},
-    pyright = {},
+    checkmake = {},
+
+    pylsp = {
+        settings = {
+            plugins = {
+                pylsp_mypy = {
+                    enabled = true,
+                    report_progress = true,
+                    live_mode = true,
+                },
+            },
+        },
+    },
 
     ts_ls = {
         filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
