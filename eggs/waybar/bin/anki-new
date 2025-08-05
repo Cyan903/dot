@@ -4,36 +4,33 @@ set -e
 
 URL="http://127.0.0.1:8765/"
 DECK="Vocabulary::Mining"
+MAX="35"
+
+ankic() {
+    curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
+        --data "$(jq -n \
+            --arg deck "$DECK" \
+            --arg query "$1" \
+            '{
+                action: "findNotes",
+                version: 5,
+                params: {
+                    query: "\"deck:\($deck)\" \($query)"
+                }
+            }')" | jq ".result | length"
+}
 
 # Get new/added cards
-new=$(curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
-    --data "$(jq -n --arg deck "$DECK" \
-        '{
-            action: "findNotes",
-            version: 5,
-            params: {
-                query: "\"deck:\($deck)\" is:new"
-            }
-        }')" | jq ".result | length"
-)
+new=$(ankic "is:new")
+added=$(ankic "added:1")
 
-added=$(curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
-    --data "$(jq -n --arg deck "$DECK" \
-        '{
-            action: "findNotes",
-            version: 5,
-            params: {
-                query: "\"deck:\($deck)\" added:1"
-            }
-        }')" | jq ".result | length"
-)
-
-color="color='green'"
+# Get color
+color="green"
 
 # Check for valid cards
 [[ -z "$new" || -z "$added" ]] && exit 1
-[[ "$added" -lt 1 ]] && color="color='red'"
+[[ "$added" -lt "$MAX" ]] && color="red"
 
 # Print as JSON
-echo "{\"text\": \"  ${new}x (<span $color>+$added</span>)\", \"tooltip\": \"<span weight='bold'>New:</span> ${new}x ⏽ <span weight='bold'>Added:</span> ${added}x\"}"
+echo "{\"text\": \"  ${new}x (<span color='$color'>+$added</span>)\", \"tooltip\": \"<span weight='bold'>New:</span> ${new}x ⏽ <span weight='bold'>Added:</span> ${added}x\"}"
 
