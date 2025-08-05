@@ -35,6 +35,7 @@ remove=(
     .wine
     .dotnet
     .mplayer
+    VirtualBoxVM.dxvk-cache
 )
 
 mkdir "$HOME/$store" 2> /dev/null

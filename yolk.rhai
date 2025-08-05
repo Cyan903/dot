@@ -109,6 +109,11 @@ export let eggs = #{
         enabled: io::command_available("mpv"),
     },
 
+    "mvi": #{
+        targets: "~/.config/mvi",
+        enabled: io::command_available("mpv"),
+    },
+
     "niri": #{
         targets: "~/.config/niri",
         templates: ["config.kdl"],
