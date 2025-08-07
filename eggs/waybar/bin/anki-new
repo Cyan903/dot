@@ -13,7 +13,7 @@ ankic() {
             --arg query "$1" \
             '{
                 action: "findNotes",
-                version: 5,
+                version: 6,
                 params: {
                     query: "\"deck:\($deck)\" \($query)"
                 }

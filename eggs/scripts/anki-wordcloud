@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+# Anki
+URL="http://127.0.0.1:8765/"
+DECK="Vocabulary::Mining"
+QUERY=".fields.Word.value"
+LAPSE="2"
+
+# Paths
+EXPORT="$HOME/Pictures/kanji.png"
+FONT="/usr/share/fonts/noto-cjk/NotoSansCJK-Bold.ttc"
+
+list() {
+    ids=$(curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
+        --data "$(jq -n \
+            --arg deck "$DECK" --arg query "$1" '{ action: "findNotes", version: 6, params: { query: "\"deck:\($deck)\" \($query)" }
+        }')" | jq ".result"
+    )
+
+    # Check for words
+    [[ "$ids" == "[]" ]] && err "No words found!"
+
+    words=$(curl -s --request GET --url "$URL" --header 'Content-Type: application/json' \
+        --data "$(jq -n --argjson ids "$ids" '{ action: "cardsInfo", version: 6, params: { cards: $ids }}')"
+    )
+
+    # Parse word list
+    echo "$words" | jq -r "
+        .result | map(select($QUERY != null and .lapses >= $LAPSE)) |
+        sort_by(.lapses) | map([$QUERY, .lapses]) | reverse | .[]
+    "
+}
+
+cloud() {
+    wordcloud_cli --fontfile "$FONT" \
+        --color black \
+        --relative_scaling 1  \
+        --prefer_horizontal 1 \
+        > "$EXPORT"
+}
+
+normal() {
+    list "$1" | jq -r ".[0]" | cloud
+    echo "normal -> $EXPORT"
+}
+
+scale() {
+    list "$1" | jq -n '
+        inputs
+        | . as [$word, $count]
+        | [range(0; $count)] | map($word) | .[]
+    ' | cloud
+
+    echo "scaled -> $EXPORT"
+}
+
+usage() {
+    cat <<EOF
+Generate word clouds with Anki
+
+Usage: anki-wordcloud [options]
+
+Options:
+  normal    generate a normal word cloud with no additional options
+  scale     generate a word cloud with the words scaled to lapse count
+  help      display help
+EOF
+}
+
+err() {
+    echo "$1"
+    exit 1
+}
+
+# Check for anki process
+! pgrep -f anki > /dev/null && err "Anki needs to be running!"
+
+if [[ -n "$2" ]]
+    then term="$2"
+    else term="prop:ivl>=21"
+fi
+
+# Parse input
+case $1 in
+    normal) normal "$term" ;;
+    scale) scale "$term" ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+
