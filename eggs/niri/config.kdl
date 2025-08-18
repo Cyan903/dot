@@ -1,3 +1,5 @@
+workspace "Media"
+
 input {
     keyboard {
         xkb {}
@@ -130,10 +132,6 @@ window-rule {
 
 window-rule {
     match app-id=r#"mpv$"#
-    default-column-width { proportion 0.66667; }
-}
-
-window-rule {
     match app-id=r#"vesktop$"#
     default-column-width { proportion 0.66667; }
 }
@@ -195,6 +193,10 @@ binds {
     Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
     Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
     Mod+C hotkey-overlay-title="Launcher: Open copyq menu" repeat=false { spawn "copyq" "menu"; }
+
+    // Scripts
+    Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
+    Mod+Ctrl+Shift+x { spawn "~/.config/niri/bin/kill-focused"; }
 
 
     // Client

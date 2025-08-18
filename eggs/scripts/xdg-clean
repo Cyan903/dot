@@ -15,7 +15,6 @@ keep=(
     .emulator_console_auth_token
     .skiko
     .xlcore
-    .designer
     Android
 )
 
@@ -35,6 +34,7 @@ remove=(
     .wine
     .dotnet
     .mplayer
+    .designer
     VirtualBoxVM.dxvk-cache
 )
 

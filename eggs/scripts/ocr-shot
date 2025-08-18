@@ -3,9 +3,9 @@
 # Client for ocr-shot
 #  Copy response from ocr-shot to clipboard
 
-PORT=5003
-HOST=0.0.0.0
-PROTOCOL=http
+PORT=""
+HOST="ocr.hwk929.ca"
+PROTOCOL=https
 
 if ! curl "$PROTOCOL://$HOST:$PORT/" > /dev/null; then
     notify-send "ocr-shot" "Server is not live!"

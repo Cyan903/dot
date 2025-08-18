@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+CACHE_FILE="$HOME/.cache/niri-focused-window-tab"
+WORKSPACE_NAME="Media"
+
+window=$(niri msg --json focused-window | jq .id)
+
+if [[ "$window" == "null" ]]; then
+    truncate -s 0 "$CACHE_FILE"
+    exit 1
+fi
+
+if [[ ! -s "$CACHE_FILE"  ]]; then
+    echo "$window" > "$CACHE_FILE"
+    niri msg action focus-workspace "$WORKSPACE_NAME"
+else
+    niri msg action focus-window --id "$(cat "$CACHE_FILE")"
+    truncate -s 0 "$CACHE_FILE"
+fi
+
