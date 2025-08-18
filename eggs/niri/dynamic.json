@@ -1,0 +1,31 @@
+[
+    {
+        "title": ["Obsidian"],
+        "app_id": ["obsidian"],
+        "binds": {
+            "F1": ["obsidian-git"]
+        }
+    },
+
+    {
+        "title": ["Discord", "Vesktop"],
+        "app_id": ["discord", "Discord", "vesktop", "Vesktop"],
+        "binds": {
+            "F1": ["mute-toggle"]
+        }
+    },
+
+    {
+        "title": ["Youtube Music"],
+        "app_id": ["com.github.th_ch.youtube_music"],
+        "binds": {
+            "F1": ["yt-music vol +100"],
+            "F2": [
+                "yt-music vol -100",
+                "sleep 0.5",
+                "yt-music vol +10"
+            ]
+        }
+    }
+]
+

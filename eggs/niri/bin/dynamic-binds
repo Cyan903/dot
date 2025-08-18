@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+CONFIG="$HOME/.config/niri/dynamic.json"
+
+# Read window
+window=$(niri msg --json focused-window)
+title=$(echo "$window" | jq -r .title)
+id=$(echo "$window" | jq -r .app_id)
+
+err() {
+    notify-send "dynamic-keybinds" "$1"
+    exit 1
+}
+
+# Check for file
+[[ ! -f "$CONFIG" ]] && err "No config!"
+[[ -z "$title" || "$title" == "null" ]] && err "Nothing focused!"
+[[ -z "$id" || "$id" == "null" ]] && err "No ID!"
+
+
+# Parse commands
+cmds=$(jq -r --arg title "$title" \
+    --arg id "$id" \
+    --arg bind "$1" \
+    '.[] | select(
+        (.title[] == $title) or
+        (.app_id[] == $id)
+    ) | .binds[$bind][]' "$CONFIG" | awk '!seen[$0]++'
+)
+
+if [[ -z "$cmds" ]]; then
+    echo "Nothing to do."
+    exit 0
+fi
+
+# Run commands
+echo "$cmds" | while IFS= read -r cmd; do
+    if [[ -n "$cmd" ]]; then
+        echo "Executing: $cmd"
+        bash -c "$cmd"
+    fi
+done
+

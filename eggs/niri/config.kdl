@@ -178,8 +178,10 @@ binds {
     Mod+Ctrl+Minus hotkey-overlay-title="Music: Previous" repeat=false { spawn "yt-music" "prev"; }
     Mod+Ctrl+Backspace hotkey-overlay-title="Music: Toggle" repeat=false { spawn "yt-music" "toggle"; }
 
+
     // Video
     Mod+Ctrl+Alt+Backspace hotkey-overlay-title="Video: Toggle" repeat=false { spawn "mpv-cli" "toggle"; }
+
 
     // Launcher
     Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }
@@ -192,11 +194,24 @@ binds {
     Mod+Shift+F hotkey-overlay-title="Launcher: Run application" repeat=false { spawn "rofi" "-disable-history" "-show" "run"; }
     Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
     Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
-    Mod+C hotkey-overlay-title="Launcher: Open copyq menu" repeat=false { spawn "copyq" "menu"; }
+
 
     // Scripts
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
     Mod+Ctrl+Shift+x { spawn "~/.config/niri/bin/kill-focused"; }
+
+
+    // Dynamic binds
+    Mod+F1 { spawn "~/.config/niri/bin/dynamic-binds" "F1"; }
+    Mod+F2 { spawn "~/.config/niri/bin/dynamic-binds" "F2"; }
+    Mod+F3 { spawn "~/.config/niri/bin/dynamic-binds" "F3"; }
+    Mod+F4 { spawn "~/.config/niri/bin/dynamic-binds" "F4"; }
+    Mod+F6 { spawn "~/.config/niri/bin/dynamic-binds" "F6"; }
+    Mod+F7 { spawn "~/.config/niri/bin/dynamic-binds" "F7"; }
+    Mod+F9 { spawn "~/.config/niri/bin/dynamic-binds" "F9"; }
+    Mod+F10 { spawn "~/.config/niri/bin/dynamic-binds" "F10"; }
+    Mod+F11 { spawn "~/.config/niri/bin/dynamic-binds" "F11"; }
+    Mod+F12 { spawn "~/.config/niri/bin/dynamic-binds" "F12"; }
 
 
     // Client
