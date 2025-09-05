@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Manage SMB shares with rofi
+#   See: /etc/smb/hosts.json
+
+DELIM="-:-:-"
+U_ID="$(id -u)"
+G_ID="$(id -g)"
+
+DATA=$(smb-manager active "$DELIM")
+EXEC=$(which smb-manager)
+
+# Parse input
+mapfile -t MENU < <(echo "$DATA" | awk -F "$DELIM" '{ print $1 " [" $2 "]" }')
+selected=$(printf "%s\n" "${MENU[@]}" | rofi -dmenu -p "Select SMB share")
+
+# Handle toggle
+trigger() {
+    local host="$1"
+    local status="$2"
+
+    if [[ "$2" == "mounted" ]]
+        then pkexec env G_ID="$G_ID" U_ID="$U_ID" bash -c '"$0" unmount "$1"' "$EXEC" "$1"
+        else pkexec env G_ID="$G_ID" U_ID="$U_ID" bash -c '"$0" mount "$1"' "$EXEC" "$1"
+    fi
+}
+
+if [[ -n "$selected" ]]; then
+    host="${selected%% *}"
+
+    # Remove brackets
+    status="${selected##*[}"
+    status="${status%]}"
+
+    trigger "$host" "$status"
+fi
+

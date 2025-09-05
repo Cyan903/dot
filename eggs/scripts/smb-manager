@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+
+# Manage SMB shares
+#   See: /etc/smb/hosts.json
+
+set -e
+
+declare ROOT VER HOSTS
+declare USER PASS SERVER SHARE
+
+CONFIG="/etc/smb/hosts.json"
+
+# Helper functions
+err() {
+    echo "Error - $1"
+    exit 1
+}
+
+usage() {
+    cat <<EOF
+Mount/unmount SMB shares
+
+Usage: smb-manager [options]
+
+Options:
+  list      list available shares
+  active    list shares for scripting
+  mount     mount a share
+  unmount   unmount a share
+  help      display help
+EOF
+}
+
+validate() {
+    if [[ "$2" == "null" || -z "$1" ]]; then
+        err "Missing \"$1\" - a config option"
+    fi
+}
+
+# Manage smb
+smb_mount() {
+    if mount | grep -i cifs | grep "$ROOT/$SHARE" > /dev/null; then
+        err "$SHARE is already mounted!"
+    fi
+
+    mkdir -p "$ROOT/$SHARE"
+    chown "$U_ID":"$G_ID" "$ROOT/$SHARE"
+
+    if [[ -z "$USER" || -z "$PASS" || "$USER" == "null" || "$PASS" == "null" ]]; then
+        mount -t cifs "//$SERVER/$SHARE" "$ROOT/$SHARE" \
+            -o guest,vers="$VER",uid="$U_ID",gid="$G_ID",file_mode=0660,dir_mode=0770
+
+        return
+    fi
+
+    mount -t cifs "//$SERVER/$SHARE" "$ROOT/$SHARE" \
+        -o username="$USER",password="$PASS",vers="$VER",uid="$U_ID",gid="$G_ID",file_mode=0660,dir_mode=0770
+}
+
+smb_unmount() {
+    if ! mount | grep -i cifs | grep "$ROOT/$SHARE" > /dev/null; then
+        err "$SHARE is not mounted!"
+    fi
+
+    umount "$ROOT/$SHARE"
+    sleep 1 # Sometimes it does that
+    rmdir "$ROOT/$SHARE"
+}
+
+# Manage config
+load_general() {
+    ROOT="$(jq -r .root "$CONFIG")"
+    VER="$(jq -r .version "$CONFIG")"
+    HOSTS="$(jq -r ".hosts | keys" "$CONFIG")"
+}
+
+load_connection() {
+    if [[ -z "$1" ]]; then
+        err "Invalid connection!"
+    fi
+
+    local conn
+    conn="$(jq -r ".hosts.$1" "$CONFIG")"
+
+    if [[ "$conn" == "null" ]]; then
+        err "Invalid connection!"
+    fi
+
+    SHARE="$1"
+    USER="$(echo "$conn" | jq -r .username)"
+    PASS="$(echo "$conn" | jq -r .password)"
+    SERVER="$(echo "$conn" | jq -r .server)"
+}
+
+list_connections() {
+    echo "$HOSTS" | jq -r ".[]" | while read -r host; do
+        printf -- "%s%s%s" "$1" "$host" "$2"
+
+        if mount | grep -i cifs | grep "$ROOT/$host" > /dev/null
+            then printf "mounted"
+            else printf "unmounted"
+        fi
+
+        echo "$3"
+    done
+}
+
+list_hosts() {
+    echo "SMB Version: $VER"
+    echo "Mount Root: $ROOT"
+    echo "Hosts:"
+
+    list_connections " - " " [" "]"
+
+    printf "\nsmb-manager [action] <host>\n"
+}
+
+check_config() {
+    validate "Server" "$SERVER"
+    validate "Share" "$SHARE"
+    validate "Root" "$ROOT"
+    validate "Version" "$VER"
+    validate "Hosts" "$HOSTS"
+}
+
+# Load config
+load_general
+
+# List connections
+if [[ "$1" == "active" ]]; then
+    list_connections "" "${2:-::}" ""
+    exit
+fi
+
+# Request admin
+if [[ -z "$U_ID" || -z "$G_ID" ]]; then
+    U_ID="$(id -u)"
+    G_ID="$(id -g)"
+fi
+
+if [[ "$EUID" != 0 ]]; then
+    exec sudo env U_ID="$U_ID" G_ID="$G_ID" bash "$0" "$@"
+    exit
+fi
+
+# Parse arguments
+case $1 in
+    list) list_hosts ;;
+    mount)
+        load_connection "$2"
+        check_config
+        smb_mount
+    ;;
+
+    unmount)
+        load_connection "$2"
+        check_config
+        smb_unmount
+    ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+

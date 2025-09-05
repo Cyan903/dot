@@ -199,6 +199,7 @@ binds {
     // Scripts
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
     Mod+Ctrl+Shift+x { spawn "~/.config/niri/bin/kill-focused"; }
+    Mod+Ctrl+c { spawn "smb-gui"; }
 
 
     // Dynamic binds

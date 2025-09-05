@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Generate a wordcloud with Anki
+#   Requires anki-connect
+
 # Anki
 URL="http://127.0.0.1:8765/"
 DECK="Vocabulary::Mining"
