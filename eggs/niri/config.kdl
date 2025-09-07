@@ -393,7 +393,6 @@ prefer-no-csd
 // Autostart
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
-spawn-at-startup "newtab"
 spawn-at-startup "rofi-polkit-agent"
 
 // For xwayland-satellite

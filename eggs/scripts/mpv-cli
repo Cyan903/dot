@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Interact with the mpv socket
-#   https://mpv.io/manual/master/#json-ipc
+# https://mpv.io/manual/master/#json-ipc
 
 SOCKET="/tmp/mpv-socket"
 

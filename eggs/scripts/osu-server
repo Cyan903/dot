@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # osu! server switcher
-#  $XDG_DATA_HOME/osuconfig/servers.json needs to exist
+# $XDG_DATA_HOME/osuconfig/servers.json needs to exist
 
 # Change these if not using osu-winello
 SERVERS="$XDG_DATA_HOME"/osuconfig/servers.json

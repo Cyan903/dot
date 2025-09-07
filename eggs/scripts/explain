@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Lookup command with explainshell.com
-#  Requires jq and w3m
+# Requires jq and w3m
 
 request() {
     url_safe=$(jq -rn --arg x "$*" '$x|@uri')

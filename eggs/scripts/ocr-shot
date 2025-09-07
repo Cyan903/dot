@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Client for ocr-shot
-#  Copy response from ocr-shot to clipboard
+# Copy response from ocr-shot to clipboard
 
 PORT=""
 HOST="ocr.hwk929.ca"

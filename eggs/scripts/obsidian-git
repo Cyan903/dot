@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Sync Obsidian with git
-#  Works with multiple vaults.
-#  Does not require a plugin.
+# Works with multiple vaults.
+# Does not require a plugin.
 
 VAULT="$HOME/dev/vault"
 TERM_CMD="alacritty"

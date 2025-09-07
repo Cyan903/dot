@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Start/stop gosumemory
-#  $SONGS needs to point to the songs directory.
+# $SONGS needs to point to the songs directory.
 
 SONGS="$XDG_DATA_HOME/osu-wine/osu!/Songs"
 CHOICE=$(printf "Start\nStop" | rofi -dmenu -p "Start/stop gosumemory") 

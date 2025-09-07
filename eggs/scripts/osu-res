@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # osu! resolution switcher
-#  $XDG_DATA_HOME/osuconfig/resolutions needs to exist
+# $XDG_DATA_HOME/osuconfig/resolutions needs to exist
 
 RES="$XDG_DATA_HOME"/osuconfig/resolutions
 OSU_CFG="$XDG_DATA_HOME/osu-wine/osu!/osu!.hwk.cfg"

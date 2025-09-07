@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # XDG Clean
-#  Clean up the home folder
+# Clean up the home folder
 
 store=".xdg-clean"
 

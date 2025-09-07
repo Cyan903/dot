@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Generate a wordcloud with Anki
-#   Requires anki-connect
+# Requires anki-connect
 
 # Anki
 URL="http://127.0.0.1:8765/"
@@ -36,7 +36,9 @@ list() {
 
 cloud() {
     wordcloud_cli --fontfile "$FONT" \
-        --color black \
+        --mode RGBA \
+        --background "#00000000" \
+        --color white \
         --relative_scaling 1  \
         --prefer_horizontal 1 \
         > "$EXPORT"

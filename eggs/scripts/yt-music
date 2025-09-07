@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Interact with the YouTube Music API
-#   https://github.com/th-ch/youtube-music
+# https://github.com/th-ch/youtube-music
 
 ENDPOINT="http://localhost:26538"
 TITLE="yt-music"

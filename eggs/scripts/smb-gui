@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Manage SMB shares with rofi
-#   See: /etc/smb/hosts.json
+# See: /etc/smb/hosts.json
 
 DELIM="-:-:-"
 U_ID="$(id -u)"
