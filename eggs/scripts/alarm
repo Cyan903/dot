@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Simple alarm clock
+# Relies on /usr/bin/at
+
+set -e
+
+trigger() {
+    mpv --no-config --scripts="" --loop "$HOME/.local/share/alarm" &
+
+    apid="$!"
+    name="${1:-Unknown...}"
+
+    # Show alert
+    zenity --info --text="$name" --title="Alarm"
+    kill -SIGTERM "$apid"
+}
+
+add() {
+    if [[ -z "$1" ]]; then
+        echo "No time provided"
+        exit 1
+    fi
+
+    echo "$0 trigger $2" | at "$1"
+}
+
+usage() {
+    cat <<EOF
+Trigger Alarms
+
+Usage: alarm [options]
+
+Options:
+  add        add an alarm
+  trigger    trigger an alarm
+  prune      prune all active alarms
+  help       display help
+EOF
+}
+
+case $1 in
+    add) add "$2" "$3" ;;
+    trigger) trigger "$2" ;;
+    prune) atrm "$(atq | awk '{ print $1 }')" ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+
