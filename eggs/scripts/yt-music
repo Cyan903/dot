@@ -20,7 +20,7 @@ vol() {
     ! curl --request POST \
         --url "$ENDPOINT"/api/v1/volume \
         --header 'Content-Type: application/json' \
-        --data "{ \"volume\": $(( state + amt)) }" \
+        --data "{ \"volume\": $((state + amt)) }" \
         && notify-send "$TITLE" "Failed to update volume!"
 }
 

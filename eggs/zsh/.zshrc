@@ -52,6 +52,10 @@ setopt promptsubst
 autoload -U colors && colors
 source "$SHELL_DIRECTORY_CONFIG"/prompt/zsh
 
+# Replacements
+alias cat="bat"
+alias ls="exa"
+
 # Plugins
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 

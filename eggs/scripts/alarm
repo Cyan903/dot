@@ -25,6 +25,19 @@ add() {
     echo "$0 trigger $2" | at "$1"
 }
 
+list() {
+    for i in $(atq | awk '{ print $1 }'); do
+        echo "#$i"
+    done
+}
+
+prune() {
+    for i in $(atq | awk '{ print $1 }'); do
+        echo "-> $i"
+        atrm "$i"
+    done
+}
+
 usage() {
     cat <<EOF
 Trigger Alarms
@@ -32,17 +45,19 @@ Trigger Alarms
 Usage: alarm [options]
 
 Options:
-  add        add an alarm
-  trigger    trigger an alarm
-  prune      prune all active alarms
-  help       display help
+  add/set        add an alarm
+  prune/clear    prune all active alarms
+  list/ls        list all alarms
+  trigger        trigger an alarm
+  help           display help
 EOF
 }
 
 case $1 in
-    add) add "$2" "$3" ;;
+    add | set) add "$2" "$3" ;;
+    prune | clear) prune ;;
+    list | ls ) list ;;
     trigger) trigger "$2" ;;
-    prune) atrm "$(atq | awk '{ print $1 }')" ;;
 
     *)
         usage

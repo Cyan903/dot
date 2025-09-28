@@ -45,9 +45,9 @@ Manage pi.hole DNS
 Usage: pihole [enable/disable]
 
 Options:
-enable    enable the pi.hole DNS
-disable   disable the pi.hole DNS
-help      display help
+  enable    enable the pi.hole DNS
+  disable   disable the pi.hole DNS
+  help      display help
 EOF
 }
 

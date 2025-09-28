@@ -14,3 +14,6 @@ esac
 # Cargo
 . "$XDG_DATA_HOME/cargo/env"
 
+# Flutter
+export PATH="$HOME"/dev/flutter/bin:$PATH
+

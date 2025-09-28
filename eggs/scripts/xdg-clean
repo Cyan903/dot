@@ -16,6 +16,9 @@ keep=(
     .skiko
     .xlcore
     .vscode
+    .flutter
+    .dart-tool
+    .dartServer
     Android
 )
 
@@ -38,6 +41,7 @@ remove=(
     .mplayer
     .designer
     .templateengine
+    .pub-cache
     VirtualBoxVM.dxvk-cache
 )
 
@@ -79,6 +83,7 @@ case "$1" in
     in) info ; mv_in ; info ;;
     out) info ; mv_out ; info ;;
     clean) info ; clean ; info ;;
-    *) echo "$0 <in/out/clean>"
+    edit) "$EDITOR" "$0" ;;
+    *) echo "$0 <in/out/edit/clean>"
 esac
 
