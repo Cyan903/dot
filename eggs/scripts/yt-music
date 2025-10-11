@@ -7,17 +7,22 @@ ENDPOINT="http://localhost:26538"
 TITLE="yt-music"
 
 req() {
-    ! curl --request POST --url "$ENDPOINT$1" &&
+    ! curl -s --request POST --url "$ENDPOINT$1" &&
         notify-send "$TITLE" "Error - $1"
 }
 
 vol() {
     local state amt
 
-    state=$(curl --request GET --url "$ENDPOINT/api/v1/volume" | jq ".state" -r)
+    state=$(curl -s --request GET --url "$ENDPOINT/api/v1/volume" | jq ".state" -r)
     amt="$1"
 
-    ! curl --request POST \
+    if [[ -z "$amt" ]]; then
+        echo "$state"
+        return
+    fi
+
+    ! curl -s --request POST \
         --url "$ENDPOINT"/api/v1/volume \
         --header 'Content-Type: application/json' \
         --data "{ \"volume\": $((state + amt)) }" \
@@ -34,7 +39,7 @@ Options:
   prev      jump to previous song
   next      jump to next song
   toggle    toggle audio
-  vol       set the audio, requires an argument
+  vol       set the audio, no argument returns the current volume
   help      display help
 EOF
 }

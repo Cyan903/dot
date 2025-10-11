@@ -120,7 +120,7 @@ layout {
 
 animations {
     // off
-    slowdown 0.5
+    slowdown 0.8
 }
 
 // Window rules
@@ -162,12 +162,10 @@ binds {
     Mod+Minus hotkey-overlay-title="Volume: -10%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     Mod+Shift+Equal hotkey-overlay-title="Volume: +5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     Mod+Shift+Minus hotkey-overlay-title="Volume: -5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
-    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "mute-toggle"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
 
     // Music
@@ -200,6 +198,11 @@ binds {
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
     Mod+Ctrl+Shift+x { spawn "~/.config/niri/bin/kill-focused"; }
     Mod+Ctrl+c { spawn "smb-gui"; }
+
+
+    // Waybar: Scripts
+    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "~/.config/waybar/bin/mute-toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "~/.config/waybar/bin/mute-toggle"; }
 
 
     // Dynamic binds

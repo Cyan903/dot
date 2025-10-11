@@ -19,17 +19,10 @@ export let eggs = #{
         enabled: data.linux,
     },
 
-    "scripts-xorg": #{
+    "xscripts": #{
         targets: "~/.local/bin",
         strategy: "merge",
         enabled: data.linux && !data.wayland,
-    },
-
-    "scripts-wayland": #{
-        targets: "~/.local/bin",
-        strategy: "merge",
-        templates: ["swaylock-wrapper"],
-        enabled: data.linux && data.wayland,
     },
 
     //
@@ -164,7 +157,7 @@ export let eggs = #{
 
     "waybar": #{
         targets: "~/.config/waybar",
-        templates: ["style.css"],
+        templates: ["style.css", "bin/swaylock-wrapper"],
         enabled: data.wayland && io::command_available("waybar"),
     },
 

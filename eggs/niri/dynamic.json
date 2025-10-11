@@ -11,7 +11,7 @@
         "title": ["Discord", "Vesktop"],
         "app_id": ["discord", "Discord", "vesktop", "Vesktop"],
         "binds": {
-            "F1": ["mute-toggle"]
+            "F1": ["$HOME/.config/waybar/bin/mute-toggle"]
         }
     },
 
