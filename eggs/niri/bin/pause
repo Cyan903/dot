@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+window=$(niri msg focused-window | sed -n 's/^.*App ID: "\(.*\)"/\1/p')
+
+if [[ "$window" == "mpv" ]] || [[ "$window" == "librewolf" ]]; then
+    mpv-cli toggle
+    exit 0
+fi
+
+yt-music toggle
+

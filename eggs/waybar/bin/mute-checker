@@ -2,9 +2,8 @@
 
 source=$(pactl info | grep "Default Source" | cut -d ' ' -f3)
 
-if [[ $(pactl get-source-mute "$source" | awk '{print $2}') == "yes" ]]; then
-    echo '{"text": " — ", "tooltip": "Microphone muted", "class": "muted"}'
-else
-    echo '{"text": " — ", "tooltip": "Microphone active", "class": "active"}'
+if [[ $(pactl get-source-mute "$source" | awk '{print $2}') == "yes" ]]
+    then echo '{"text": " — ", "tooltip": "Microphone muted", "class": "muted"}'
+    else echo '{"text": " — ", "tooltip": "Microphone active", "class": "active"}'
 fi
 

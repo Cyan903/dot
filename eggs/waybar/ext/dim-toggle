@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+dimland-dynamic "$@"
+pkill -RTMIN+11 waybar
+

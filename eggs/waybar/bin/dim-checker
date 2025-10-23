@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if ! pgrep -f dimland > /dev/null
+    then dimland-dynamic # Call to update previous value
+fi
+
+p=$(echo "$(dimland-dynamic status) * 100 / 1" | bc)
+
+echo "{\"text\": \" 󰃝  $(( 100 - p ))% \"}"
+

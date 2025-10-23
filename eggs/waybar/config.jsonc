@@ -15,6 +15,7 @@
         "pulseaudio",
 
         "custom/anki",
+        "custom/dim",
         "custom/packages",
         "custom/muted",
         "custom/clock",
@@ -100,6 +101,17 @@
         "interval": 60,
         "format": "{text}",
         "tooltip": true,
+    },
+
+    "custom/dim": {
+        "exec": "$HOME/.config/waybar/bin/dim-checker",
+        "return-type": "json",
+        "interval": 10,
+        "format": "{}",
+        "tooltip": false,
+        "signal": 11,
+        "on-scroll-up": "$HOME/.config/waybar/ext/dim-toggle pre -0.01",
+        "on-scroll-down": "$HOME/.config/waybar/ext/dim-toggle pre 0.01"
     },
 
     "custom/packages": {

@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Manage dimland process
+# Requires dimland
+
+CACHE_FILE="$HOME/.cache/dimland-brightness"
+
+# Check for file
+if [[ ! -s "$CACHE_FILE"  ]]; then
+    echo "1.0" > "$CACHE_FILE"
+    echo "Created $CACHE_FILE"
+fi
+
+# Update value
+update() {
+    out=$(echo "$(cat "$CACHE_FILE") + $1" | bc)
+
+    if (( $(echo "$out >= 0.0 && $out <= 1.0" | bc -l) ))
+        then echo "$out" > "$CACHE_FILE"
+        else exit 1
+    fi
+}
+
+# Reset value
+reset() {
+    dimland stop
+    echo "0.0" > "$CACHE_FILE"
+    exit 0
+}
+
+# Get status
+status() {
+    cat "$CACHE_FILE"
+    exit 0
+}
+
+# Parse commands
+case "$1" in
+    up) update 0.1 ;;
+    down) update -0.1 ;;
+    pre) update "$2" ;;
+    stop) reset ;;
+    status) status ;;
+esac
+
+dimland -a "$(cat "$CACHE_FILE")"
+

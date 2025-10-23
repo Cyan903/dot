@@ -163,10 +163,6 @@ binds {
     Mod+Shift+Equal hotkey-overlay-title="Volume: +5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     Mod+Shift+Minus hotkey-overlay-title="Volume: -5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-    XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-
 
     // Music
     Mod+Ctrl+Alt+Equal hotkey-overlay-title="Music: Volume +10%" repeat=false { spawn "yt-music" "vol" "+10"; }
@@ -181,6 +177,14 @@ binds {
     Mod+Ctrl+Alt+Backspace hotkey-overlay-title="Video: Toggle" repeat=false { spawn "mpv-cli" "toggle"; }
 
 
+    // Brightness
+    /*
+     * Mod+Semicolon hotkey-overlay-title="Brightness: Down" { spawn "dimland-dynamic" "up"; }
+     * Mod+Apostrophe hotkey-overlay-title="Brightness: Up" { spawn "dimland-dynamic" "down"; }
+     * Mod+Shift+Apostrophe hotkey-overlay-title="Brightness: Reset" { spawn "dimland-dynamic" "stop"; }
+     */
+
+
     // Launcher
     Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }
     Mod+Backslash hotkey-overlay-title="Launcher: Librewolf" repeat=false { spawn "librewolf"; }
@@ -192,17 +196,35 @@ binds {
     Mod+Shift+F hotkey-overlay-title="Launcher: Run application" repeat=false { spawn "rofi" "-disable-history" "-show" "run"; }
     Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
     Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
+    Mod+Ctrl+c hotkey-overlay-title="Launcher: Show SMB" repeat=false { spawn "smb-gui"; }
 
 
     // Scripts
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
-    Mod+Ctrl+Shift+x { spawn "~/.config/niri/bin/kill-focused"; }
-    Mod+Ctrl+c { spawn "smb-gui"; }
+    Mod+Ctrl+Shift+x repeat=false { spawn "~/.config/niri/bin/kill-focused"; }
 
 
     // Waybar: Scripts
-    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "~/.config/waybar/bin/mute-toggle"; }
-    XF86AudioMicMute allow-when-locked=true { spawn "~/.config/waybar/bin/mute-toggle"; }
+    Mod+Alt+M hotkey-overlay-title="Volume: Mute toggle" allow-when-locked=true { spawn "~/.config/waybar/ext/mute-toggle"; }
+    Mod+Semicolon hotkey-overlay-title="Brightness: Down" { spawn "~/.config/waybar/ext/dim-toggle" "up"; }
+    Mod+Apostrophe hotkey-overlay-title="Brightness: Up" { spawn "~/.config/waybar/ext/dim-toggle" "down"; }
+    Mod+Shift+Apostrophe hotkey-overlay-title="Brightness: Reset" { spawn "~/.config/waybar/ext/dim-toggle" "stop"; }
+
+
+
+    // XF86: Audio
+    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+
+
+    // XF86: Scripts
+    XF86AudioPlay repeat=false { spawn "~/.config/niri/bin/pause"; }
+
+
+    // XF86: Waybar
+    XF86AudioMicMute allow-when-locked=true { spawn "~/.config/waybar/ext/mute-toggle"; }
+    Shift+XF86AudioMute allow-when-locked=true { spawn "~/.config/waybar/ext/mute-toggle"; }
 
 
     // Dynamic binds
@@ -389,6 +411,7 @@ binds {
 // Disable unused
 hotkey-overlay { skip-at-startup; }
 gestures { hot-corners { off; }; }
+clipboard { disable-primary; }
 
 // Misc
 prefer-no-csd
