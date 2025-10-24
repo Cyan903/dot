@@ -6,5 +6,5 @@ fi
 
 p=$(echo "$(dimland-dynamic status) * 100 / 1" | bc)
 
-echo "{\"text\": \" 󰃝  $(( 100 - p ))% \"}"
+echo "{\"text\": \"󰃝  $(( 100 - p ))%\"}"
 

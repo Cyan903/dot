@@ -12,7 +12,7 @@ CONFIG="/etc/smb/hosts.json"
 
 # Helper functions
 err() {
-    echo "Error - $1"
+    echo "Error - $1" 1>&2
     exit 1
 }
 

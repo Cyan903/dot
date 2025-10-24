@@ -24,6 +24,7 @@ update() {
 # Reset value
 reset() {
     dimland stop
+    killall dimland
     echo "0.0" > "$CACHE_FILE"
     exit 0
 }
