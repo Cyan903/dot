@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkMenu" id="menu">
+        <child>
+            <object class="GtkMenuItem" id="toggle-overview">
+                <property name="label">  Overview</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="center-column">
+                <property name="label">󰘞  Center</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="maximize-column">
+                <property name="label">  Maximize</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="switch-preset-column-width">
+                <property name="label">󰕭  Switch Column</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="expand-column-to-available-width">
+                <property name="label">󰞘  Expand to Available Width</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="toggle-window-floating">
+                <property name="label">󰻈  Floating</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="fullscreen-window">
+                <property name="label">  Fullscreen</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="reset-window-height">
+                <property name="label">  Reset Height</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="close-window">
+                <property name="label"> Close</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter1"/>
+        </child>
+    </object>
+</interface>

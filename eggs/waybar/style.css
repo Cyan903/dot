@@ -84,7 +84,8 @@ button:hover {
 #custom-anki,
 #custom-packages,
 #custom-clock,
-#custom-power {
+#custom-power,
+#custom-niri-actions {
     margin: 6px 0;
     padding: 3px 5px;
     border-radius: 2px;
@@ -102,7 +103,8 @@ button:hover {
 #custom-anki:hover,
 #custom-packages:hover,
 #custom-clock:hover,
-#custom-power:hover {
+#custom-power:hover,
+#custom-niri-actions:hover {
     background-color: @wallpaper;
 }
 
@@ -121,9 +123,18 @@ button:hover {
     color: @foreground;
 }
 
-/* Power */
+/* Power & Actions */
 #custom-power {
     margin-right: 10px;
     padding-right: 10px;
+}
+
+#custom-niri-actions {
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+#custom-power,
+#custom-niri-actions {
     color: @primary;
 }
