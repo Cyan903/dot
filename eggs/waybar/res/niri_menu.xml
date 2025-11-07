@@ -51,7 +51,7 @@
 
         <child>
             <object class="GtkMenuItem" id="close-window">
-                <property name="label"> Close</property>
+                <property name="label">  Close</property>
             </object>
         </child>
 
