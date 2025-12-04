@@ -17,8 +17,8 @@ input {
     }
 
     trackball {
-        accel-profile "flat"
         accel-speed 0.5
+        accel-profile "flat"
     }
 
     focus-follows-mouse max-scroll-amount="25%"
@@ -33,8 +33,11 @@ output "HDMI-A-1" {
     scale 1
     transform "normal"
     position x=1920 y=1080
-    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+
+    layout {
+        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    }
 
     focus-at-startup
 }
@@ -45,8 +48,11 @@ output "DP-2" {
     scale 1
     transform "normal"
     position x=0 y=1080
-    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+
+    layout {
+        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    }
 }
 
 // TV
@@ -55,8 +61,11 @@ output "DP-3" {
     scale 1
     transform "normal"
     position x=2250 y=30
-    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+
+    layout {
+        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    }
 }
 
 // Bed
@@ -65,8 +74,11 @@ output "DP-1" {
     scale 1
     transform "normal"
     position x=3840 y=1080
-    background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
+
+    layout {
+        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+    }
 }
 
 layout {

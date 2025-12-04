@@ -130,11 +130,9 @@ button:hover {
 }
 
 #custom-niri-actions {
-    margin-left: 5px;
-    padding-left: 5px;
+    margin: 5px 0;
 }
 
-#custom-power,
-#custom-niri-actions {
+#custom-power {
     color: @primary;
 }

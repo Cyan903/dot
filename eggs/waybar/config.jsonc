@@ -4,13 +4,14 @@
     "height": 30,
     "spacing": 8,
 
-    "modules-left": ["custom/niri-actions", "niri/workspaces"],
+    "modules-left": ["niri/workspaces"],
     "modules-center": ["niri/window"],
     "modules-right": [
         "tray",
         "privacy",
 
         "bluetooth",
+        "custom/niri-actions",
         "cpu",
         "memory",
         "pulseaudio",

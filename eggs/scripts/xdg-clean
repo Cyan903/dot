@@ -19,6 +19,7 @@ keep=(
     .flutter
     .dart-tool
     .dartServer
+    .renpy
     Android
 )
 
