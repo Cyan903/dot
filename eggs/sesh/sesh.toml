@@ -1,4 +1,4 @@
-import = ["~/.config/sesh/.sesh.toml"]
+# import = ["~/.config/sesh/.sesh.toml"]
 
 [default_session]
 startup_command = "nvim ."

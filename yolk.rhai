@@ -3,7 +3,7 @@ import "colors" as colors;
 export let data = #{
     for_vcs: LOCAL,
 
-    linux: SYSTEM.hostname == "hwk",
+    linux: SYSTEM.hostname == "puter",
     wayland: io::path_is_file(".wayland"),
 
     colors: colors::dark,
@@ -38,12 +38,6 @@ export let eggs = #{
         targets: "~/.local/share/Anki2/addons21",
         strategy: "merge",
         enabled: io::command_available("anki"),
-    },
-
-    "applications": #{
-        targets: "~/.local/share/applications/",
-        strategy: "merge",
-        enabled: data.linux,
     },
 
     //

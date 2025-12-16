@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=osu!server
-Comment=osu! - Rhythm is just a *click* away!
-Type=Application
-Exec=sh -c "$HOME/.local/bin/osu-server"
-Terminal=false
-Categories=Wine;Game;

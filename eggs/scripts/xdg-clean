@@ -25,6 +25,7 @@ keep=(
 
 remove=(
     .pki
+    .pulse-cookie
     .angular-config.json
     .steampath
     .steampid
