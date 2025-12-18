@@ -30,7 +30,7 @@ add() {
 show() {
     if [[ $1 == "menu" ]]; then
         if [[ "$XDG_CURRENT_DESKTOP" == "niri" ]]
-            then wtype "$(rofi -disable-history -dmenu < "$marks")"
+            then rofi -disable-history -dmenu < "$marks" | wl-copy
             else xdotool type "$(rofi -disable-history -dmenu < "$marks")"
         fi
 
