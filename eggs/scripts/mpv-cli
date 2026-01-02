@@ -17,6 +17,8 @@ parse() {
     exit 0
 }
 
+prev() { echo '{ "command": ["seek", -5, "relative"] }' | socat - "$SOCKET" | parse; }
+next() { echo '{ "command": ["seek", 5, "relative"] }' | socat - "$SOCKET" | parse; }
 pause() { echo '{ "command": ["set_property", "pause", true] }' | socat - "$SOCKET" | parse; }
 play() { echo '{ "command": ["set_property", "pause", false] }' | socat - "$SOCKET" | parse; }
 toggle() { echo '{ "command": ["cycle", "pause"] }' | socat - "$SOCKET" | parse; }
@@ -28,6 +30,8 @@ Interact with the mpv ipc
 Usage: mpv-cli [options]
 
 Options:
+  prev      jump to the previous 5s
+  next      jump to the next 5s
   pause     pause the video
   play      play the video
   toggle    toggle pause/play
@@ -36,6 +40,8 @@ EOF
 }
 
 case $1 in
+    prev) prev ;;
+    next) next ;;
     pause) pause ;;
     play) play ;;
     toggle) toggle ;;

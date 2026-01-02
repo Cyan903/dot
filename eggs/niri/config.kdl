@@ -180,13 +180,15 @@ binds {
     Mod+Ctrl+Alt+Equal hotkey-overlay-title="Music: Volume +10%" repeat=false { spawn "yt-music" "vol" "+10"; }
     Mod+Ctrl+Alt+Minus hotkey-overlay-title="Music: Volume -10%" repeat=false { spawn "yt-music" "vol" "-10"; }
 
-    Mod+Ctrl+Equal hotkey-overlay-title="Music: Next" repeat=false { spawn "yt-music" "next"; }
-    Mod+Ctrl+Minus hotkey-overlay-title="Music: Previous" repeat=false { spawn "yt-music" "prev"; }
-    Mod+Ctrl+Backspace hotkey-overlay-title="Music: Toggle" repeat=false { spawn "yt-music" "toggle"; }
+
+    // Music/Video
+    Mod+Ctrl+Equal hotkey-overlay-title="Music/Video: Next" repeat=false { spawn "~/.config/niri/bin/media" "next"; }
+    Mod+Ctrl+Minus hotkey-overlay-title="Music/Video: Previous" repeat=false { spawn "~/.config/niri/bin/media" "prev"; }
+    Mod+Ctrl+Backspace hotkey-overlay-title="Music/Video: Toggle" repeat=false { spawn "~/.config/niri/bin/media" "toggle"; }
 
 
-    // Video
-    Mod+Ctrl+Alt+Backspace hotkey-overlay-title="Video: Toggle" repeat=false { spawn "mpv-cli" "toggle"; }
+    // Keyboard
+    Mod+Shift+Escape hotkey-overlay-title="Keyboard: Toggle floating keyboard" repeat=false { spawn "onscreen-keyboard" "toggle"; }
 
 
     // Brightness
@@ -204,9 +206,9 @@ binds {
     Mod+Backspace hotkey-overlay-title="Launcher: File manager" repeat=false { spawn "pcmanfm"; }
     Mod+Shift+S hotkey-overlay-title="Launcher: ocr-shot" { spawn "ocr-shot"; }
 
-    Mod+F hotkey-overlay-title="Launcher: Find application" repeat=false { spawn "rofi" "-disable-history" "-show" "drun"; }
-    Mod+Shift+F hotkey-overlay-title="Launcher: Run application" repeat=false { spawn "rofi" "-disable-history" "-show" "run"; }
-    Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi" "-disable-history" "-show" "window"; }
+    Mod+F hotkey-overlay-title="Launcher: Find application" repeat=false { spawn "rofi-toggle" "-disable-history" "-show" "drun"; }
+    Mod+Shift+F hotkey-overlay-title="Launcher: Run application" repeat=false { spawn "rofi-toggle" "-disable-history" "-show" "run"; }
+    Mod+W hotkey-overlay-title="Launcher: Find window" repeat=false { spawn "rofi-toggle" "-disable-history" "-show" "window"; }
     Mod+B hotkey-overlay-title="Launcher: Show bookmarks" repeat=false { spawn "bookmark" "show" "menu"; }
     Mod+Ctrl+c hotkey-overlay-title="Launcher: Show SMB" repeat=false { spawn "smb-gui"; }
 
@@ -223,7 +225,6 @@ binds {
     Mod+Shift+Apostrophe hotkey-overlay-title="Brightness: Reset" { spawn "~/.config/waybar/ext/dim-toggle" "stop"; }
 
 
-
     // XF86: Audio
     XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
@@ -231,7 +232,7 @@ binds {
 
 
     // XF86: Scripts
-    XF86AudioPlay repeat=false { spawn "~/.config/niri/bin/pause"; }
+    XF86AudioPlay repeat=false { spawn "~/.config/niri/bin/media" "toggle"; }
 
 
     // XF86: Waybar
@@ -357,8 +358,8 @@ binds {
     Mod+Alt+J hotkey-overlay-title="Workspace: Swap down" { move-workspace-down; }
     Mod+Alt+K hotkey-overlay-title="Workspace: Swap up" { move-workspace-up; }
 
-    Mod+Shift+Page_Down hotkey-overlay-title="Workspace: Swap down" { move-workspace-down; }
-    Mod+Shift+Page_Up hotkey-overlay-title="Workspace: Swap up" { move-workspace-up; }
+    Mod+Alt+Page_Down hotkey-overlay-title="Workspace: Swap down" { move-workspace-down; }
+    Mod+Alt+Page_Up hotkey-overlay-title="Workspace: Swap up" { move-workspace-up; }
 
 
     // Workspace: Mouse

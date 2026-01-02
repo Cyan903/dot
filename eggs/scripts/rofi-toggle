@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Toggle rofi
+# Will kill rofi if it is running
+
+if pgrep rofi; then
+    killall rofi
+    exit 1
+fi
+
+rofi "$@"
+

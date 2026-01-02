@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Wrapper for wvkbd
+# Manages a virtual keyboard
+
+BIN="wvkbd-mobintl"
+
+enable() {
+    $BIN -L 400 &
+}
+
+disable() {
+    killall "$BIN"
+}
+
+toggle() {
+    if pgrep "$BIN"; then
+        disable
+        exit
+    fi
+
+    enable
+}
+
+usage() {
+    cat <<EOF
+Manage on-screen keyboard
+
+Usage: onscreen-keyboard [enable/disable/toggle]
+
+Options:
+  enable    enable the on-screen keyboard
+  disable   disable the on-screen keyboard
+  toggle    toggle the on-screen keyboard
+  help      display help
+EOF
+}
+
+case $1 in
+    enable) enable ;;
+    disable) disable ;;
+    toggle) toggle ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+
