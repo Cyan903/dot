@@ -1,12 +1,14 @@
 import "colors" as colors;
+import "hosts" as hosts;
+import "utils" as utils;
+
+const S = SYSTEM.hostname;
 
 export let data = #{
     for_vcs: LOCAL,
 
-    linux: SYSTEM.hostname == "puter",
-    wayland: io::path_is_file(".wayland"),
-
-    colors: colors::dark,
+    wayland: utils::wayland(S),
+    colors: utils::color(S),
 };
 
 export let eggs = #{
@@ -16,13 +18,25 @@ export let eggs = #{
     "scripts": #{
         targets: "~/.local/bin",
         strategy: "merge",
-        enabled: data.linux,
+        enabled: utils::enabled(S, #{
+            requires: [],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "xscripts": #{
         targets: "~/.local/bin",
         strategy: "merge",
-        enabled: data.linux && !data.wayland,
+        enabled: utils::enabled(S, #{
+            requires: [],
+            tags: ["linux", "X11"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     //
@@ -31,13 +45,25 @@ export let eggs = #{
     "osuconfig": #{
         targets: "~/.local/share/osuconfig",
         strategy: "merge",
-        enabled: data.linux && io::command_available("osu-wine"),
+        enabled: utils::enabled(S, #{
+            requires: ["osu-wine"],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "anki-plugins": #{
         targets: "~/.local/share/Anki2/addons21",
         strategy: "merge",
-        enabled: io::command_available("anki"),
+        enabled: utils::enabled(S, #{
+            requires: ["anki"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     //
@@ -45,19 +71,37 @@ export let eggs = #{
     //
     "X11": #{
         targets: "~/.config/X11",
-        enabled: data.linux && !data.wayland,
+        enabled: utils::enabled(S, #{
+            requires: [],
+            tags: ["linux", "X11"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "alacritty": #{
         targets: "~/.config/alacritty",
         templates: ["theme.toml"],
-        enabled: io::command_available("alacritty"),
+        enabled: utils::enabled(S, #{
+            requires: ["alacritty"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "awesome": #{
         targets: "~/.config/awesome",
         templates: ["theme/main/theme.lua", "module/system/bin/lock"],
-        enabled: data.linux && !data.wayland && io::command_available("awesome"),
+        enabled: utils::enabled(S, #{
+            requires: ["awesome"],
+            tags: ["linux", "X11"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "bash": #{
@@ -66,103 +110,208 @@ export let eggs = #{
             ".bash_profile": "~/.bash_profile",
         },
 
-        enabled: data.linux && io::command_available("bash"),
+        enabled: utils::enabled(S, #{
+            requires: ["bash"],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "fbterm": #{
         targets: "~/.config/fbterm",
-        enabled: data.linux && io::command_available("fbterm"),
+        enabled: utils::enabled(S, #{
+            requires: ["fbterm"],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "firefox": #{
         targets: "~/.config/firefox",
         templates: ["userHome.html"],
-        enabled: io::command_available("firefox") || io::command_available("librewolf"),
+        enabled: utils::enabled(S, #{
+            requires: ["firefox", "librewolf"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "ideavim": #{
         targets: "~/.config/ideavim",
-        enabled: io::command_available("android-studio") || io::command_available("idea"),
+        enabled: utils::enabled(S, #{
+            requires: ["android-studio", "idea"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "mako": #{
         targets: "~/.config/mako",
         templates: ["config"],
-        enabled: data.wayland && io::command_available("mako"),
+        enabled: utils::enabled(S, #{
+            requires: ["mako"],
+            tags: ["linux", "wayland"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "mpv": #{
         targets: "~/.config/mpv",
-        enabled: io::command_available("mpv"),
+        enabled: utils::enabled(S, #{
+            requires: ["mpv"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "mvi": #{
         targets: "~/.config/mvi",
-        enabled: io::command_available("mpv"),
+        enabled: utils::enabled(S, #{
+            requires: ["mpv"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "niri": #{
         targets: "~/.config/niri",
         templates: ["config.kdl"],
-        enabled: data.wayland && io::command_available("niri"),
+        enabled: utils::enabled(S, #{
+            requires: ["niri"],
+            tags: ["linux", "wayland"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "nvim": #{
         targets: "~/.config/nvim",
         templates: ["lua/addons/plugins/lualine.lua"],
-        enabled: io::command_available("nvim"),
+        enabled: utils::enabled(S, #{
+            requires: ["nvim"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "rofi": #{
         targets: "~/.config/rofi",
         templates: ["config.rasi"],
-        enabled: data.linux && io::command_available("rofi"),
+        enabled: utils::enabled(S, #{
+            requires: ["rofi"],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "screenlayout": #{
         targets: "~/.config/screenlayout",
-        enabled: data.linux && !data.wayland,
+        enabled: utils::enabled(S, #{
+            requires: [],
+            tags: ["linux", "X11"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "sesh": #{
         targets: "~/.config/sesh",
-        enabled: io::command_available("sesh") && io::command_available("tmux"),
+        enabled: utils::enabled(S, #{
+            requires: ["sesh", "tmux"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "shell": #{
         targets: "~/.config/shell",
         templates: ["script/login"],
-        enabled: data.linux && (
-            io::command_available("bash") ||
-            io::command_available("zsh")
-        ),
+        enabled: utils::enabled(S, #{
+            requires: ["bash", "zsh"],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "tmux": #{
         targets: "~/.config/tmux",
         templates: ["tmux.conf"],
-        enabled: io::command_available("tmux"),
+        enabled: utils::enabled(S, #{
+            requires: ["tmux"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "tridactyl": #{
         targets: "~/.config/tridactyl",
-        enabled: io::command_available("firefox") || io::command_available("librewolf"),
+        enabled: utils::enabled(S, #{
+            requires: ["firefox", "librewolf"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "waybar": #{
         targets: "~/.config/waybar",
         templates: ["style.css", "bin/swaylock-wrapper"],
-        enabled: data.wayland && io::command_available("waybar"),
+        enabled: utils::enabled(S, #{
+            requires: ["waybar"],
+            tags: ["linux", "wayland"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "xdg-desktop-portal": #{
         targets: "~/.config/xdg-desktop-portal",
-        enabled: data.wayland,
+        enabled: utils::enabled(S, #{
+            requires: [],
+            tags: ["linux", "wayland"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "yazi": #{
         targets: "~/.config/yazi",
-        enabled: io::command_available("yazi"),
+        enabled: utils::enabled(S, #{
+            requires: ["yazi"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
 
     "zsh": #{
@@ -172,24 +321,14 @@ export let eggs = #{
             ".zshrc": "~/.zshrc",
         },
 
-        enabled: data.linux && io::command_available("zsh"),
+        enabled: utils::enabled(S, #{
+            requires: ["zsh"],
+            tags: ["linux"],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
     },
-
-    /**
-     * Not in use!
-     * Can be found in ext/.config
-     *
-     * "lightdm": #{
-     *    targets: "~/.config/lightdm",
-     *    templates: ["hwk/css/style.css"],
-     *    enabled: data.linux && io::command_available("lightdm") && io::command_available("web-greeter"),
-     * },
-     *
-     * "evremap": #{
-     *    targets: "~/.config/evremap",
-     *    enabled: data.wayland && io::command_available("evremap"),
-     * },
-     */
 };
 
 // vim: syntax=rust

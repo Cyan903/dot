@@ -2,18 +2,6 @@
 <interface>
     <object class="GtkMenu" id="menu">
         <child>
-            <object class="GtkMenuItem" id="toggle-overview">
-                <property name="label">  Overview</property>
-            </object>
-        </child>
-
-        <child>
-            <object class="GtkMenuItem" id="center-column">
-                <property name="label">󰘞  Center</property>
-            </object>
-        </child>
-
-        <child>
             <object class="GtkMenuItem" id="maximize-column">
                 <property name="label">  Maximize</property>
             </object>
@@ -28,6 +16,18 @@
         <child>
             <object class="GtkMenuItem" id="expand-column-to-available-width">
                 <property name="label">󰞘  Expand to Available Width</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="toggle-overview">
+                <property name="label">  Overview</property>
+            </object>
+        </child>
+
+        <child>
+            <object class="GtkMenuItem" id="center-column">
+                <property name="label">󰘞  Center</property>
             </object>
         </child>
 

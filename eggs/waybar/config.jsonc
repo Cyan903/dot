@@ -10,8 +10,8 @@
         "tray",
         "privacy",
 
-        "bluetooth",
         "custom/niri-actions",
+        "bluetooth",
         "cpu",
         "memory",
         "pulseaudio",

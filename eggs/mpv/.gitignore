@@ -4,4 +4,6 @@
 
 # Useless
 /.old/*
+/.scripts/*
+*.html
 

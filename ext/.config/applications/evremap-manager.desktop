@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=EvRemap Manager
-Comment=Manager for evremap
-Type=Application
-Exec=sh -c "$HOME/.config/evremap/manager"
-Terminal=false

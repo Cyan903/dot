@@ -2,9 +2,11 @@
 
 window=$(niri msg focused-window | sed -n 's/^.*App ID: "\(.*\)"/\1/p')
 
-if pgrep mpv && [[ "$window" == "mpv" ]] || [[ "$window" == "librewolf" ]]; then
-    mpv-cli "$1"
-    exit 0
+if pgrep mpv; then
+    if [[ "$window" == "mpv" ]] || [[ "$window" == "librewolf" ]]; then
+        mpv-cli "$1"
+        exit 0
+    fi
 fi
 
 yt-music "$1"

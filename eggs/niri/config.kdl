@@ -176,15 +176,15 @@ binds {
     Mod+Shift+Minus hotkey-overlay-title="Volume: -5%" allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
 
 
-    // Music
-    Mod+Ctrl+Alt+Equal hotkey-overlay-title="Music: Volume +10%" repeat=false { spawn "yt-music" "vol" "+10"; }
-    Mod+Ctrl+Alt+Minus hotkey-overlay-title="Music: Volume -10%" repeat=false { spawn "yt-music" "vol" "-10"; }
-
 
     // Music/Video
-    Mod+Ctrl+Equal hotkey-overlay-title="Music/Video: Next" repeat=false { spawn "~/.config/niri/bin/media" "next"; }
-    Mod+Ctrl+Minus hotkey-overlay-title="Music/Video: Previous" repeat=false { spawn "~/.config/niri/bin/media" "prev"; }
-    Mod+Ctrl+Backspace hotkey-overlay-title="Music/Video: Toggle" repeat=false { spawn "~/.config/niri/bin/media" "toggle"; }
+    Mod+Ctrl+Equal hotkey-overlay-title="Music: Next" repeat=false { spawn "yt-music" "next"; }
+    Mod+Ctrl+Minus hotkey-overlay-title="Music: Previous" repeat=false { spawn "yt-music" "prev"; }
+    Mod+Ctrl+Backspace hotkey-overlay-title="Music: Toggle" repeat=false { spawn "yt-music" "toggle"; }
+
+    Mod+Ctrl+Alt+Equal hotkey-overlay-title="Video: Next" repeat=false { spawn "mpv-cli" "next"; }
+    Mod+Ctrl+Alt+Minus hotkey-overlay-title="Video: Previous" repeat=false { spawn "mpv-cli" "prev"; }
+    Mod+Ctrl+Alt+Backspace hotkey-overlay-title="Video: Toggle" repeat=false { spawn "mpv-cli" "toggle"; }
 
 
     // Keyboard
