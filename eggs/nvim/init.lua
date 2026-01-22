@@ -7,7 +7,7 @@
 -- │   └── cfg.lua  -- Language-specific plugin configurations (e.g., LSP).
 -- ├── core/        -- Core config specific to Neovim.
 -- │   ├── config/  -- Standard configuration items (e.g., autocmd, set, etc...).
--- │   ├── init/    -- Different `init.lua` scripts depending on how Neovim is launche.
+-- │   ├── init/    -- Different `init.lua` scripts depending on how Neovim is launched.
 -- │   └── user/    -- Custom modules that are not reliant on external plugin.
 -- └── util/        -- Utility functions used throughout the config.
 --
