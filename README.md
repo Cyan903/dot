@@ -8,7 +8,11 @@
 
 ## Usage
 
-Requires [yolk](https://elkowar.github.io/yolk/). To use Wayland, create an empty file at `~/.config/yolk/.wayland`. Themes and settings can be configured in [colors.rhai](colors.rhai) and [yolk.rhai](yolk.rhai).
+Requires [yolk](https://elkowar.github.io/yolk/).
+
+- **Applications**: [yolk.rhai](yolk.rhai)
+- **Themes**: [colors.rhai](colors.rhai)
+- **Hosts**: [hosts.rhai](hosts.rhai)
 
 ```sh
 $ yolk help

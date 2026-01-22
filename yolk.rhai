@@ -20,7 +20,7 @@ export let eggs = #{
         strategy: "merge",
         enabled: utils::enabled(S, #{
             requires: [],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -32,7 +32,7 @@ export let eggs = #{
         strategy: "merge",
         enabled: utils::enabled(S, #{
             requires: [],
-            tags: ["linux", "X11"],
+            tags: ["X11"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -47,7 +47,7 @@ export let eggs = #{
         strategy: "merge",
         enabled: utils::enabled(S, #{
             requires: ["osu-wine"],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -73,7 +73,7 @@ export let eggs = #{
         targets: "~/.config/X11",
         enabled: utils::enabled(S, #{
             requires: [],
-            tags: ["linux", "X11"],
+            tags: ["X11"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -97,7 +97,7 @@ export let eggs = #{
         templates: ["theme/main/theme.lua", "module/system/bin/lock"],
         enabled: utils::enabled(S, #{
             requires: ["awesome"],
-            tags: ["linux", "X11"],
+            tags: ["X11"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -112,7 +112,7 @@ export let eggs = #{
 
         enabled: utils::enabled(S, #{
             requires: ["bash"],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -123,7 +123,7 @@ export let eggs = #{
         targets: "~/.config/fbterm",
         enabled: utils::enabled(S, #{
             requires: ["fbterm"],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -158,7 +158,7 @@ export let eggs = #{
         templates: ["config"],
         enabled: utils::enabled(S, #{
             requires: ["mako"],
-            tags: ["linux", "wayland"],
+            tags: ["wayland"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -192,7 +192,7 @@ export let eggs = #{
         templates: ["config.kdl"],
         enabled: utils::enabled(S, #{
             requires: ["niri"],
-            tags: ["linux", "wayland"],
+            tags: ["wayland"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -216,7 +216,7 @@ export let eggs = #{
         templates: ["config.rasi"],
         enabled: utils::enabled(S, #{
             requires: ["rofi"],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -227,7 +227,7 @@ export let eggs = #{
         targets: "~/.config/screenlayout",
         enabled: utils::enabled(S, #{
             requires: [],
-            tags: ["linux", "X11"],
+            tags: ["X11"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -250,7 +250,7 @@ export let eggs = #{
         templates: ["script/login"],
         enabled: utils::enabled(S, #{
             requires: ["bash", "zsh"],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -285,7 +285,7 @@ export let eggs = #{
         templates: ["style.css", "bin/swaylock-wrapper"],
         enabled: utils::enabled(S, #{
             requires: ["waybar"],
-            tags: ["linux", "wayland"],
+            tags: ["wayland"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -296,7 +296,7 @@ export let eggs = #{
         targets: "~/.config/xdg-desktop-portal",
         enabled: utils::enabled(S, #{
             requires: [],
-            tags: ["linux", "wayland"],
+            tags: ["wayland"],
             hosts: [
                 hosts::devices.puter,
             ],
@@ -323,7 +323,7 @@ export let eggs = #{
 
         enabled: utils::enabled(S, #{
             requires: ["zsh"],
-            tags: ["linux"],
+            tags: [],
             hosts: [
                 hosts::devices.puter,
             ],

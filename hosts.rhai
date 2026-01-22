@@ -1,13 +1,13 @@
 export const devices = #{
     puter: #{
         name: "puter",
-        tags: ["linux", "wayland"],
+        tags: ["wayland"],
         color: colors::dark,
     },
 
     laptop: #{
         name: "laptop",
-        tags: ["linux", "X11"],
+        tags: ["X11"],
         color: colors::dracula,
     }
 };
