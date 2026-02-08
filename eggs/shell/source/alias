@@ -4,31 +4,32 @@
 
 # Functions
 vcode() {
-	code "$1"
-	exit
+    code "$1"
+    exit
 }
 
 cpf() {
-	echo -e "file://$(realpath "$1")" | wl-copy --type text/uri-list
+    echo -e "file://$(realpath "$1")" | wl-copy --type text/uri-list
 }
 
 y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
 
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
 
-	rm -f -- "$tmp"
+    rm -f -- "$tmp"
 }
 
 s() {
-	sesh connect "$(sesh list | fzf)"
+    sesh connect "$(sesh list | fzf)"
 }
 
 f() {
-	cd "${$(fd --type directory | fzf):-.}"
+    # zsh only
+    cd "${$(fd --type directory | fzf):-.}"
 }
 
 # Alias

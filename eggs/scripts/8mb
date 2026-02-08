@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Shrink the size of a video to 8mb
+# Requires ffmpeg
+
+set -e
+
+cpf() {
+    echo -e "file://$(realpath "$1")" | wl-copy --type text/uri-list
+}
+
+8mb() {
+    input="$1"
+
+    # Extract extension
+    ext="${input##*.}"
+    [[ "$ext" == "$input" ]] && ext="mp4"
+
+    # Create output
+    output="$(mktemp "/tmp/8mb_XXXXXX.$ext")"
+
+    # Get duration in seconds
+    duration=$(
+        ffprobe -v error -show_entries format=duration \
+            -of default=noprint_wrappers=1:nokey=1 "$input" 2> /dev/null
+    )
+
+    target_bits=$((8 * 1024 * 1024 * 8)) # bytes -> bits
+    total_bitrate=$(echo "$target_bits / $duration" | bc -l)
+    audio_bitrate=32000
+
+    # Video bitrate = total - audio
+    video_bitrate=$(echo "$total_bitrate - $audio_bitrate" | bc -l)
+    video_bitrate_int=$(printf "%.0f" "$video_bitrate")
+
+    # Fast single-pass encode
+    ffmpeg -y -i "$input" \
+        -c:v libx264 -b:v "${video_bitrate_int}" \
+        -preset veryfast -pix_fmt yuv420p \
+        -profile:v baseline -g 60 \
+        -c:a aac -b:a 32k -movflags +faststart \
+        "$output" > /dev/null 2>&1
+
+    # Copy to clipboard
+    cpf "$output"
+    echo "Copied -> $output"
+}
+
+8mb "$1"
