@@ -191,14 +191,6 @@ binds {
     Mod+Shift+Escape hotkey-overlay-title="Keyboard: Toggle floating keyboard" repeat=false { spawn "onscreen-keyboard" "toggle"; }
 
 
-    // Brightness
-    /*
-     * Mod+Semicolon hotkey-overlay-title="Brightness: Down" { spawn "dimland-dynamic" "up"; }
-     * Mod+Apostrophe hotkey-overlay-title="Brightness: Up" { spawn "dimland-dynamic" "down"; }
-     * Mod+Shift+Apostrophe hotkey-overlay-title="Brightness: Reset" { spawn "dimland-dynamic" "stop"; }
-     */
-
-
     // Launcher
     Mod+Return hotkey-overlay-title="Launcher: Alacritty" repeat=false { spawn "alacritty"; }
     Mod+Backslash hotkey-overlay-title="Launcher: Librewolf" repeat=false { spawn "librewolf"; }

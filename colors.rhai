@@ -28,35 +28,6 @@ export const dracula = #{
     primary: "#bd93f9",
 };
 
-export const obsidian = #{
-    foreground: "#bcbcc0",
-    background: "#0b0c0e",
-    wallpaper: "#060708",
-
-    bright: "#dcdce0",
-    dim: "#1a1b1e",
-    dark: "#000000",
-
-    black: "#0f1012",
-    red: "#b84d4d",
-    blue: "#6a82fb",
-    green: "#5fa87e",
-    yellow: "#d1b676",
-    cyan: "#62c6c6",
-    magenta: "#b76bbd",
-    orange: "#d4885f",
-
-    hblack: "#2a2b2f",
-    hred: "#cc6666",
-    hblue: "#809eff",
-    hgreen: "#7ccd9f",
-    hyellow: "#e2c789",
-    hcyan: "#7fdede",
-    hmagenta: "#d192d5",
-
-    primary: "#6a82fb",
-};
-
 export const dark = #{
     foreground: "#FFFFFF",
     background: "#000000",
