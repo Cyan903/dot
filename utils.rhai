@@ -6,28 +6,28 @@ private fn get_host(S) {
         if hosts::devices[host].name == S { return hosts::devices[host]; }
     }
 
-    ""
+    return "";
 };
 
 private fn validate_requires(requirements) {
-    if requirements.len == 0 { return true }
+    if requirements.len == 0 { return true; }
 
     for cmd in requirements {
-        if io::command_available(cmd) { return true }
+        if io::command_available(cmd) { return true; }
     }
 
-    false
+    return false;
 };
 
 private fn validate_hosts(allowed_hosts, host) {
-    allowed_hosts.contains(host)
+    allowed_hosts.contains(host);
 };
 
 private fn validate_tags(allowed_tags, host) {
-    if allowed_tags.len == 0 { return true }
+    if allowed_tags.len == 0 { return true; }
 
     for tag in allowed_tags {
-        if !host.tags.contains(tag) { return false }
+        if !host.tags.contains(tag) { return false; }
     }
 
     return true;
