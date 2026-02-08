@@ -34,6 +34,7 @@ window#waybar {
     background-color: @background;
     color: @foreground;
     border-bottom: 1px solid #141414;
+    border-top: 1px solid #141414;
     border-radius: 0;
 }
 
@@ -70,6 +71,7 @@ button:hover {
 /* Window */
 #window {
     font-weight: bolder;
+    margin-right: 1em;
 }
 
 /* Widgets */
