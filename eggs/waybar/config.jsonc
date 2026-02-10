@@ -193,7 +193,7 @@
 
         // Right
         "niri/window": {
-            "format": "{title:.60}",
+            "format": "{title}",
             "separate-outputs": true,
             "icon": true,
             "icon-size": 16

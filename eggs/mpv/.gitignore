@@ -1,9 +1,5 @@
 /logs/*
 !/logs/.gitkeep
-/bin/logs/*
 
-# Useless
-/.old/*
-/.scripts/*
-*.html
+/bin/logs/*
 
