@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Screenshot utility
-#  --monitor to take a picture of the entire screen
+# --monitor to take a picture of the entire screen
 
 notify() {
     notify-send "Copied to clipboard $1"

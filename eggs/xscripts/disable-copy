@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Disable middle click behavior on X11
-#  https://wiki.archlinux.org/title/clipboard
+# https://wiki.archlinux.org/title/clipboard
 
 while true; do
     xsel -fin < /dev/null

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Kill window by selection
-#  This will forcefully kill the process
+# This will forcefully kill the process
 
 if [[ -z $(pgrep -f "^xdotool selectwindow windowkill$") ]];
     then xdotool selectwindow windowkill &

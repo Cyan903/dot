@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Create a GIF wallpaper and set it as a dynamic background
-#  Reads from ~/Desktop/.wall/
+# Reads from ~/Desktop/.wall/
 
 color="#181920"
 size="1920x1080"

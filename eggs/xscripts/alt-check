@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # osu! alternate trainer
-#  $XDG_DATA_HOME/osuconfig/alt.wav needs to exist
+# $XDG_DATA_HOME/osuconfig/alt.wav needs to exist
 
 xtable=$(xmodmap -pke)
 device=$(xinput --list --long | grep XIKeyClass | head -n 1 | grep -E -o '[0-9]+')

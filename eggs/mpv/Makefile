@@ -5,3 +5,4 @@ clean:
 
 prune: clean
 	@rm -rf ./logs/*
+	@touch ./logs/.gitkeep
