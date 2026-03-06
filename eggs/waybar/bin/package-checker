@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export CHECKUPDATES_DB="/tmp/checkup-db-${UID}-$$" 
+trap "rm -rf $CHECKUPDATES_DB" EXIT
 declare tooltip
 
 # Parse updates
