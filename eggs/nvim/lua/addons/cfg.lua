@@ -13,6 +13,7 @@ M.servers = {
     bashls = {},
     angularls = {},
     checkmake = {},
+    tailwindcss = {},
 
     pylsp = {
         settings = {
@@ -57,14 +58,13 @@ M.servers = {
 M.tools = {
     "stylua",
     "prettierd",
-    "emmet_language_server",
     "shellcheck",
     "ruff",
 }
 
 -- NOTE: Treesitter parsers
 M.treesitter = {
-    ensure_installed = { "bash", "awk", "c" },
+    ensure_installed = { "bash", "awk", "c", "html" },
     indent_disable = { "ruby" },
     vim_regex = { "ruby" },
 }

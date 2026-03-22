@@ -3,6 +3,8 @@
 return {
     "Cyan903/gremlins.nvim",
 
+    enabled = false,
+
     opts = {},
     config = function(_, opts)
         local gremlins = require("gremlins")
