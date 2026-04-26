@@ -395,13 +395,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"mpv$"#
-    match app-id=r#"vesktop$"#
     default-column-width { proportion 0.66667; }
-}
-
-window-rule {
-    match app-id=r#"com.github.th_ch.youtube_music"#
-    default-column-width { proportion 0.33333; }
 }
 
 window-rule {

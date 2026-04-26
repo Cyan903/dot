@@ -7,9 +7,10 @@ DNS="192.168.0.5"
 
 reload() {
     systemctl restart NetworkManager
-    sleep 1 # stupid hack
 
-    printf "\n-> cat /etc/resolv.conf\n"
+    sleep 1 # stupid hack
+    echo
+
     cat /etc/resolv.conf
 }
 
