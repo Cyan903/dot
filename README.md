@@ -1,6 +1,6 @@
-# ~/dot
+# .dotfiles
 
-![code-size](https://img.shields.io/github/languages/code-size/cyan903/dot) ![last-commit](https://img.shields.io/github/last-commit/cyan903/dot)
+![code-size](https://img.shields.io/github/languages/code-size/cyan903/.dotfiles) ![last-commit](https://img.shields.io/github/last-commit/cyan903/.dotfiles)
 
 <p align="center">
     <img src="assets/desktop.png" />

@@ -182,14 +182,16 @@
         "height": 30,
         "spacing": 8,
 
-        "modules-left": ["cffi/niri-taskbar"],
+        /* "modules-left": ["cffi/niri-taskbar"], */
         "modules-right": ["niri/window"],
 
         // Left
+        /*
         "cffi/niri-taskbar": {
             // https://github.com/lawngnome/niri-taskbar
             "module_path": "/usr/lib/waybar/libniri_taskbar.so"
         },
+        */
 
         // Right
         "niri/window": {
