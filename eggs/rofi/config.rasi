@@ -1,11 +1,11 @@
 configuration {
     show-icons: true;
-    display-drun: "";
-    disable-history: false;
+    display-drun: "DRUN";
+    disable-history: true;
 }
 
 * {
-    font: "FreeMono 12";
+    font: "Terminess Nerd Font 12";
     foreground: #FFFFFF; /* {< replace_color(data.colors.foreground) >} */
     background-color: #000000; /* {< replace_color(data.colors.background) >} */
     active-background: #5C5CFF; /* {< replace_color(data.colors.primary) >} */
@@ -21,10 +21,10 @@ configuration {
 
 #window {
     background-color: @background-color;
-    border: 3;
-    border-radius: 6;
+    border: 2;
+    border-radius: 0;
     border-color: @bordercolor;
-    padding: 15;
+    padding: 5;
 }
 
 #mainbox {
@@ -121,7 +121,7 @@ configuration {
 #inputbar {
     spacing: 0;
     text-color: @foreground;
-    padding: 15px 5px;
+    padding: 10px 5px;
 }
 
 #case-indicator {
@@ -136,7 +136,8 @@ configuration {
 
 #prompt {
     spacing: 0;
-    text-color: @foreground;
+    text-color: @info-foreground;
+    text-transform: uppercase;
 }
 
 #inputbar {

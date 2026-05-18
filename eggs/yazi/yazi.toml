@@ -8,4 +8,4 @@ desc = "Add sub to MPV"
 [[open.prepend_rules]]
 name = "*.{ass,srt,ssa,sty,sup,vtt}"
 use  = [ "add-sub", "edit" ]
-
+mime = "text/*"

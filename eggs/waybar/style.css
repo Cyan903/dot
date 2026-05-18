@@ -26,7 +26,7 @@
 @define-color primary #5C5CFF; /* {< replace_color(data.colors.primary) >} */
 
 * {
-    font-family: "UbuntuMono Nerd Font", FontAwesome, FreeMono;
+    font-family: "Terminess Nerd Font", "UbuntuMono Nerd Font", FreeMono;
     font-size: 13px;
 }
 
