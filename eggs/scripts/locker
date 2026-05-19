@@ -3,7 +3,7 @@
 # Lock theme for swaylock
 # https://git.sr.ht/~mvforell/swaylock
 
-font="sans-serif"
+font="Terminess Nerd Font"
 
 bg="#000000" # {< replace_color(data.colors.wallpaper) >}
 fg="#FFFFFF" # {< replace_color(data.colors.foreground) >}
@@ -26,7 +26,7 @@ swaylock \
     --caps-lock-key-hl-color "$green" \
     --key-hl-color "$green" \
     --font "$font" \
-    --font-size "40" \
+    --font-size 40 \
     --indicator-radius "140" \
     --indicator-thickness "12" \
     --indicator-idle-visible \

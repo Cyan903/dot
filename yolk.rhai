@@ -17,6 +17,7 @@ export let eggs = #{
     //
     "scripts": #{
         targets: "~/.local/bin",
+        templates: ["locker"],
         strategy: "merge",
         enabled: utils::enabled(S, #{
             requires: [],
@@ -282,7 +283,7 @@ export let eggs = #{
 
     "waybar": #{
         targets: "~/.config/waybar",
-        templates: ["style.css", "bin/swaylock-wrapper"],
+        templates: ["style.css"],
         enabled: utils::enabled(S, #{
             requires: ["waybar"],
             tags: ["wayland"],

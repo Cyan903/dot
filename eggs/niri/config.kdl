@@ -36,7 +36,7 @@ output "HDMI-A-1" {
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
-        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+        background-color "transparent"
     }
 
     focus-at-startup
@@ -51,7 +51,7 @@ output "DP-2" {
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
-        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+        background-color "transparent"
     }
 }
 
@@ -64,7 +64,7 @@ output "DP-3" {
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
-        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+        background-color "transparent"
     }
 }
 
@@ -77,7 +77,7 @@ output "DP-1" {
     backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
-        background-color "#000000" // {< replace_color(data.colors.wallpaper) >}
+        background-color "transparent"
     }
 }
 
@@ -180,6 +180,7 @@ binds {
 
     // Scripts
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
+    Mod+Alt+L repeat=false allow-when-locked=true { spawn "locker"; }
     Mod+Ctrl+Shift+x repeat=false { spawn "~/.config/niri/bin/kill-focused"; }
 
 
@@ -407,6 +408,11 @@ window-rule {
 
     max-width 300
     max-height 200
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
 }
 
 // Disable unused

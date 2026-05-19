@@ -169,7 +169,7 @@
             "menu": "on-click",
             "menu-file": "$HOME/.config/waybar/res/power_menu.xml",
             "menu-actions": {
-                "lock": "$HOME/.config/waybar/bin/swaylock-wrapper",
+                "lock": "locker",
                 "reboot": "reboot",
                 "shutdown": "shutdown now"
             }
