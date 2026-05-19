@@ -32,5 +32,5 @@ color="green"
 [[ "$added" -lt "$MAX" ]] && color="red"
 
 # Print as JSON
-echo "{\"text\": \"  ${new}x (<span color='$color'>+$added</span>)\", \"tooltip\": \"<span weight='bold'>New:</span> ${new}x ⏽ <span weight='bold'>Added:</span> ${added}x\"}"
+echo "{\"text\": \"${new}x (<span color='$color'>+$added</span>)\", \"tooltip\": \"<span weight='bold'>New:</span> ${new}x ⏽ <span weight='bold'>Added:</span> ${added}x\"}"
 

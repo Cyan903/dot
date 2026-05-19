@@ -27,32 +27,29 @@
 
 * {
     font-family: "Terminess Nerd Font", "UbuntuMono Nerd Font", FreeMono;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 window#waybar {
     background-color: @background;
     color: @foreground;
-    border-bottom: 1px solid #141414;
-    border-top: 1px solid #141414;
     border-radius: 0;
 }
 
 button {
-    box-shadow: inset 0 -2px transparent;
     border: none;
     border-radius: 0;
 }
 
 button:hover {
     opacity: 0.9;
-    box-shadow: inset 0 -2px @foreground;
+    font-weight: bolder;
 }
 
 /* Workspaces */
 #workspaces button {
     padding: 0 5px;
-    background-color: transparent;
+    opacity: 0.4;
 }
 
 #workspaces button.focused {
@@ -60,12 +57,11 @@ button:hover {
 }
 
 #workspaces button.active {
-    background-color: @wallpaper;
-    box-shadow: inset 0 -2px @foreground;
+    opacity: 1.0;
 }
 
 #workspaces button.urgent {
-    background-color: @red;
+    color: @red;
 }
 
 /* Window */
@@ -132,7 +128,8 @@ button:hover {
 }
 
 #custom-niri-actions {
-    margin: 5px 0;
+    padding-left: 0.5em;
+    padding-right: 1em;
 }
 
 #custom-power {

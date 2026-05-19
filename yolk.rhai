@@ -283,7 +283,7 @@ export let eggs = #{
 
     "waybar": #{
         targets: "~/.config/waybar",
-        templates: ["style.css"],
+        templates: ["style.css", "config.jsonc"],
         enabled: utils::enabled(S, #{
             requires: ["waybar"],
             tags: ["wayland"],

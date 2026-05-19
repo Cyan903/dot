@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "top",
-        "height": 30,
+        "height": 25,
         "spacing": 8,
 
         "modules-left": ["niri/workspaces"],
@@ -123,7 +123,7 @@
             "exec": "$HOME/.config/waybar/bin/anki-new",
             "return-type": "json",
             "interval": 60,
-            "format": "{text}",
+            "format": "  {text}",
             "tooltip": true
         },
 
@@ -131,7 +131,7 @@
             "exec": "$HOME/.config/waybar/bin/dim-checker",
             "return-type": "json",
             "interval": 10,
-            "format": "{}",
+            "format": "󰃝  {text}",
             "tooltip": false,
             "signal": 11,
             "on-scroll-up": "$HOME/.config/waybar/ext/dim-toggle pre -0.01",
@@ -179,7 +179,7 @@
     {
         "layer": "top",
         "position": "bottom",
-        "height": 30,
+        "height": 25,
         "spacing": 8,
 
         /* "modules-left": ["cffi/niri-taskbar"], */
