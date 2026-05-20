@@ -1,213 +1,191 @@
-[
-    {
-        "layer": "top",
-        "position": "top",
-        "height": 25,
-        "spacing": 8,
+{
+    "layer": "top",
+    "position": "top",
+    "height": 25,
+    "spacing": 8,
 
-        "modules-left": ["niri/workspaces"],
-        "modules-center": [],
-        "modules-right": [
-            "tray",
-            "privacy",
+    "margin-top": 5,
+    "margin-left": 22,
+    "margin-right": 22,
 
-            "custom/niri-actions",
-            "custom/pihole",
-            "bluetooth",
-            "cpu",
-            "memory",
-            "pulseaudio",
+    "reload_style_on_change": true,
 
-            "custom/anki",
-            "custom/dim",
-            "custom/packages",
-            "custom/muted",
-            "custom/clock",
-            "custom/power"
-        ],
+    "modules-left": ["niri/workspaces"],
+    "modules-center": [],
+    "modules-right": [
+        "tray",
+        "privacy",
 
-        // Left
-        "niri/workspaces": {
-            "format": "{value}"
-        },
+        "custom/niri-actions",
+        "custom/pihole",
+        "bluetooth",
+        "cpu",
+        "memory",
+        "pulseaudio",
 
-        // Right
-        "tray": {
-            "icon-size": 12,
-            "spacing": 10,
-            "show-passive-items": true
-        },
+        "custom/anki",
+        "custom/dim",
+        "custom/packages",
+        "custom/muted",
+        "custom/clock",
+        "custom/power"
+    ],
 
-        "privacy": {
-            "icon-spacing": 4,
-            "icon-size": 12,
-            "transition-duration": 0,
-            "ignore-monitor": true,
-            "modules": [
-                {
-                    "type": "screenshare",
-                    "tooltip": true,
-                    "tooltip-icon-size": 24
-                },
+    // Left
+    "niri/workspaces": {
+        "format": "{value}"
+    },
 
-                {
-                    "type": "audio-in",
-                    "tooltip": true,
-                    "tooltip-icon-size": 24
-                }
-            ]
-        },
+    // Right
+    "tray": {
+        "icon-size": 12,
+        "spacing": 10,
+        "show-passive-items": true
+    },
 
-        "custom/niri-actions": {
-            "format" : "",
-            "tooltip": false,
-            "menu": "on-click",
-            "menu-file": "$HOME/.config/waybar/res/niri_menu.xml",
-            "menu-actions": {
-                "toggle-overview": "niri msg action toggle-overview",
-                "center-column": "niri msg action center-column",
-                "maximize-column": "niri msg action maximize-column",
-                "switch-preset-column-width": "niri msg action switch-preset-column-width",
-                "expand-column-to-available-width": "niri msg action expand-column-to-available-width",
-                "toggle-window-floating": "niri msg action toggle-window-floating",
-                "fullscreen-window": "niri msg action fullscreen-window",
-                "reset-window-height": "niri msg action reset-window-height",
-                "close-window": "niri msg action close-window"
-            }
-        },
-
-        "custom/pihole": {
-            "format" : "<span color='{text}'>󰷱</span>",
-            "tooltip": false,
-            "exec": "$HOME/.config/waybar/bin/pihole-checker",
-            "return-type": "json",
-            "interval": 60,
-            "on-click": "$HOME/.config/waybar/ext/pihole-toggle",
-            "signal": 12
-        },
-
-        "bluetooth": {
-            "format": " {num_connections}x",
-            "format-connected": " {num_connections}x",
-            "format-disabled": "",
-            "tooltip-format": "{controller_alias}\t{controller_address}",
-            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-        },
-
-        "cpu": {
-            "interval": 20,
-            "format": "  {usage}%"
-        },
-
-        "memory": {
-            "interval": 30,
-            "format": "  {}%"
-        },
-
-        "pulseaudio": {
-            "format": "{icon} {volume}%",
-            "format-muted": "󰖁  0%",
-            "format-icons": {
-                "headphone": " ",
-                "hands-free": " ",
-                "headset": " ",
-                "phone": " ",
-                "portable": " ",
-                "car": " ",
-                "default": [
-                    "",
-                    "",
-                    " "
-                ]
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 12,
+        "transition-duration": 0,
+        "ignore-monitor": true,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
             },
 
-            "on-click-right": "pavucontrol -t 3",
-            "on-click": "pactl -- set-sink-mute 0 toggle",
-            "tooltip": true,
-            "tooltip-format": "  {volume}% ⏽  {format_source}"
-        },
-
-        "custom/anki": {
-            "exec": "$HOME/.config/waybar/bin/anki-new",
-            "return-type": "json",
-            "interval": 60,
-            "format": "  {text}",
-            "tooltip": true
-        },
-
-        "custom/dim": {
-            "exec": "$HOME/.config/waybar/bin/dim-checker",
-            "return-type": "json",
-            "interval": 10,
-            "format": "󰃝  {text}",
-            "tooltip": false,
-            "signal": 11,
-            "on-scroll-up": "$HOME/.config/waybar/ext/dim-toggle pre -0.01",
-            "on-scroll-down": "$HOME/.config/waybar/ext/dim-toggle pre 0.01"
-        },
-
-        "custom/packages": {
-            "exec": "$HOME/.config/waybar/bin/package-checker",
-            "return-type": "json",
-            "interval": 300,
-            "format": "  {text}",
-            "tooltip": true
-        },
-
-        "custom/muted": {
-            "exec": "$HOME/.config/waybar/bin/mute-checker",
-            "return-type": "json",
-            "interval": 60,
-            "format": "{}",
-            "tooltip": true,
-            "signal": 10
-        },
-
-        "custom/clock": {
-            "exec": "$HOME/.config/waybar/bin/timezone-clock",
-            "return-type": "json",
-            "interval": 1,
-            "format": "{text}",
-            "tooltip": true
-        },
-
-        "custom/power": {
-            "format" : "⏻",
-            "tooltip": false,
-            "menu": "on-click",
-            "menu-file": "$HOME/.config/waybar/res/power_menu.xml",
-            "menu-actions": {
-                "lock": "locker",
-                "reboot": "reboot",
-                "shutdown": "shutdown now"
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
             }
+        ]
+    },
+
+    "custom/niri-actions": {
+        "format" : "",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/res/niri_menu.xml",
+        "menu-actions": {
+            "toggle-overview": "niri msg action toggle-overview",
+            "center-column": "niri msg action center-column",
+            "maximize-column": "niri msg action maximize-column",
+            "switch-preset-column-width": "niri msg action switch-preset-column-width",
+            "expand-column-to-available-width": "niri msg action expand-column-to-available-width",
+            "toggle-window-floating": "niri msg action toggle-window-floating",
+            "fullscreen-window": "niri msg action fullscreen-window",
+            "reset-window-height": "niri msg action reset-window-height",
+            "close-window": "niri msg action close-window"
         }
     },
 
-    {
-        "layer": "top",
-        "position": "bottom",
-        "height": 25,
-        "spacing": 8,
+    "custom/pihole": {
+        "format" : "󰷱",
+        "tooltip": false,
+        "exec": "$HOME/.config/waybar/bin/pihole-checker",
+        "return-type": "json",
+        "interval": 60,
+        "on-click": "$HOME/.config/waybar/ext/pihole-toggle",
+        "signal": 12
+    },
 
-        /* "modules-left": ["cffi/niri-taskbar"], */
-        "modules-right": ["niri/window"],
+    "bluetooth": {
+        "format": " {num_connections}x",
+        "format-connected": " {num_connections}x",
+        "format-disabled": "",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
 
-        // Left
-        /*
-        "cffi/niri-taskbar": {
-            // https://github.com/lawngnome/niri-taskbar
-            "module_path": "/usr/lib/waybar/libniri_taskbar.so"
+    "cpu": {
+        "interval": 20,
+        "format": "  {usage}%"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "  {}%"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁  0%",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                "",
+                "",
+                " "
+            ]
         },
-        */
 
-        // Right
-        "niri/window": {
-            "format": "{title}",
-            "separate-outputs": true,
-            "icon": true,
-            "icon-size": 16
+        "on-click-right": "pavucontrol -t 3",
+        "on-click": "pactl -- set-sink-mute 0 toggle",
+        "tooltip": true,
+        "tooltip-format": "  {volume}% ⏽  {format_source}"
+    },
+
+    "custom/anki": {
+        "exec": "$HOME/.config/waybar/bin/anki-new",
+        "return-type": "json",
+        "interval": 60,
+        "format": "  {text}",
+        "tooltip": true
+    },
+
+    "custom/dim": {
+        "exec": "$HOME/.config/waybar/bin/dim-checker",
+        "return-type": "json",
+        "interval": 10,
+        "format": "󰃝  {text}",
+        "tooltip": false,
+        "signal": 11,
+        "on-scroll-up": "$HOME/.config/waybar/ext/dim-toggle pre -0.01",
+        "on-scroll-down": "$HOME/.config/waybar/ext/dim-toggle pre 0.01"
+    },
+
+    "custom/packages": {
+        "exec": "$HOME/.config/waybar/bin/package-checker",
+        "return-type": "json",
+        "interval": 300,
+        "format": "  {text}",
+        "tooltip": true
+    },
+
+    "custom/muted": {
+        "exec": "$HOME/.config/waybar/bin/mute-checker",
+        "return-type": "json",
+        "interval": 60,
+        "format": "{}",
+        "tooltip": true,
+        "signal": 10
+    },
+
+    "custom/clock": {
+        "exec": "$HOME/.config/waybar/bin/timezone-clock",
+        "return-type": "json",
+        "interval": 1,
+        "format": "{text}",
+        "tooltip": true
+    },
+
+    "custom/power": {
+        "format" : "⏻",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/res/power_menu.xml",
+        "menu-actions": {
+            "lock": "locker",
+            "reboot": "reboot",
+            "shutdown": "shutdown now"
         }
     }
-]
+}

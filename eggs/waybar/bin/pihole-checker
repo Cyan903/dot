@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if pihole status
-    then echo '{"text": "green"}'
-    else echo '{"text": "red"}'
+    then echo '{"class": "enabled"}'
+    else echo '{"class": "disabled"}'
 fi
 

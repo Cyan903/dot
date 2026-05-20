@@ -30,30 +30,24 @@
     font-size: 14px;
 }
 
-window#waybar {
-    background-color: @background;
-    color: @foreground;
-    border-radius: 0;
+window {
+    background-color: transparent;
 }
 
-button {
-    border: none;
-    border-radius: 0;
+window#waybar {
+    background-color: @wallpaper;
+    color: @foreground;
+    font-weight: bolder;
 }
 
 button:hover {
     opacity: 0.9;
-    font-weight: bolder;
 }
 
 /* Workspaces */
 #workspaces button {
     padding: 0 5px;
-    opacity: 0.4;
-}
-
-#workspaces button.focused {
-    font-weight: bolder;
+    opacity: 0.35;
 }
 
 #workspaces button.active {
@@ -66,7 +60,6 @@ button:hover {
 
 /* Window */
 #window {
-    font-weight: bolder;
     margin-right: 1em;
 }
 
@@ -75,7 +68,6 @@ button:hover {
 #privacy,
 #bluetooth,
 #cpu,
-#temperature,
 #memory,
 #pulseaudio,
 #custom-dim,
@@ -88,14 +80,12 @@ button:hover {
     margin: 6px 0;
     padding: 3px 5px;
     border-radius: 2px;
-    font-weight: bolder;
 }
 
 #tray:hover,
 #privacy:hover,
 #bluetooth:hover,
 #cpu:hover,
-#temperature:hover,
 #memory:hover,
 #pulseaudio:hover,
 #custom-dim:hover,
@@ -105,7 +95,7 @@ button:hover {
 #custom-power:hover,
 #custom-niri-actions:hover,
 #custom-pihole:hover {
-    background-color: @wallpaper;
+    background-color: @background;
 }
 
 /* Tray & Privacy */
@@ -123,6 +113,20 @@ button:hover {
     color: @foreground;
 }
 
+/* Pihole */
+#custom-pihole {
+    font-size: 20px;
+    padding: 0 0.3em;
+}
+
+#custom-pihole.disabled {
+    color: @red;
+}
+
+#custom-pihole.enabled {
+    color: @green;
+}
+
 /* Power & Actions */
 #custom-power {
     margin-right: 10px;
@@ -134,11 +138,15 @@ button:hover {
     padding-right: 1em;
 }
 
-#custom-pihole {
-    font-size: 20px;
-    padding: 0 0.3em;
-}
-
 #custom-power {
     color: @primary;
 }
+
+/* Colors */
+#bluetooth { color: @blue; }
+#cpu { color: @red; }
+#memory { color: @orange; }
+#pulseaudio { color: @cyan; }
+#custom-anki { color: @foreground; }
+#custom-dim { color: @magenta; }
+#custom-packages { color: @green; }

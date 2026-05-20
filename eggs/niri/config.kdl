@@ -410,9 +410,23 @@ window-rule {
     max-height 200
 }
 
+// Layer rules
 layer-rule {
     match namespace="^wallpaper$"
     place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="waybar"
+
+    shadow {
+        on
+        softness 20
+        spread 2
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000088"
+    }
 }
 
 // Disable unused
