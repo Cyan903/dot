@@ -12,6 +12,7 @@
             "privacy",
 
             "custom/niri-actions",
+            "custom/pihole",
             "bluetooth",
             "cpu",
             "memory",
@@ -75,6 +76,16 @@
             }
         },
 
+        "custom/pihole": {
+            "format" : "<span color='{text}'>󰷱</span>",
+            "tooltip": false,
+            "exec": "$HOME/.config/waybar/bin/pihole-checker",
+            "return-type": "json",
+            "interval": 60,
+            "on-click": "$HOME/.config/waybar/ext/pihole-toggle",
+            "signal": 12
+        },
+
         "bluetooth": {
             "format": " {num_connections}x",
             "format-connected": " {num_connections}x",
@@ -86,14 +97,12 @@
 
         "cpu": {
             "interval": 20,
-            "format": "  {usage}%",
-            "max-length": 100
+            "format": "  {usage}%"
         },
 
         "memory": {
             "interval": 30,
-            "format": "  {}%",
-            "max-length": 10
+            "format": "  {}%"
         },
 
         "pulseaudio": {

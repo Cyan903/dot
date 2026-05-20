@@ -83,7 +83,8 @@ button:hover {
 #custom-packages,
 #custom-clock,
 #custom-power,
-#custom-niri-actions {
+#custom-niri-actions,
+#custom-pihole {
     margin: 6px 0;
     padding: 3px 5px;
     border-radius: 2px;
@@ -102,7 +103,8 @@ button:hover {
 #custom-packages:hover,
 #custom-clock:hover,
 #custom-power:hover,
-#custom-niri-actions:hover {
+#custom-niri-actions:hover,
+#custom-pihole:hover {
     background-color: @wallpaper;
 }
 
@@ -130,6 +132,11 @@ button:hover {
 #custom-niri-actions {
     padding-left: 0.5em;
     padding-right: 1em;
+}
+
+#custom-pihole {
+    font-size: 20px;
+    padding: 0 0.3em;
 }
 
 #custom-power {

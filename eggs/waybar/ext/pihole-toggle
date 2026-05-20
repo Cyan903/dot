@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if pihole status
+    then pkexec pihole disable
+    else pkexec pihole enable
+fi
+
+pkill -RTMIN+12 waybar
+

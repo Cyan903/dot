@@ -39,25 +39,46 @@ disable() {
     exit 0
 }
 
+status() {
+    grep "$DNS" /etc/resolv.conf > /dev/null
+    exit $!
+}
+
+alive() {
+    ping -c 1 "$DNS" > /dev/null
+    exit $!
+}
+
 usage() {
     cat <<EOF
 Manage pi.hole DNS
 
-Usage: pihole [enable/disable]
+Usage: pihole [enable/disable/status/ping]
 
 Options:
   enable    enable the pi.hole DNS
   disable   disable the pi.hole DNS
+  status    check if pi.hole DNS is set
+  alive     check if pi.hole is alive
   help      display help
 EOF
 }
 
-# Parse arguments
-[[ "$EUID" == 0 ]] || exec sudo -s "$0" "$@"
 
+# Parse arguments
 case $1 in
-    enable) enable ;;
-    disable) disable ;;
+    enable)
+        [[ "$EUID" == 0 ]] || exec sudo -s "$0" "$@"
+        enable
+    ;;
+
+    disable)
+        [[ "$EUID" == 0 ]] || exec sudo -s "$0" "$@"
+        disable
+    ;;
+
+    status) status ;;
+    alive) alive ;;
 
     *)
         usage
