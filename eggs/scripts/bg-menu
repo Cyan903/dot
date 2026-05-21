@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# Menu for swapping wallpapers
+# Requires swaybg
+
+BGS="$HOME/Pictures/Wallpapers"
+
+err() {
+    echo "Error - $1" 1>&2
+    exit 1
+}
+
+load() {
+    killall swaybg
+
+    if [[ ! -e "$BGS/.default" ]]; then
+        swaybg -i "$(find "$BGS"/* | sort -R | head -n 1)"
+        exit 0
+    fi
+
+    swaybg -i "$BGS/.default"
+}
+
+change() {
+    selection=$(
+        for a in "$BGS"/*; do
+            echo -en "$(basename "$a")\0icon\x1f$a\n"
+        done | rofi -dmenu -disable-history -p "Wallpaper"
+    )
+
+    [[ -z "$selection" ]] && err "No selection."
+    [[ ! -e "$BGS/$selection" ]] && err "File does not exist?"
+
+    cp "$BGS/$selection" "$BGS/.default"
+    load
+}
+
+usage() {
+    cat <<EOF
+Wallpaper Menu
+
+Usage: bg-menu [options]
+
+Options:
+  load    load the default wallpaper - random if default is not set
+  change  set and load the default wallpaper
+  help    display help
+EOF
+}
+
+# Check if directory is valid
+[[ ! -d "$BGS"  ]] && err "'$BGS' not found."
+
+case $1 in
+    load) load ;;
+    change) change ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac

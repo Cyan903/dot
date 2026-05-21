@@ -12,7 +12,7 @@ EXEC=$(which smb-manager)
 
 # Parse input
 mapfile -t MENU < <(echo "$DATA" | awk -F "$DELIM" '{ print $1 " [" $2 "]" }')
-selected=$(printf "%s\n" "${MENU[@]}" | rofi -dmenu -p "Select SMB share")
+selected=$(printf "%s\n" "${MENU[@]}" | rofi -dmenu -disable-history -p "Select SMB share")
 
 # Handle toggle
 trigger() {

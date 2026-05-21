@@ -189,3 +189,35 @@
         }
     }
 }
+
+/*
+[
+    {
+        "layer": "top",
+        "position": "bottom",
+        "height": 25,
+        "spacing": 8,
+
+        "margin-bottom": 5,
+        "margin-left": 22,
+        "margin-right": 22,
+
+        // "modules-left": ["cffi/niri-taskbar"],
+        "modules-right": ["niri/window"],
+
+        // Left
+        // "cffi/niri-taskbar": {
+        //     // https://github.com/lawngnome/niri-taskbar
+        //     "module_path": "/usr/lib/waybar/libniri_taskbar.so"
+        // },
+
+        // Right
+        "niri/window": {
+            "format": "{title}",
+            "separate-outputs": true,
+            "icon": true,
+            "icon-size": 16
+        }
+    }
+]
+*/

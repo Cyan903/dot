@@ -35,7 +35,7 @@ window {
 }
 
 window#waybar {
-    background-color: @wallpaper;
+    background-color: @background;
     color: @foreground;
     font-weight: bolder;
 }
@@ -80,6 +80,7 @@ button:hover {
     margin: 6px 0;
     padding: 3px 5px;
     border-radius: 2px;
+    opacity: 0.8;
 }
 
 #tray:hover,
@@ -95,7 +96,8 @@ button:hover {
 #custom-power:hover,
 #custom-niri-actions:hover,
 #custom-pihole:hover {
-    background-color: @background;
+    background-color: @wallpaper;
+    opacity: 1;
 }
 
 /* Tray & Privacy */
@@ -141,12 +143,3 @@ button:hover {
 #custom-power {
     color: @primary;
 }
-
-/* Colors */
-#bluetooth { color: @blue; }
-#cpu { color: @red; }
-#memory { color: @orange; }
-#pulseaudio { color: @cyan; }
-#custom-anki { color: @foreground; }
-#custom-dim { color: @magenta; }
-#custom-packages { color: @green; }

@@ -180,8 +180,10 @@ binds {
 
     // Scripts
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
-    Mod+Alt+L repeat=false allow-when-locked=true { spawn "locker"; }
     Mod+Ctrl+Shift+x repeat=false { spawn "~/.config/niri/bin/kill-focused"; }
+
+    Mod+Alt+L hotkey-overlay-title="Scripts: Lockscreen" repeat=false allow-when-locked=true { spawn "locker"; }
+    Mod+Ctrl+W hotkey-overlay-title="Scripts: Wallpaper" repeat=false allow-when-locked=false { spawn "bg-menu" "change"; }
 
 
     // Waybar: Scripts
@@ -441,6 +443,7 @@ prefer-no-csd
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
 spawn-at-startup "rofi-polkit-agent"
+spawn-at-startup "bg-menu" "load"
 
 // For xwayland-satellite
 environment {
