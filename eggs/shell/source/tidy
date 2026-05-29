@@ -36,3 +36,4 @@ export W3M_DIR="$XDG_STATE_HOME"/w3m
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias gpg2="gpg2 --homedir "$XDG_DATA_HOME"/gnupg"
 
+# vim: ft=sh

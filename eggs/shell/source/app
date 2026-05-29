@@ -11,3 +11,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# vim: ft=sh

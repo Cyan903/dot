@@ -10,3 +10,5 @@ if [[ $(tty) = "/dev/tty1" ]]; then
         #<yolk> pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
     # {% end %}
 fi
+
+# vim: ft=sh

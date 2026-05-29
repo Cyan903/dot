@@ -2,3 +2,4 @@
 # Execute if shell is interactive and supports colors
 #
 
+# vim: ft=sh

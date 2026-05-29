@@ -19,3 +19,5 @@ __prompt_exec() {
 }
 
 [ "$BASH_VERSION" ] && PROMPT_COMMAND=__prompt_exec
+
+# vim: ft=sh

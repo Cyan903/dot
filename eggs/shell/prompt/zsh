@@ -17,3 +17,5 @@ source "$HOME"/.config/shell/prompt/_ps
     __prompt_command
     PROMPT="$__PROMPT"
 }
+
+# vim: ft=sh

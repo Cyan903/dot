@@ -9,3 +9,5 @@ export PATH=$PATH:"$HOME"/.local/bin
 . "$SHELL_DIRECTORY_CONFIG"/source/tidy
 . "$SHELL_DIRECTORY_CONFIG"/source/alias
 . "$SHELL_DIRECTORY_CONFIG"/source/app
+
+# vim: ft=sh

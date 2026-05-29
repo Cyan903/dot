@@ -19,3 +19,4 @@ if [[ -z "$XDG_CACHE_HOME" ]]; then
     export XDG_CACHE_HOME="$HOME"/.cache
 fi
 
+# vim: ft=sh
