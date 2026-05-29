@@ -345,7 +345,7 @@ function sub_selector:download(menu_item)
 end
 
 function loader:run(backend)
-    mp.osd_message("Running mpv-subversive", 1)
+    mp.osd_message("Running Subversive", 1)
     local dir, fn = mpu.split_path(mp.get_property("path"))
     local normalized_dir = mp.command_native({ "normalize-path", dir })
     local show_name, episode = backend:parse_current_file(fn)
