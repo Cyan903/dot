@@ -97,7 +97,7 @@ function show_selector:cache_lookup(anilist_data)
     if not self.backend.enable_lookup_caching then
         return
     end
-    local dir, _ = mpu.split_path(mp.get_property("path"))
+    local dir, _ = mpu.split_path(os.getenv("MPV_PLAYLIST_PATH") or mp.get_property("path"))
     local normalized_dir = mp.command_native({ "normalize-path", dir })
     for _, media_blacklist_dir in pairs(self.backend.media_blacklist) do
         if normalized_dir == media_blacklist_dir then
@@ -268,7 +268,7 @@ function sub_selector:choose_item(menu_item)
     end
     mp.osd_message(string.format("chose: %s", menu_item.subtitle.name), 2)
     if self.backend.chosen_sub_dir and #self.backend.chosen_sub_dir > 0 then
-        local dir, fn = mpu.split_path(mp.get_property("path"))
+        local dir, fn = mpu.split_path(os.getenv("MPV_PLAYLIST_PATH") or mp.get_property("path"))
         local sub_path = self.backend.chosen_sub_dir
         if sub_path:sub(1, 1) == '.' then -- relative path
             sub_path = dir .. '/' .. sub_path .. '/'
@@ -346,7 +346,7 @@ end
 
 function loader:run(backend)
     mp.osd_message("Running Subversive", 1)
-    local dir, fn = mpu.split_path(mp.get_property("path"))
+    local dir, fn = mpu.split_path(os.getenv("MPV_PLAYLIST_PATH") or mp.get_property("path"))
     local normalized_dir = mp.command_native({ "normalize-path", dir })
     local show_name, episode = backend:parse_current_file(fn)
     local initial_show_info = {

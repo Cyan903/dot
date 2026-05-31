@@ -1,0 +1,183 @@
+#!/usr/bin/env bash
+
+# Stream from megaplay.buzz
+# Requires mpv and rofi
+
+declare title episodes id_ani id_mal
+
+CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/mpvani-cache"
+AGENT="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:151.0) Gecko/20100101 Firefox/151.0"
+SEP=$'\x1F'
+ANILIST='
+    query ($search: String) {
+        Page(perPage: 10) {
+            media(search: $search, type: ANIME) {
+                id
+                idMal
+                episodes
+                title {
+                    english
+                    native
+                }
+            }
+        }
+    }
+'
+
+## Utility Functions
+err() {
+    notify-send "Error - $1"
+    echo "Error - $1" 1>&2
+    exit 1
+}
+
+msg() { echo "=> $1"; notify-send "$1"; }
+log() { echo "-> $1"; }
+
+sanitize_file_name() {
+    echo -n "$1" | perl -pe 's/[\?\[\]\/\\=<>:;,''"&\$#*()|~`!{}%+]//g;' -pe 's/[\r\n\t -]+/-/g;'
+}
+
+## Megaplay Functions
+get_id() {
+    log "checking $1 - '$2 ($3)'"
+
+    page=$(
+        curl -Ss "https://megaplay.buzz/stream/$1/$2/$3/sub" --compressed \
+            -H "$AGENT" \
+            -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+            -H 'Accept-Language: en-US,en;q=0.9' \
+            -H 'Accept-Encoding: gzip, deflate, br, zstd' \
+            -H 'Sec-GPC: 1' \
+            -H 'Alt-Used: megaplay.buzz' \
+            -H 'Connection: keep-alive' \
+            -H 'Referer: https://megaplay.buzz/api' \
+            -H 'Upgrade-Insecure-Requests: 1' \
+            -H 'Sec-Fetch-Dest: iframe' \
+            -H 'Sec-Fetch-Mode: navigate' \
+            -H 'Sec-Fetch-Site: same-origin' \
+            -H 'Sec-Fetch-User: ?1' \
+            -H 'Priority: u=4' \
+            -H 'TE: trailers'
+    )
+
+    real_id=$(printf '%s' "$page" | grep -oP 'data-id="\K[0-9]+' | head -n1)
+}
+
+get_stream() {
+    sources=$(curl -Ss --fail "https://megaplay.buzz/stream/getSources?id=$1" --compressed \
+        -H "$AGENT" \
+        -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+        -H 'Accept-Language: en-US,en;q=0.9' \
+        -H 'Accept-Encoding: gzip, deflate, br, zstd' \
+        -H 'X-Requested-With: XMLHttpRequest' \
+        -H 'Sec-GPC: 1' \
+        -H 'Connection: keep-alive' \
+        -H 'Referer: https://megaplay.buzz/' \
+        -H 'Sec-Fetch-Dest: empty' \
+        -H 'Sec-Fetch-Mode: cors' \
+        -H 'Sec-Fetch-Site: same-origin' \
+        -H 'TE: trailers'
+    ) || err "Failed to fetch sources!"
+
+    if ! printf "%s" "$sources" | jq -e . >/dev/null 2>&1
+        then err "Invalid sources!"
+    fi
+
+    printf "%s" "$sources" | jq -r ".sources.file"
+}
+
+## Main Functions
+download() {
+    res=$(curl -s -X POST https://graphql.anilist.co \
+        -H 'Content-Type: application/json' \
+        -d "$(jq -n --arg q "$1" --argjson vars '{ "search":null }' \
+            '{ query: $ARGS.positional[0], variables: { search: $q } }' --args "$ANILIST")"
+    )
+
+    items=$(echo "$res" | jq -r --arg sep "$SEP" '
+        .data.Page.media[] | (
+            (.title.english // .title.native) + " — " +
+            (if .episodes then (.episodes|tostring + " eps") else "?? eps" end)
+        ) + $sep + (
+            {
+                title: (.title.english // .title.native),
+                id_ani: (.id|tostring),
+                id_mal: (.idMal|tostring // ""),
+                episodes: (.episodes // null)
+            } | @json
+        )
+    ')
+
+    # Parse choice
+    [[ -z "$items" ]] && err "No results found!"
+
+    label=$(
+        printf "%s\n" "$items" | cut -d "$SEP" -f1 | rofi -dmenu -disable-history -p "Anime"
+    )
+
+    [[ -z "$label" ]] && exit 0
+
+    # Extract information
+    selected_json=$(
+        printf "%s\n" "$items" | awk -F "$SEP" -v L="$label" '$1==L{print $2; exit}'
+    )
+
+    title=$(jq -r ".title" <<< "$selected_json")
+    episodes=$(jq -r '.episodes // "??"' <<< "$selected_json")
+    id_ani=$(jq -r ".id_ani" <<< "$selected_json")
+    id_mal=$(jq -r ".id_mal" <<< "$selected_json")
+
+    log "found: '$title [A:$id_ani M:$id_mal #:$episodes]'"
+
+    # Validate information
+    [[ -z "$title" ]] && err "No title!"
+    [[ -z "$id_ani" && -z "$id_mal" ]] && err "No ID!"
+    [[ -z "$episodes" ]] && err "No episodes!"
+
+    # Create data
+    out_m3u="$(sanitize_file_name "$title").m3u"
+    out_dir="$CACHE/$(sanitize_file_name "$title $(date +"%a %d, %-l:%M%P")")"
+
+    mkdir -p "$out_dir" ; log "created '$out_dir'"
+    [[ ! -z "$id_ani" ]] && echo "$id_ani" > "$out_dir/.anilist.id"
+
+    # Save IDs
+    for ((i = 1; i <= episodes; i++)); do
+        real_id=""
+
+        [[ -z "$real_id" ]] && get_id mal "$id_mal" "$i"
+        [[ -z "$real_id" ]] && get_id ani "$id_ani" "$i"
+        [[ -z "$real_id" ]] && err "Could not find true ID!"
+
+        get_stream "$real_id" >> "$out_dir/$out_m3u"
+        log "saved stream $real_id #$i"
+    done
+
+    watch "$title" "$out_dir/$out_m3u"
+}
+
+watch() {
+    [[ -z "$2" ]] && err "File not found!"
+
+    MPV_PLAYLIST_PATH="$2" mpv \
+        --http-header-fields="$AGENT,Accept: */*,Accept-Language: en-US,en;q=0.9,Accept-Encoding: gzip, deflate, br, zstd,Origin: https://megaplay.buzz,Sec-GPC: 1,Connection: keep-alive,Referer: https://megaplay.buzz/,Sec-Fetch-Dest: empty,Sec-Fetch-Mode: cors,Sec-Fetch-Site: cross-site" \
+        --title="$1" \
+        --force-media-title="$1" \
+        "$2"
+}
+
+init() {
+    [[ ! -d "$CACHE" ]] && mkdir -p "$CACHE"
+
+    query=$(ls "$CACHE" | rofi -dmenu -disable-history -p "C-Enter to Search")
+
+    [[ -z "$query" ]] && exit 0
+
+    if [[ -d "$CACHE/$query" ]]
+        then watch "$query" "$CACHE/$query"/*.m3u
+        else download "$query"
+    fi
+}
+
+init
