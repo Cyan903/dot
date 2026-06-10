@@ -45,9 +45,9 @@ Options:
   help      display help
 
 Alternative:
-  systemctl --user ws-clipboard start
-  systemctl --user ws-clipboard stop
-  systemctl --user ws-clipboard status
+  systemctl --user start ws-clipboard
+  systemctl --user stop ws-clipboard
+  systemctl --user status ws-clipboard
 EOF
 }
 
