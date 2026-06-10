@@ -1,0 +1,13 @@
+[Unit]
+Description=Clipboard WebSocket Server
+After=graphical-session.target
+Requires=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/ws-clipboard watch
+ExecStop=%h/.local/bin/ws-clipboard clean
+Restart=no
+RemainAfterExit=no
+
+[Install]

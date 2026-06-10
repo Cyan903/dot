@@ -37,6 +37,17 @@ validate() {
     fi
 }
 
+cleanup() {
+    # Valid path?
+    [[ -z "$SHARE" ]] && return
+    [[ ! -d "$ROOT/$SHARE" ]] && return
+
+    # Not mounted?
+    mount | grep -i cifs | grep "$ROOT/$SHARE" > /dev/null && return
+
+    rmdir "$ROOT/$SHARE"
+}
+
 # Manage smb
 smb_mount() {
     if mount | grep -i cifs | grep "$ROOT/$SHARE" > /dev/null; then
@@ -45,16 +56,20 @@ smb_mount() {
 
     mkdir -p "$ROOT/$SHARE"
     chown "$U_ID":"$G_ID" "$ROOT/$SHARE"
+    trap cleanup EXIT
 
     if [[ -z "$USER" || -z "$PASS" || "$USER" == "null" || "$PASS" == "null" ]]; then
         mount -t cifs "//$SERVER/$SHARE" "$ROOT/$SHARE" \
             -o guest,vers="$VER",uid="$U_ID",gid="$G_ID",file_mode=0660,dir_mode=0770
 
+        trap - EXIT
         return
     fi
 
     mount -t cifs "//$SERVER/$SHARE" "$ROOT/$SHARE" \
         -o username="$USER",password="$PASS",vers="$VER",uid="$U_ID",gid="$G_ID",file_mode=0660,dir_mode=0770
+
+    trap - EXIT
 }
 
 smb_unmount() {
@@ -79,7 +94,6 @@ load_connection() {
         err "Invalid connection!"
     fi
 
-    local conn
     conn="$(jq -r ".hosts.$1" "$CONFIG")"
 
     if [[ "$conn" == "null" ]]; then
@@ -138,21 +152,24 @@ if [[ -z "$U_ID" || -z "$G_ID" ]]; then
     G_ID="$(id -g)"
 fi
 
-if [[ "$EUID" != 0 ]]; then
-    exec sudo env U_ID="$U_ID" G_ID="$G_ID" bash "$0" "$@"
-    exit
-fi
-
 # Parse arguments
 case $1 in
     list) list_hosts ;;
     mount)
+        if [[ "$EUID" != 0 ]]
+            then exec sudo env U_ID="$U_ID" G_ID="$G_ID" bash "$0" "$@" && exit
+        fi
+
         load_connection "$2"
         check_config
         smb_mount
     ;;
 
     unmount)
+        if [[ "$EUID" != 0 ]]
+            then exec sudo env U_ID="$U_ID" G_ID="$G_ID" bash "$0" "$@" && exit
+        fi
+
         load_connection "$2"
         check_config
         smb_unmount

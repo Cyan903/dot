@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Icon=mpv
+Name=mpv Anime Stream
+Comment=Stream anime with mpv
+Exec=mpvani
+Terminal=false
+NoDisplay=false
+Categories=AudioVideo;Audio;Video;Player;TV;
+Version=1.0

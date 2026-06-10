@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Icon=image-viewer
+Name=MVI Image Viewer
+Comment=View images using mvi
+Exec=/usr/bin/mpv --config-dir=~/.config/mvi %f
+Terminal=false
+MimeType=image/jpeg;image/png;image/gif;image/bmp;image/webp;
+Categories=Graphics;Viewer;
+NoDisplay=false
+Version=1.0

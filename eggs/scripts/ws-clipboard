@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Broadcast clipboard to a WebSocket server
+# Requires websocat
+
+PORT=6677
+HOST=127.0.0.1
+
+clean() {
+    if ss -tuln | grep ":$PORT " > /dev/null; then
+        killall websocat
+        echo ; echo "-> $PORT stopped"
+    fi
+}
+
+watch() {
+    websocat -E -t ws-listen:$HOST:$PORT broadcast:mirror: &
+
+    while true; do
+        out="$(wl-paste 2> /dev/null)"
+
+        if [[ "$out" != "$last" ]] && [[ -n "$out" ]]; then
+            last="$out"
+
+            if [[ -n "$1" ]]
+                then echo "$out" | websocat ws://$HOST:$PORT > /dev/null
+                else echo "$out" | websocat ws://$HOST:$PORT 2> /dev/null
+            fi
+        fi
+
+        sleep 0.25
+    done
+}
+
+usage() {
+    cat <<EOF
+WebSocket Clipboard
+
+Usage: ws-clipboard [options]
+
+Options:
+  start     watch the clipboard
+  watch     watch the clipboard (slient)
+  clean     kill the websocket server
+  help      display help
+
+Alternative:
+  systemctl --user ws-clipboard start
+  systemctl --user ws-clipboard stop
+  systemctl --user ws-clipboard status
+EOF
+}
+
+trap clean EXIT
+
+case $1 in
+    start) watch ;;
+    watch) watch 1 ;;
+    clean) clean ;;
+
+    *)
+        usage
+        exit 1
+    ;;
+esac
+

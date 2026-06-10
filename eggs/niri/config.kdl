@@ -356,8 +356,9 @@ binds {
 
     // Layout: Preset
     Mod+R hotkey-overlay-title="Layout: Switch width" { switch-preset-column-width; }
+    Mod+Ctrl+R hotkey-overlay-title="Layout: Switch height (reverse)" { switch-preset-column-width-back;  }
     Mod+Shift+R hotkey-overlay-title="Layout: Switch height" { switch-preset-window-height; }
-    Mod+Ctrl+R hotkey-overlay-title="Layout: Reset height" { reset-window-height; }
+    Mod+Shift+Ctrl+R hotkey-overlay-title="Layout: Switch height (reverse)" { switch-preset-window-height-back; }
 
     Mod+M hotkey-overlay-title="Layout: Maximize column" { maximize-column; }
     Mod+Shift+M hotkey-overlay-title="Layout: Fullscreen window" { fullscreen-window; }

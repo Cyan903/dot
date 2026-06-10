@@ -43,11 +43,11 @@ export let eggs = #{
     //
     // ~/.local/share/*
     //
-    "osuconfig": #{
-        targets: "~/.local/share/osuconfig",
+    "anki-plugins": #{
+        targets: "~/.local/share/Anki2/addons21",
         strategy: "merge",
         enabled: utils::enabled(S, #{
-            requires: ["osu-wine"],
+            requires: ["anki"],
             tags: [],
             hosts: [
                 hosts::devices.puter,
@@ -55,11 +55,23 @@ export let eggs = #{
         }),
     },
 
-    "anki-plugins": #{
-        targets: "~/.local/share/Anki2/addons21",
+    "applications": #{
+        targets: "~/.local/share/applications",
         strategy: "merge",
         enabled: utils::enabled(S, #{
-            requires: ["anki"],
+            requires: ["xdg-user-dir"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
+    },
+
+    "osuconfig": #{
+        targets: "~/.local/share/osuconfig",
+        strategy: "merge",
+        enabled: utils::enabled(S, #{
+            requires: ["osu-wine"],
             tags: [],
             hosts: [
                 hosts::devices.puter,
@@ -251,6 +263,18 @@ export let eggs = #{
         templates: ["script/login"],
         enabled: utils::enabled(S, #{
             requires: ["bash", "zsh"],
+            tags: [],
+            hosts: [
+                hosts::devices.puter,
+            ],
+        }),
+    },
+
+    "systemd": #{
+        targets: "~/.config/systemd/user",
+        strategy: "merge",
+        enabled: utils::enabled(S, #{
+            requires: ["systemctl"],
             tags: [],
             hosts: [
                 hosts::devices.puter,
