@@ -2,13 +2,11 @@
 # Launch awesome on /dev/tty1 login
 #
 
-if [[ $(tty) = "/dev/tty1" ]]; then
-    # {% if data.wayland %}
-        niri --session
-    # {% else %}
-        #<yolk> # iBus
-        #<yolk> pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
-    # {% end %}
-fi
+# {% if !data.wayland %}
+#<yolk> if [[ $(tty) = "/dev/tty1" ]]; then
+    #<yolk> # iBus
+    #<yolk> pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
+#<yolk> fi
+# {% end %}
 
 # vim: ft=sh
