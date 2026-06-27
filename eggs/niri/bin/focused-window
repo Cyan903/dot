@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+focused="$(niri msg focused-window | grep 'Title:')"
+title=${focused#Title: }
+
+notify-send "${title:10:-1}"

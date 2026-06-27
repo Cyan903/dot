@@ -6,8 +6,8 @@ local assdraw = require('mp.assdraw')
 local Menu = {}
 local MenuItem = assdraw.ass_new()
 
-MenuItem.DEFAULT_ACTIVE_COLOR = "FFFFFF"
-MenuItem.DEFAULT_INACTIVE_COLOR = "AAAAAA"
+MenuItem.DEFAULT_ACTIVE_COLOR = "222222"
+MenuItem.DEFAULT_INACTIVE_COLOR = "000000"
 MenuItem.DEFAULT_BORDER_COLOR = "000000"
 MenuItem.DEFAULT_TEXT_COLOR = "FFFFFFFF"
 MenuItem.DEFAULT_FONT_SIZE = 25

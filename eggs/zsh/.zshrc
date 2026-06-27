@@ -44,8 +44,8 @@ _comp_options+=(globdots)
 eval "$(zoxide init zsh)"
 alias cd="z"
 
-# direnv
-eval "$(direnv hook zsh)"
+# Mise
+eval "$(mise activate zsh)"
 
 # Prompt
 setopt promptsubst

@@ -7,6 +7,7 @@ M.servers = {
     ["vim-language-server"] = {},
     ["docker-compose-language-service"] = {},
     ["dockerfile-language-server"] = {},
+    ["ruby-lsp"] = {},
 
     clangd = {},
     gopls = {},

@@ -16,8 +16,8 @@
         "tray",
         "privacy",
 
-        "custom/niri-actions",
         "custom/pihole",
+        "custom/niri-actions",
         "bluetooth",
         "cpu",
         "memory",

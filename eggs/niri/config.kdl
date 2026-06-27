@@ -181,6 +181,7 @@ binds {
     // Scripts
     Mod+Grave { spawn "~/.config/niri/bin/media-tab"; }
     Mod+Ctrl+Shift+x repeat=false { spawn "~/.config/niri/bin/kill-focused"; }
+    Mod+Shift+W repeat=false { spawn "~/.config/niri/bin/focused-window"; }
 
     Mod+Alt+L hotkey-overlay-title="Scripts: Lockscreen" repeat=false allow-when-locked=true { spawn "locker"; }
     Mod+Ctrl+W hotkey-overlay-title="Scripts: Wallpaper" repeat=false allow-when-locked=false { spawn "bg-menu" "change"; }

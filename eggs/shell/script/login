@@ -1,5 +1,5 @@
 #
-# Launch awesome on /dev/tty1 login
+# Runs on login
 #
 
 # {% if !data.wayland %}
