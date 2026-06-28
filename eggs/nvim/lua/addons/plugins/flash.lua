@@ -1,20 +1,24 @@
--- Improved movement
--- :help flash
-return {
-    "folke/flash.nvim",
+local pack = require("utils.pack")
 
-    opts = {
-        modes = {
-            char = { enabled = false },
-        },
-    },
+pack.install({
+    source = { pack.gh "folke/flash.nvim" },
+    enabled = true,
 
-    event = "VeryLazy",
+    dependencies = {},
 
-    -- stylua: ignore
-    keys = {
-        { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-        { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-        { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-    },
-}
+    -- Improved movement
+    -- :help flash
+    callback = function()
+        local flash = require("flash")
+
+        flash.setup({
+            modes = {
+                char = { enabled = false },
+            },
+        })
+
+        vim.keymap.set({ "n", "x", "o" }, "s", flash.jump, { desc = "Flash" })
+        vim.keymap.set({ "n", "x", "o" }, "S", flash.treesitter, { desc = "Flash Treesitter" })
+        vim.keymap.set({ "c" }, "<c-s>", flash.toggle, { desc = "Toggle Flash Search" })
+    end
+})

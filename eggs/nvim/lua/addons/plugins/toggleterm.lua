@@ -1,10 +1,14 @@
--- Toggle terminal
--- :help toggleterm
-return {
-    "akinsho/toggleterm.nvim",
+local pack = require("utils.pack")
 
-    version = "*",
-    config = function()
+pack.install({
+    source = { pack.gh "akinsho/toggleterm.nvim" },
+    enabled = true,
+
+    dependencies = {},
+
+    -- Toggle terminal
+    -- :help toggleterm
+    callback = function()
         local toggleterm = require("toggleterm")
         local terminal = require("toggleterm.terminal").Terminal
 
@@ -17,7 +21,7 @@ return {
         local cterm = "Default"
 
         -- Add to which-key menu
-        require("util.srequire")("which-key", function(key)
+        require("utils.require")("which-key", function(key)
             key.add({
                 { "<leader>t", group = "[T]erminal (toggleterm)" },
             })
@@ -108,5 +112,5 @@ return {
 
         -- Setup terminal
         toggleterm.setup({})
-    end,
-}
+    end
+})

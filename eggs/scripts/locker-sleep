@@ -5,26 +5,19 @@
 
 font="Terminess Nerd Font"
 
-bg="#1e2029" # {< replace_color(data.colors.wallpaper) >}
-fg="#f8f8f2" # {< replace_color(data.colors.foreground) >}
-primary="#bd93f9" # {< replace_color(data.colors.primary) >}
-
-green="#50fa7b" # {< replace_color(data.colors.green) >}
-red="#ff5555" # {< replace_color(data.colors.red) >}
-orange="#ffb86c" # {< replace_color(data.colors.orange) >}
+bg="#000000" # {< replace_color(data.colors.wallpaper) >}
+fg="#333333" # {< replace_color(data.colors.hblack) >}
+red="#FF0000" # {< replace_color(data.colors.red) >}
 
 swaylock \
-    --clock \
-    --timestr="%l:%M%P" \
-    --datestr="%A, %e/%m/%Y" \
     --color "$bg" \
     --ignore-empty-password \
     --show-failed-attempts \
     --indicator-caps-lock \
     --bs-hl-color "$red" \
     --caps-lock-bs-hl-color "$red" \
-    --caps-lock-key-hl-color "$green" \
-    --key-hl-color "$green" \
+    --caps-lock-key-hl-color "$fg" \
+    --key-hl-color "$fg" \
     --font "$font" \
     --font-size 40 \
     --indicator-radius "140" \
@@ -41,14 +34,15 @@ swaylock \
     --line-ver-color "$bg" \
     --line-wrong-color "$bg" \
     --line-uses-inside \
-    --ring-color "$primary" \
-    --ring-clear-color "$red" \
-    --ring-caps-lock-color "$orange" \
-    --ring-ver-color "$green" \
-    --ring-wrong-color "$red" \
+    --ring-color "$bg" \
+    --ring-clear-color "$bg" \
+    --ring-caps-lock-color "$bg" \
+    --ring-ver-color "$bg" \
+    --ring-wrong-color "$bg" \
     --text-color "$fg" \
     --text-clear-color "$fg" \
     --text-caps-lock-color "$fg" \
     --text-ver-color "$fg" \
     --text-wrong-color "$fg"
+
 

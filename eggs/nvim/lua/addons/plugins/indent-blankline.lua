@@ -1,8 +1,15 @@
--- Indentation guides
--- :help ibl
-return {
-    "lukas-reineke/indent-blankline.nvim",
+local pack = require("utils.pack")
 
-    main = "ibl",
-    opts = {},
-}
+pack.install({
+    source = { pack.gh "lukas-reineke/indent-blankline.nvim" },
+    enabled = true,
+
+    dependencies = {},
+
+    -- Indentation guides
+    -- :help ibl
+    callback = function()
+        require("ibl").setup()
+    end
+})
+

@@ -1,3 +1,23 @@
+vim.diagnostic.config({
+    update_in_insert = false,
+    severity_sort = true,
+    float = { border = "rounded", source = "if_many" },
+    underline = { severity = { min = vim.diagnostic.severity.WARN } },
+
+    virtual_text = true,
+    virtual_lines = false,
+
+    jump = {
+        on_jump = function(_, bufnr)
+            vim.diagnostic.open_float({
+                bufnr = bufnr,
+                scope = "cursor",
+                focus = false,
+            })
+        end,
+    },
+})
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -29,9 +49,6 @@ vim.cmd([[
     nnoremap <M-k> <cmd>cprev<cr>
 ]])
 
--- Delete word with CTRL + Backspace
-vim.keymap.set("i", "<C-backspace>", "<C-w>")
-
 -- Better split navigation keymaps
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
@@ -46,3 +63,4 @@ vim.keymap.set("n", "<M-,>", "<c-w>5<")
 vim.keymap.set("n", "<M-.>", "<c-w>5>")
 vim.keymap.set("n", "<M-]>", "<C-W>+")
 vim.keymap.set("n", "<M-[>", "<C-W>-")
+

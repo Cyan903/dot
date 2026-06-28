@@ -1,11 +1,11 @@
 # {# replace_color(data.colors.background) #}
-background-color=#000000
+background-color=#282a36
 
 # {# replace_color(data.colors.foreground) #}
-text-color=#FFFFFF
+text-color=#f8f8f2
 
 # {# replace_color(data.colors.primary) #}
-border-color=#5C5CFF
+border-color=#bd93f9
 
 # Other
 font=Terminess Nerd Font 10

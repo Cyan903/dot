@@ -1,12 +1,14 @@
--- Dracula theme
--- :help dracula
-return {
-    "Mofiqul/dracula.nvim",
+local pack = require("utils.pack")
 
-    name = "dracula",
-    priority = 1000,
+pack.install({
+    source = { pack.gh "Mofiqul/dracula.nvim" },
+    enabled = true,
 
-    init = function()
+    dependencies = {},
+
+    -- Dracula theme
+    -- :help dracula
+    callback = function()
         vim.cmd.colorscheme("dracula")
-    end,
-}
+    end
+})

@@ -27,6 +27,8 @@ remove=(
     .pki
     .pulse-cookie
     .angular-config.json
+    .bundle
+    .irb_history
     .steampath
     .steampid
     .steam

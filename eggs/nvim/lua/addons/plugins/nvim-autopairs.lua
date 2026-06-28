@@ -1,8 +1,14 @@
--- Autopairs
--- :help nvim-autopairs
-return {
-    "windwp/nvim-autopairs",
+local pack = require("utils.pack")
 
-    event = "InsertEnter",
-    config = true,
-}
+pack.install({
+    source = { pack.gh "windwp/nvim-autopairs" },
+    enabled = true,
+
+    dependencies = {},
+
+    -- Autopairs
+    -- :help nvim-autopairs
+    callback = function()
+        require("nvim-autopairs").setup({})
+    end,
+})

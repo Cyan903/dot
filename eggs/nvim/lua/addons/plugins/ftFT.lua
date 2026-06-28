@@ -1,14 +1,19 @@
--- Highlight unique f/t & F/T
--- :help ftFT
-return {
-    "gukz/ftFT.nvim",
+local pack = require("utils.pack")
 
-    opts = {
-        keys = { "f", "t", "F", "T" },
-        modes = { "n", "v" },
-        hl_group = "Search",
-        sight_hl_group = "",
-    },
+pack.install({
+    source = { pack.gh "gukz/ftFT.nvim" },
+    enabled = true,
 
-    config = true,
-}
+    dependencies = {},
+
+    -- Highlight unique f/t & F/T
+    -- :help ftFT
+    callback = function()
+        require("ftFT").setup({
+            keys = { "f", "t", "F", "T" },
+            modes = { "n", "v" },
+            hl_group = "Search",
+            sight_hl_group = "",
+        })
+    end
+})

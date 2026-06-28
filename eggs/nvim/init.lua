@@ -1,18 +1,39 @@
---
--- Directory Structure
---
--- ├── addons/      -- External addons loaded by a plugin manager.
--- │   ├── plugins/ -- External plugins.
--- │   ├── themes/  -- External themes.
--- │   └── cfg.lua  -- Language-specific plugin configurations (e.g., LSP).
--- ├── core/        -- Core config specific to Neovim.
--- │   ├── config/  -- Standard configuration items (e.g., autocmd, set, etc...).
--- │   ├── init/    -- Different `init.lua` scripts depending on how Neovim is launched.
--- │   └── user/    -- Custom modules that are not reliant on external plugin.
--- └── util/        -- Utility functions used throughout the config.
---
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-require("util.init")({
-    { "vscode", vim.g.vscode },
-    { "fire", vim.g.started_by_firenvim },
+-- Used to display icons
+vim.g.have_nerd_font = true
+
+-- Use to enable LSP
+vim.g.lsp_enabled = true
+
+-- Load core config
+require("core")
+
+-- Load external addons
+require("addons")({
+    plugins = {
+        "which-key",
+        "lsp",
+
+        "fcitx5",
+        "flash",
+        "ftFT",
+        "gitsigns",
+        "grug-far",
+        "guess-indent",
+        "indent-blankline",
+        "mini",
+        "nvim-autopairs",
+        "nvim-tree",
+        "oil",
+        "slide",
+        "spelunk",
+        "telescope",
+        "tmux-navigator",
+        "todo-comments",
+        "toggleterm",
+    },
+
+    theme = "noctis-high-contrast",
 })

@@ -1,32 +1,35 @@
--- Buffer file view
--- :help oil
-return {
-    "stevearc/oil.nvim",
+local pack = require("utils.pack")
 
-    opts = { view_options = { show_hidden = true } },
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+pack.install({
+    source = { pack.gh "stevearc/oil.nvim" },
+    enabled = true,
 
-    config = function(_, opts)
+    dependencies = {},
+
+    -- Buffer file view
+    -- :help oil
+    callback = function()
         local oil = require("oil")
         local detail = false
-
-        opts.keymaps = {
-            ["gd"] = {
-                desc = "Toggle file detail view",
-                callback = function()
-                    detail = not detail
-                    if detail then
-                        require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-                    else
-                        require("oil").set_columns({ "icon" })
-                    end
-                end,
-            },
-        }
 
         -- Add to which-key menu
         vim.keymap.set("n", "-", oil.open, { desc = "[E]xplore oil" })
 
-        oil.setup(opts)
-    end,
-}
+        oil.setup({
+            view_options = { show_hidden = true },
+            keymaps = {
+                ["gd"] = {
+                    desc = "Toggle file detail view",
+                    callback = function()
+                        detail = not detail
+
+                        if detail
+                            then oil.set_columns({ "icon", "permissions", "size", "mtime" })
+                            else oil.set_columns({ "icon" })
+                        end
+                    end
+                }
+            }
+        })
+    end
+})

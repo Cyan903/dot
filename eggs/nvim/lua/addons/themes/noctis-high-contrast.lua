@@ -1,12 +1,14 @@
--- Noctis High Contrast
--- :help N/A
-return {
-    "iagorrr/noctishc.nvim",
+local pack = require("utils.pack")
 
-    name = "noctis-high-contrast",
-    priority = 1000,
+pack.install({
+    source = { pack.gh "iagorrr/noctishc.nvim" },
+    enabled = true,
 
-    init = function()
+    dependencies = {},
+
+    -- Noctis High Contrast
+    -- :help N/A
+    callback = function()
         vim.cmd.colorscheme("noctishc")
-    end,
-}
+    end
+})

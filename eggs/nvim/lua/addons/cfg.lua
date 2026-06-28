@@ -1,5 +1,17 @@
 local M = {}
 
+-- NOTE: Telescope ignore
+M.ignore = {
+    "node_modules/",
+    "vendor/",
+    "%.o",
+    "%.a",
+    "%.out",
+    "%.class",
+    "%.zip",
+}
+
+---@type table<string, vim.lsp.Config>
 -- NOTE: LSP servers
 M.servers = {
     ["termux-language-server"] = {},
@@ -7,14 +19,14 @@ M.servers = {
     ["vim-language-server"] = {},
     ["docker-compose-language-service"] = {},
     ["dockerfile-language-server"] = {},
-    ["ruby-lsp"] = {},
 
-    clangd = {},
     gopls = {},
     bashls = {},
-    angularls = {},
     checkmake = {},
     tailwindcss = {},
+    vue_ls = {},
+    stylua = {},
+    ruby_lsp = {},
 
     pylsp = {
         settings = {
@@ -41,32 +53,39 @@ M.servers = {
         },
     },
 
-    vue_ls = {},
-
     lua_ls = {
+        on_init = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+
+            if client.workspace_folders then
+                local path = client.workspace_folders[1].name
+                if path ~= vim.fn.stdpath("config") and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc")) then
+                    return
+                end
+            end
+
+            client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+                runtime = {
+                    version = "LuaJIT",
+                    path = { "lua/?.lua", "lua/?/init.lua" },
+                },
+
+                workspace = {
+                    checkThirdParty = false,
+                    library = vim.tbl_extend("force", vim.api.nvim_get_runtime_file("", true), {
+                        "${3rd}/luv/library",
+                        "${3rd}/busted/library",
+                    }),
+                },
+            })
+        end,
+
         settings = {
             Lua = {
-                completion = { callSnippet = "Replace" },
-                diagnostics = { disable = { "missing-fields" } },
+                format = { enable = false },
             },
         },
     },
-}
-
--- NOTE: Extra LSP tools
-M.tools = {
-    "stylua",
-    "prettierd",
-    "shellcheck",
-    "ruff",
-    "vue-language-server",
-}
-
--- NOTE: Treesitter parsers
-M.treesitter = {
-    ensure_installed = { "bash", "awk", "c", "html" },
-    indent_disable = { "ruby" },
-    vim_regex = { "ruby" },
 }
 
 -- NOTE: Format options
@@ -81,40 +100,5 @@ M.format = {
         vue = { "prettierd", "prettier", stop_after_first = true },
     },
 }
-
--- NOTE: Telescope ignore
-M.ignore = {
-    "node_modules/",
-    "vendor/",
-    "%.o",
-    "%.a",
-    "%.out",
-    "%.class",
-    "%.zip",
-}
-
-M.autocmds = function(servers, capabilities)
-    vim.api.nvim_create_autocmd("FileType", {
-        pattern = "vue",
-        callback = function(args)
-            local root_dir = vim.fs.root(args.buf, { "package.json", "tsconfig.json", "jsconfig.json" })
-            local init_options = vim.deepcopy(servers.ts_ls.init_options)
-
-            -- Ensure plugin location is set
-            local mason_path = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-            if vim.fn.isdirectory(mason_path) == 1 then
-                init_options.plugins[1].location = mason_path
-            end
-
-            vim.lsp.start({
-                name = "ts_ls",
-                cmd = { "typescript-language-server", "--stdio" },
-                root_dir = root_dir,
-                init_options = init_options,
-                capabilities = capabilities,
-            })
-        end,
-    })
-end
 
 return M

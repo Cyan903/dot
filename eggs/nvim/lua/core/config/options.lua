@@ -1,10 +1,12 @@
+vim.loader.enable()
+
 -- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Allow mouse & hide mode
+-- Allow mouse & configure mode
 vim.opt.mouse = "a"
-vim.opt.showmode = false
+vim.opt.showmode = true
 
 -- Schedule the setting after UiEnter because it can increase startup-time.
 vim.schedule(function()
@@ -74,6 +76,10 @@ vim.g.netrw_browse_split = 4
 vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3
 
+-- Show confirm window
+vim.opt.confirm = true
+
 -- Abbreviations
 vim.cmd("cabbrev W w")
 vim.cmd("cabbrev WQ wq")
+

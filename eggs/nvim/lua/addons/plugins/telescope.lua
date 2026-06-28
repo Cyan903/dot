@@ -1,28 +1,37 @@
--- Fuzzy finder
--- :help telescope
-return {
-    "nvim-telescope/telescope.nvim",
+local pack = require("utils.pack")
 
-    event = "VimEnter",
-    tag = "v0.2.0",
+pack.install({
+    source = { pack.gh "nvim-telescope/telescope.nvim" },
+    enabled = true,
+
     dependencies = {
-        "nvim-lua/plenary.nvim",
         {
-            "nvim-telescope/telescope-fzf-native.nvim",
-
-            build = "make",
-            cond = function()
-                return vim.fn.executable("make") == 1
-            end,
+            source = { pack.gh "nvim-lua/plenary.nvim" },
+            enabled = true,
+            callback = function() end
         },
 
-        { "nvim-telescope/telescope-ui-select.nvim" },
-        { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+        {
+            source = { pack.gh "nvim-telescope/telescope-ui-select.nvim" },
+            enabled = true,
+            callback = function() end
+        },
+
+        {
+            source = { pack.gh "nvim-telescope/telescope-fzf-native.nvim" },
+            enabled = vim.fn.executable("make") == 1,
+            callback = function() end
+        }
     },
 
-    config = function()
+    -- Fuzzy finder
+    -- :help telescope
+    callback = function()
+        local telescope = require("telescope")
+        local themes = require("telescope.themes")
+
         -- Add to which-key menu
-        require("util.srequire")("which-key", function(key)
+        require("utils.require")("which-key", function(key)
             key.add({
                 { "<leader>s", group = "[S]earch (telescope)" },
                 { "<leader>g", group = "[G]it (telescope)" },
@@ -32,10 +41,10 @@ return {
         -- Two important keymaps to use while in Telescope are:
         --  - Insert mode: <c-/>
         --  - Normal mode: ?
-        require("telescope").setup({
+        telescope.setup({
             extensions = {
                 ["ui-select"] = {
-                    require("telescope.themes").get_dropdown(),
+                    themes.get_dropdown(),
                 },
             },
 
@@ -55,8 +64,8 @@ return {
         })
 
         -- Enable Telescope extensions if they are installed
-        pcall(require("telescope").load_extension, "fzf")
-        pcall(require("telescope").load_extension, "ui-select")
+        pcall(telescope.load_extension, "fzf")
+        pcall(telescope.load_extension, "ui-select")
 
         -- :help telescope.builtin
         local builtin = require("telescope.builtin")
@@ -79,7 +88,7 @@ return {
 
         -- Search through current file
         vim.keymap.set("n", "<leader>/", function()
-            builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+            builtin.current_buffer_fuzzy_find(themes.get_dropdown({
                 winblend = 10,
                 previewer = false,
             }))
@@ -97,5 +106,5 @@ return {
         vim.keymap.set("n", "<leader>sn", function()
             builtin.find_files({ cwd = vim.fn.stdpath("config") })
         end, { desc = "[S]earch [N]eovim files" })
-    end,
-}
+    end
+})
