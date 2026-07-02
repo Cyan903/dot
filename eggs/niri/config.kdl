@@ -33,7 +33,7 @@ output "HDMI-A-1" {
     scale 1
     transform "normal"
     position x=1920 y=1080
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
         background-color "transparent"
@@ -48,7 +48,7 @@ output "DP-2" {
     scale 1
     transform "normal"
     position x=0 y=1080
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
         background-color "transparent"
@@ -61,7 +61,7 @@ output "DP-3" {
     scale 1
     transform "normal"
     position x=2250 y=30
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
         background-color "transparent"
@@ -74,7 +74,7 @@ output "DP-1" {
     scale 1.2
     transform "normal"
     position x=3840 y=1080
-    backdrop-color "#282a36" // {< replace_color(data.colors.background) >}
+    backdrop-color "#000000" // {< replace_color(data.colors.background) >}
 
     layout {
         background-color "transparent"
@@ -105,15 +105,15 @@ layout {
     focus-ring {
         off
         width 2
-        active-color "#bd93f9" // {< replace_color(data.colors.primary) >}
-        inactive-color "#1e2029" // {< replace_color(data.colors.wallpaper) >}
+        active-color "#5C5CFF" // {< replace_color(data.colors.primary) >}
+        inactive-color "#000000" // {< replace_color(data.colors.wallpaper) >}
     }
 
     border {
         width 2
-        active-color "#bd93f9" // {< replace_color(data.colors.primary) >}
-        inactive-color "#21222c" // {< replace_color(data.colors.black) >}
-        urgent-color "#f8f8f2" // {< replace_color(data.colors.foreground) >}
+        active-color "#5C5CFF" // {< replace_color(data.colors.primary) >}
+        inactive-color "#1C1C1C" // {< replace_color(data.colors.black) >}
+        urgent-color "#FFFFFF" // {< replace_color(data.colors.foreground) >}
     }
 
     shadow {

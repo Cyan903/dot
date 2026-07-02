@@ -1,29 +1,29 @@
-@define-color foreground #f8f8f2; /* {< replace_color(data.colors.foreground) >} */
-@define-color background #282a36; /* {< replace_color(data.colors.background) >} */
-@define-color wallpaper #1e2029; /* {< replace_color(data.colors.wallpaper) >} */
+@define-color foreground #FFFFFF; /* {< replace_color(data.colors.foreground) >} */
+@define-color background #000000; /* {< replace_color(data.colors.background) >} */
+@define-color wallpaper #000000; /* {< replace_color(data.colors.wallpaper) >} */
 
-@define-color bright #ffffff; /* {< replace_color(data.colors.bright) >} */
-@define-color dim #44475a; /* {< replace_color(data.colors.dim) >} */
+@define-color bright #FFFFFF; /* {< replace_color(data.colors.bright) >} */
+@define-color dim #1A1A1A; /* {< replace_color(data.colors.dim) >} */
 @define-color dark #000000; /* {< replace_color(data.colors.dark) >} */
 
-@define-color black #21222c; /* {< replace_color(data.colors.black) >} */
-@define-color red #ff5555; /* {< replace_color(data.colors.red) >} */
-@define-color blue #bd93f9; /* {< replace_color(data.colors.blue) >} */
-@define-color green #50fa7b; /* {< replace_color(data.colors.green) >} */
-@define-color yellow #f1fa8c; /* {< replace_color(data.colors.yellow) >} */
-@define-color cyan #8be9fd; /* {< replace_color(data.colors.cyan) >} */
-@define-color magenta #ff79c6; /* {< replace_color(data.colors.magenta) >} */
-@define-color orange #ffb86c; /* {< replace_color(data.colors.orange) >} */
+@define-color black #1C1C1C; /* {< replace_color(data.colors.black) >} */
+@define-color red #FF0000; /* {< replace_color(data.colors.red) >} */
+@define-color blue #5C5CFF; /* {< replace_color(data.colors.blue) >} */
+@define-color green #00FF00; /* {< replace_color(data.colors.green) >} */
+@define-color yellow #FFFF00; /* {< replace_color(data.colors.yellow) >} */
+@define-color cyan #00FFFF; /* {< replace_color(data.colors.cyan) >} */
+@define-color magenta #FF00FF; /* {< replace_color(data.colors.magenta) >} */
+@define-color orange #FFA500; /* {< replace_color(data.colors.orange) >} */
 
-@define-color hblack #6272a4; /* {< replace_color(data.colors.hblack) >} */
-@define-color hred #ff6e6e; /* {< replace_color(data.colors.hred) >} */
-@define-color hblue #d6acff; /* {< replace_color(data.colors.hblue) >} */
-@define-color hgreen #69ff94; /* {< replace_color(data.colors.hgreen) >} */
-@define-color hyellow #ffffa5; /* {< replace_color(data.colors.hyellow) >} */
-@define-color hcyan #a4ffff; /* {< replace_color(data.colors.hcyan) >} */
-@define-color hmagenta #ff92df; /* {< replace_color(data.colors.hmagenta) >} */
+@define-color hblack #333333; /* {< replace_color(data.colors.hblack) >} */
+@define-color hred #FF4C4C; /* {< replace_color(data.colors.hred) >} */
+@define-color hblue #8080FF; /* {< replace_color(data.colors.hblue) >} */
+@define-color hgreen #66FF66; /* {< replace_color(data.colors.hgreen) >} */
+@define-color hyellow #FFFF99; /* {< replace_color(data.colors.hyellow) >} */
+@define-color hcyan #66FFFF; /* {< replace_color(data.colors.hcyan) >} */
+@define-color hmagenta #FF66FF; /* {< replace_color(data.colors.hmagenta) >} */
 
-@define-color primary #bd93f9; /* {< replace_color(data.colors.primary) >} */
+@define-color primary #5C5CFF; /* {< replace_color(data.colors.primary) >} */
 
 * {
     font-family: "Terminess Nerd Font", "UbuntuMono Nerd Font", FreeMono;

@@ -3,10 +3,10 @@
 #
 
 # {% if !data.wayland %}
-if [[ $(tty) = "/dev/tty1" ]]; then
-    # iBus
-    pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
-fi
+#<yolk> if [[ $(tty) = "/dev/tty1" ]]; then
+    #<yolk> # iBus
+    #<yolk> pgrep awesome || startx "$XDG_CONFIG_HOME"/X11/xinitrc
+#<yolk> fi
 # {% end %}
 
 # vim: ft=sh

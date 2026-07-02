@@ -5,13 +5,13 @@
 
 font="sans-serif"
 
-bg="#1e2029" # {< replace_color(data.colors.wallpaper) >}
-fg="#f8f8f2" # {< replace_color(data.colors.foreground) >}
-primary="#bd93f9" # {< replace_color(data.colors.primary) >}
+bg="#000000" # {< replace_color(data.colors.wallpaper) >}
+fg="#FFFFFF" # {< replace_color(data.colors.foreground) >}
+primary="#5C5CFF" # {< replace_color(data.colors.primary) >}
 
-green="#50fa7b" # {< replace_color(data.colors.green) >}
-red="#ff5555" # {< replace_color(data.colors.red) >}
-light="#6272a4" # {< replace_color(data.colors.hblack) >}
+green="#00FF00" # {< replace_color(data.colors.green) >}
+red="#FF0000" # {< replace_color(data.colors.red) >}
+light="#333333" # {< replace_color(data.colors.hblack) >}
 
 i3lock \
     --clock \
