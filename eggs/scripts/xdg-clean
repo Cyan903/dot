@@ -3,7 +3,7 @@
 # XDG Clean
 # Clean up the home folder
 
-store=".xdg-clean"
+store=".cache/xdg-clean"
 
 keep=(
     .android
@@ -16,6 +16,8 @@ keep=(
     .skiko
     .xlcore
     .vscode
+    .vscode-oss
+    .vscode-oss-shared
     .flutter
     .dart-tool
     .dartServer

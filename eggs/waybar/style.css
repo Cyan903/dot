@@ -83,7 +83,6 @@ button:hover {
     opacity: 0.8;
 }
 
-#tray:hover,
 #privacy:hover,
 #bluetooth:hover,
 #cpu:hover,
@@ -101,7 +100,6 @@ button:hover {
 }
 
 /* Tray & Privacy */
-#tray,
 #privacy {
     opacity: 0.5;
 }

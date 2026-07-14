@@ -22,13 +22,13 @@ watch() {
         if [[ "$out" != "$last" ]] && [[ -n "$out" ]]; then
             last="$out"
 
-            if [[ -n "$1" ]]
+            if [[ "$1" == "silent" ]]
                 then echo "$out" | websocat ws://$HOST:$PORT > /dev/null
                 else echo "$out" | websocat ws://$HOST:$PORT 2> /dev/null
             fi
         fi
 
-        sleep 0.25
+        sleep "${2:-0.25}"
     done
 }
 
@@ -54,8 +54,8 @@ EOF
 trap clean EXIT
 
 case $1 in
-    start) watch ;;
-    watch) watch 1 ;;
+    start) watch active "$2" ;;
+    watch) watch silent "$2" ;;
     clean) clean ;;
 
     *)
