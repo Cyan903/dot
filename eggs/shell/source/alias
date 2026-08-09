@@ -36,6 +36,13 @@ list.m3u() {
     printf "%s\n" *.$1 > list.m3u
 }
 
+docker-bald() {
+    echo y | docker container prune
+    echo y | docker image prune -a
+    echo y | docker volume prune -a
+    echo y | docker network prune
+}
+
 # Alias
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
